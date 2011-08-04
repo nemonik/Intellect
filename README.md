@@ -106,7 +106,7 @@ are formally denoted as properties like so:
 Example policy files can be found in intellect/rulesets, and must follow 
 the Policy grammar as define in intellect/grammar/Policy.g
  
-### Import Statmentns (_ImportStmts_)
+### Import Statments (_ImportStmts_)
 
 Import statement basically follow Python's with a few limitations (For 
 example, The wild card form of import is not supported for the reasons
@@ -151,7 +151,7 @@ in _then-_portion of the rule.
 	14	                delete $bar  
 
 
-### Regular Expressions in _ruleCondition_ _classConstraint_ _constraints_:
+### Regular Expressions in _ruleCondition_._classConstraint_._constraints_:
 
 You can also use regular expressions in a Rules' _ruleCondition_ by 
 importing the regular expression library straight from Python and 
