@@ -73,7 +73,7 @@ You need to download and install the ANTLR3 3.1.3 Python Runtime,
 and Python itself, if you don't already have it.  I tested the code on
 Python 2.7.1 and 2.7.2. 
 
-## Facts
+## Facts (Data being reasoned over)
 
 The interpreter, the rules engine, and the remainder of the code such as 
 objects for conferring discrete network conditions, referred to as "facts",
@@ -106,7 +106,7 @@ are formally denoted as properties like so:
 Example policy files can be found in intellect/rulesets, and must follow 
 the Policy grammar as define in intellect/grammar/Policy.g
  
-### ImportStmts
+### Import Statmentns (_ImportStmts_)
 
 Import statement basically follow Python's with a few limitations (For 
 example, The wild card form of import is not supported for the reasons
@@ -122,7 +122,7 @@ one being named.
 
 To be written.
 
-### ruleStmt 
+### Rule Statements (_ruleStmt_) 
 
 A rule statement at its simplest looks like so:
 
@@ -151,7 +151,7 @@ in _then-_portion of the rule.
 	14	                delete $bar  
 
 
-### Regular Expressions in ruleCondition.classConstraint.constraints:
+### Regular Expressions in _ruleCondition_ _classConstraint_ _constraints_:
 
 You can also use regular expressions in a Rules' _ruleCondition_ by 
 importing the regular expression library straight from Python and 
@@ -191,7 +191,7 @@ If you were to add the method
 
 to ClassB. 
 
-### not'ed ruleCondition:
+### _not_'ed _ruleCondition_:
 
 A _ruleCondition_ may be _not_'ed as follows:
 
@@ -225,7 +225,7 @@ any object in memory matching the condition. The _action_ statements
 _modify_ and _delete_ may not be used in the _then_-portion of a _ruleStmt_, 
 if _exists_' pre-pends the _when_-portions's _ruleCondition_. 
 
-### agenda-group rule property
+### _agenda-group_ rule property
 
 To be written.
 
@@ -269,7 +269,7 @@ For _insert_, rule "insert ClassD" might look like the following:
 
 and illustrates the use of an insert action to insert a ClassD fact. 
 
-### SimpleStmt statements:
+### Simple Statments (_SimpleStmt_):
 
 _SimpleStmts_ are supported actions for _then_-portion of a rule, and so one 
 can do the following:
@@ -289,7 +289,7 @@ can do the following:
 The _simpleStmt_s on lines 35 through 41 can be executed if any facts in
 knowledge exist matching the _ruleCondition_.
 
-### attribute statements
+### _attribute_ statements
 
 To be written.
 
