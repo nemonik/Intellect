@@ -1,0 +1,43 @@
+import logging
+
+
+first_sum = 0
+second_sum = 0
+level = logging.DEBUG
+
+rule "set both first_sum and second_sum to 1":
+	agenda-group "test_d"
+	then:
+		attribute (first_sum, second_sum) = (1,1)
+		log(level, "first_sum is {0}".format(first_sum))
+		log(level,  "second_sum is {0}".format(second_sum))
+
+rule "add 2":
+	agenda-group "test_d"
+	then:
+		attribute first_sum += 2
+		attribute second_sum += 2
+		log(level, "first_sum is {0}".format(first_sum))
+		log(level, "second_sum is {0}".format(second_sum))
+
+rule "add 3":
+	agenda-group "test_d"
+	then:
+		attribute first_sum += 3
+		attribute second_sum += 3
+		log(level, "first_sum is {0}".format(first_sum))
+		log(level, "second_sum is {0}".format(second_sum))
+
+rule "add 4":
+	agenda-group "test_d"
+	then:
+		attribute first_sum += 4
+		attribute second_sum += 4
+		log(level, "first_sum is {0}".format(first_sum))
+		log(level, "second_sum is {0}".format(second_sum))
+		halt
+
+rule "should never get here":
+	agenda-group "test_d"
+	then:
+		log(logging.error, "Then how did I get here?")

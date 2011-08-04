@@ -1,0 +1,12 @@
+#Thu Aug 04 12:34:26 EDT 2011
+antlr_core_code_generator_XdbgST=false
+antlr_core_code_generator_append_java_package_to_out_folder=true
+antlr_core_code_generator_debug=false
+antlr_core_code_generator_max_memory=0
+antlr_core_code_generator_out_folder=antlr-generated
+antlr_core_code_generator_out_option=g
+antlr_core_code_generator_profile=false
+antlr_core_code_generator_trace=false
+antlr_core_code_generator_x_max_switch_case_labels=300
+antlr_core_code_generator_x_min_switch_alts=3
+eclipse.preferences.version=1

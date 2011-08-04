@@ -1,0 +1,17 @@
+from intellect.testing.subModule.ClassB import ClassB
+
+rule rule_e:
+	agenda-group test_a
+	then:
+		print foo
+
+rule rule_f:
+	agenda-group test_a
+	then:
+		halt
+
+rule rule_g:
+	agenda-group test_a
+	then:
+		halt
+
