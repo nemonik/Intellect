@@ -2,32 +2,66 @@ _My appologies, a better readme will follow..._
 
 # Overview
 
+Let's clear up what Intellect is.
+
 Intellect is a DSL (“Domain-Specific Language”) and Rule Engine for Python
-Auhtored by Michael Joseph Walsh for expressing policies to orchestrate and
-control a dynamic network defense cyber-security platform being researched
-in The MITRE Corporation's Innovation Program. 
+I auhtored for expressing policies to orchestrate and control a dynamic 
+network defense cyber-security platform being researched in The 
+MITRE Corporation's Innovation Program. 
 
 The language and rule engine form a "production rule system", where computer
 algorithms are used to provide some form of artificial intelligence, which
-consists primarily of a set of rules about behavior. For platform, the 
-network defender uses the DSL to confer policy, how the platform is to 
-respond to network events mounted over covert network channels, but there 
-are no direct ties written into the language nor the rule engine
-to cyber-security, and thus the system in its entirety could be more broadly
-used in other domains.
+consists primarily of a set of rules about behavior. For platform in the
+Innovation Program, the network defender uses the DSL to confer policy, 
+how the platform is to respond to network events mounted over covert 
+network channels, but there are no direct ties written into the language 
+nor the rule engine to cyber-security, and thus the system in its 
+entirety can be more broadly used in other domains.
 
 Many production rule system implementations have been open-sourced, such as
-JBoss Drools, Rools, Jess, Lisa, et cetera. These are available for other
-languages for expressing production rules, but it is the author's belief 
-that Python is under-represented, and as such the language and rule engine 
-could benefit from an open source release.
+JBoss Drools, Rools, Jess, Lisa, et cetera.  If you've seen Drools, the 
+syntax should look familiar. (I'm not saying it is based on it, because
+it is not, but when I was working the syntax I checked with Drools and
+if made sense to push in the direction of Drools, I did.)  The forementioned 
+implemenations are available for other languages for expressing production 
+rules, but it is my belief that Python is under-represented, and as such 
+it was my thought the language and rule engine could benefit from being
+open sourced, and so put a request in. 
 
-The MITRE Corporation was granted release August 4, 2011.
+The MITRE Corporation granted release August 4, 2011.
 
 Thus, releasing the domain-specific language (DSL) and Rule Engine to Open
 Source in the hopes doing so will extend its use and increase its chances 
 for possible adoption, while at the same time mature the project with more 
-intereted eyeballs being placed on it.
+interested eyeballs being placed on it.
+
+# Background 
+
+Starting out, it was initially assumed the forementioned platform would 
+be integrated with the best Open Source rules engine available for 
+Python as there are countless implementation for Ruby, Java, and Perl, 
+but surprisingly I found none fitting the project's needs. This led to 
+the thought of inventing one; simply typing the keywords “python rules 
+engine” into Google though will return to you the advice “to not invent 
+yet another rules language”, but instead you are advised to “just write 
+your rules in Python, import them, and execute them.” The basis for this 
+advice can be coalesced down to doing so otherwise does not fit with the 
+“Python Philosophy.” At the time, I did not believe this to be true, nor 
+fully contextualized, and yet admittedly, I had not yet authored a line 
+of Python code (Yes, you're looking at my first Python program. So,
+please give me a break.) nor used  ANTLR3 prior to this effort. Looking 
+back, I firmly believe the act of inventing a rules engine and abstracting it 
+behind a nomenclature that describes and illuminates a specific domain is 
+the best way for in case of forementioned platform the network defender 
+to think about the problem. Like I said though the DSL and rules engine
+could be used for anything needing a "production rule system".
+
+As there were no rules engines available for Python fitting the platforms
+needs, a policy language and naive forward chaining rules engine were built 
+from scratch. The policy language's grammar is based on a subset of Python 
+language syntax.  The policy DSL is parsed and lexed with the help of the 
+ANTLR3 Parse Generator and  Runtime for Python. 
+
 
 # Walkthrough
 
@@ -35,35 +69,11 @@ A walkthrough to get you jump-started.
 
 ## Dependencies
 
-You need to download and install the  ANTLR3 Python Runtime.
+You need to download and install the ANTLR3 3.1.3 Python Runtime, 
+and Python itself, if you don't already have it.  I tested the code on
+Python 2.7.1 and 2.7.2. 
 
-Tested on Python 2.7.1 and 2.7.2. 
-
-## The Policy DSL
-
-### Background 
-
-Starting out, it was initially assumed the platform would be integrated with
-the best Open Source rules engine available for Python as there are
-countless implementation for Ruby, Java, and Perl, but surprisingly found
-none fitting the project's needs. This led to the thought of inventing one;
-simply typing the keywords “python rules engine” into Google though will
-return to you the advice “to not invent yet another rules language”, but
-instead you are advised to “just write your rules in Python, import them,
-and execute them.” The basis for this advice can be coalesced down to doing
-so otherwise does not fit with the “Python Philosophy.” At the time, I did
-not believe this to be true, nor fully contextualized, and yet admittedly, I
-had not yet authored a line of Python code nor used ANTLR3 prior to this
-effort. Looking back, I firmly believe the act of inventing a rules engine
-and abstracting it behind a nomenclature that describes and illuminates a
-specific domain is the best way for the network defender to think about the
-problem. 
-
-As there were no rules engines available for Python fitting the platforms
-needs, a policy language and naive forward chaining rules engine were built 
-from scratch. The policy language's grammar is based on a subset of Python 
-language syntax.  The policy DSL is parsed and lexed with the help of the 
-ANTLR3 Parse Generator and  Runtime for Python. 
+## Facts
 
 The interpreter, the rules engine, and the remainder of the code such as 
 objects for conferring discrete network conditions, referred to as "facts",
@@ -79,6 +89,19 @@ introduced in Python 2.6, are adopted and formally used for authoring these obje
 Coincidentally, the use of the “Getter/Setter Pattern” used frequently in 
 Java is singularly frowned upon in the Python developer community with the 
 cheer of “Python is not Java.”
+
+So, you will need to author you facts as Python object's who attributes 
+are formally denoted as properties like so:
+
+	@property
+	def property0(self):
+		return self._property0
+	
+	@property0.setter
+	def property0(self, value):
+		self._property0 = value
+
+## The Policy DSL
 
 Example policy files can be foud in intellect/rulesets, and must follow 
 the Policy grammar as define in intellect/grammar/Policy.g
