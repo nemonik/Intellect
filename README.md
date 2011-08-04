@@ -1,11 +1,11 @@
-_My appologies, a better readme will follow..._
+_My apologies, a better readme will follow..._
 
 # Overview
 
 Let's clear up what Intellect is.
 
 Intellect is a DSL (“Domain-Specific Language”) and Rule Engine for Python
-I auhtored for expressing policies to orchestrate and control a dynamic 
+I authored for expressing policies to orchestrate and control a dynamic 
 network defense cyber-security platform being researched in The 
 MITRE Corporation's Innovation Program. 
 
@@ -22,8 +22,8 @@ Many production rule system implementations have been open-sourced, such as
 JBoss Drools, Rools, Jess, Lisa, et cetera.  If you've seen Drools, the 
 syntax should look familiar. (I'm not saying it is based on it, because
 it is not, but when I was working the syntax I checked with Drools and
-if made sense to push in the direction of Drools, I did.)  The forementioned 
-implemenations are available for other languages for expressing production 
+if made sense to push in the direction of Drools, I did.)  The aforementioned 
+implementations are available for other languages for expressing production 
 rules, but it is my belief that Python is under-represented, and as such 
 it was my thought the language and rule engine could benefit from being
 open sourced, and so put a request in. 
@@ -37,7 +37,7 @@ interested eyeballs being placed on it.
 
 # Background 
 
-Starting out, it was initially assumed the forementioned platform would 
+Starting out, it was initially assumed the aforementioned platform would 
 be integrated with the best Open Source rules engine available for 
 Python as there are countless implementation for Ruby, Java, and Perl, 
 but surprisingly I found none fitting the project's needs. This led to 
@@ -52,7 +52,7 @@ of Python code (Yes, you're looking at my first Python program. So,
 please give me a break.) nor used  ANTLR3 prior to this effort. Looking 
 back, I firmly believe the act of inventing a rules engine and abstracting it 
 behind a nomenclature that describes and illuminates a specific domain is 
-the best way for in case of forementioned platform the network defender 
+the best way for in case of aforementioned platform the network defender 
 to think about the problem. Like I said though the DSL and rules engine
 could be used for anything needing a "production rule system".
 
@@ -103,24 +103,28 @@ are formally denoted as properties like so:
 
 ## The Policy DSL
 
-Example policy files can be foud in intellect/rulesets, and must follow 
+Example policy files can be found in intellect/rulesets, and must follow 
 the Policy grammar as define in intellect/grammar/Policy.g
  
 ### ImportStmts
 
 Import statement basically follow Python's with a few limitations (For 
 example, The wild card form of import is not supported for the reasons
-elabortated
+elaborated
 [here](http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html#importing)) 
 and follow the Python 2.7.2 grammar. _ImportStmt_s exist only at the same level of 
 _ruleStmt_s as per the grammar, and are typically at the top of a policy 
-file, but are not limitted to. In fact if you break up your policy 
+file, but are not limited to. In fact if you break up your policy 
 across several files the last imported as class or module wins as the
 one being named.
 
+### globals
+
+To be written.
+
 ### ruleStmt 
 
-A rule statment at its simplest looks like so:
+A rule statement at its simplest looks like so:
 
 	22	rule "print":	
 	23	        then:
@@ -165,11 +169,11 @@ From example:
 	7	        when:
 	8	                $classB := ClassB( re.search(r"\bapple\b", "apple")!=None and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
 
-To keep the policy files from turning into just another Pytyhon script you
+To keep the policy files from turning into just another Python script you
 will want to keep as little code out of the policy file was possible... Use
 the _modify_, _delete_, _insert_ grammar defined actions in the _then_-portions of
 the _ruleStmt_ as well as using _simpleStatements_. If you are writing very
-complicated constraints in the when-portions of a ruleStmt, consider moving 
+complicated constraints in the when-portions of a _ruleStmt_, consider moving 
 the constraint into a method of fact being reasoned over.
 
 For example, the above regular expression example would become:
@@ -218,8 +222,12 @@ A ruleCondition may be prepended with _exists_ as follows:
 
 and thus the _then_-portion of the _ruleStmt_ will be called once if there are
 any object in memory matching the condition. The _action_ statements
-_modify_ and _delete_ may not be used in the _then_-portion of a ruleStmt, 
+_modify_ and _delete_ may not be used in the _then_-portion of a _ruleStmt_, 
 if _exists_' pre-pends the _when_-portions's _ruleCondition_. 
+
+### agenda-group rule property
+
+To be written.
 
 ### modify, delete, and insert actions:
 
@@ -231,9 +239,9 @@ The following:
 	13	                modify $classB:
 	14	                        # add " hell world" to 'property1' of 'ClassB' matches
 	15	                        property1 = $classB.property1 + " " + test.helloworld()
-	16	                        # return true from the ClassB's 'trueValue()' methond and use it to set the matches modified property
+	16	                        # return true from the ClassB's 'trueValue()' method and use it to set the matches modified property
 	17	                        modified = $classB.trueValue()
-	18	                        # increment the matche's 'property2' value by 1000
+	18	                        # increment the match's 'property2' value by 1000
 	19	                        property2 = $classB.property2 + 1000
 
 illustrates the use of a _modify_ _action_ to modify each match returned by
@@ -242,7 +250,7 @@ _modify_ _action_ can also be used to chain _ruleStmts_, what you do is
 modify the fact (toggle a boolean property, set a property's value, et cetera) 
 and then use this property to evaluate in the proceeding _ruleStmt_.
 
-A rule entitlled  "delete those that don't match" might look like the following:
+A rule entitled  "delete those that don't match" might look like the following:
 
 	10	rule "delete those that don't match":
 	11	        when:
@@ -263,7 +271,7 @@ and illustrates the use of an insert action to insert a ClassD fact.
 
 ### SimpleStmt statements:
 
-_SimpleStmts_ are supported  actions for _then_-portion of a rule, and so one 
+_SimpleStmts_ are supported actions for _then_-portion of a rule, and so one 
 can do the following:
 
 	31	rule rule_c:
@@ -278,43 +286,100 @@ can do the following:
 	40	                test.helloworld()               
 	41	                intellect.bar()
 
-The simpleStmts on lines 35 through 41 can be executed if any facts in
+The _simpleStmt_s on lines 35 through 41 can be executed if any facts in
 knowledge exist matching the _ruleCondition_.
 
+### attribute statements
+
+To be written.
 
 ## Creating and using a Rules Engine with a policy
 
-A rules engine is created and used like so:
 
-	import sys, logging
-	
-	from intellect.Intellect import Intellect
-	from intellect.Intellect import Callable
+At its simplest a rules engine can be created and used like so:
 
-	class MyIntellect(Intellect):
+	1	import sys, logging
+	2	
+	3	from intellect.Intellect import Intellect
+	4	from intellect.Intellect import Callable
+	5
+	6	# set up logging
+	7	logging.basicConfig(level=logging.DEBUG,
+	8	format='%(asctime)s %(name)-12s%(levelname)-8s%(message)s',
+	9		#filename="rules.log")
+	10		stream=sys.stdout)
+	11
+	12	intellect = Intellect()
+	13
+	14	policy_a = intellect.learn("../rulesets/test_a.policy")
+	15
+	16	intellect.reason()
+	17
+	18 	intellect.forget_all()
 
-		@Callable
-		def bar(self):
-			self.log(logging.DEBUG, ">>>>>>>>>>>>>>  called MyIntellect's bar method as it was decorated as callable.")
 
-	if __name__ == "__main__":
+It may be preferable for you to sub-class intellect.Intellect.Intellect in 
+order to add @Callable decorated methods in order to permit these methods
+to be called from a the _then_-portion of the rule.
+ 
+For example, MyIntellect is created to sub-class Intellect:
 
-		# set up logging
-		logging.basicConfig(level=logging.DEBUG,
-			format='%(asctime)s %(name)-12s%(levelname)-8s%(message)s',
-			#filename="rules.log")
-			stream=sys.stdout)
+	1	import sys, logging
+	2
+	3	from intellect.Intellect import Intellect
+	4	from intellect.Intellect import Callable
+	5
+	6	class MyIntellect(Intellect):
+	7
+	8		@Callable
+	9		def bar(self):
+	10			self.log(logging.DEBUG, ">>>>>>>>>>>>>>  called MyIntellect's bar method as it was decorated as callable.")
+	11
+	12	if __name__ == "__main__":
+	13
+	14		# set up logging
+	15		logging.basicConfig(level=logging.DEBUG,
+	16			format='%(asctime)s %(name)-12s%(levelname)-8s%(message)s',
+	17			#filename="rules.log")
+	18			stream=sys.stdout)
+	19
+	20		print "*"*80
+	21		print """create an instance of MyIntellect extending Intellect, create some facts, and exercise the MyIntellect's ability to learn and forget"""
+	22		print "*"*80
+	23
+	24		myIntellect = MyIntellect()
+	25
+	26		policy_a = myIntellect.learn("../rulesets/test_a.policy")
+	27
+	28		myIntellect.reason()
+	29
+	30		myIntellect.forget_all()
 
-		print "*"*80
-		print """create an instance of MyIntellect extending Intellect, create some facts, and exercise the MyIntellect's ability to learn and forget"""
-		print "*"*80
+The policy could then be authored, where _MyIntellect_'s _bar_-method is called on line 22 for matches 
+to the _ruleCondition_ on line 11, like so:
 
-		myIntellect = MyIntellect()
-
-		policy_a = myIntellect.learn("../rulesets/test_a.policy")
-
-		myIntellect.reason()
-
-		myIntellect.forget_all()
+	1	from intellect.testing.subModule.ClassB import ClassB
+	2	import intellect.testing.Test as Test
+	3	import logging
+	4
+	5	fruits_of_interest = ["apple", "grape", "mellon", "pear"]
+	6	count = 5
+	7
+	8	rule rule_a:
+        9		agenda-group test_a
+        10		when:
+        11	        	$classB := ClassB( property1 in fruits_of_interest and property2>count ) 
+        12		then:
+        13	        	# mark the 'ClassB' matches in memory as modified
+        14	        	modify $classB:
+        15	                	property1 = $classB.property1 + " pie"
+        16	                	modified = True
+        17	                	# increment the match's 'property2' value by 1000
+        18	                	property2 = $classB.property2 + 1000
+        19	        	attribute count = $classB.property2
+        20	        	print "count = {0}".format( count )
+        21	        	# call MyIntellect's bar method as it is decorated as callable
+        22	        	bar()
+        23	        	log(logging.DEBUG, "rule_a fired")
 
 
