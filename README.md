@@ -130,7 +130,7 @@ file, but are not limited to. In fact, if you break up your policy
 across several files the last imported as class or module wins as the
 one being named.
 
-### globals
+### attributes
 
 To be written.
 
@@ -333,7 +333,7 @@ It may be preferable for you to sub-class _intellect.Intellect.Intellect_ class 
 order to add @Callable decorated methods that will in turn permit these methods
 to be called from a the _then_-portion of the rule.
  
-For example, MyIntellect is created to sub-class Intellect:
+For example, _MyIntellect_ is created to sub-class _Intellect_:
 
 	1	import sys, logging
 	2
@@ -366,7 +366,7 @@ For example, MyIntellect is created to sub-class Intellect:
 	29
 	30		myIntellect.forget_all()
 
-The policy could then be authored, where _MyIntellect_'s _bar_-method is called on line 22 for matches 
+The policy could then be authored, where _MyIntellect_'s _bar_-method is called on line 24 for matches 
 to the _ruleCondition_ on line 11, like so:
 
 	1	from intellect.testing.subModule.ClassB import ClassB
