@@ -330,8 +330,8 @@ At its simplest a rules engine can be created and used like so:
 
 
 It may be preferable for you to sub-class _intellect.Intellect.Intellect_ class in 
-order to add @Callable decorated methods that will in turn permit these methods
-to be called from a the _then_-portion of the rule.
+order to add _@Callable_ decorated methods that will in turn permit these methods
+to be called from the _then_-portion of the rule.
  
 For example, _MyIntellect_ is created to sub-class _Intellect_:
 
