@@ -11,8 +11,8 @@ modification, are permitted provided that the following conditions are met:
    documentation and/or other materials provided with the distribution.
 3. All advertising materials mentioning features or use of this software
    must display the following acknowledgement:
-   This product includes software developed by the the author.
-4. Neither the name of the the author nor the
+   This product includes software developed by the author.
+4. Neither the name of the author nor the
    names of its contributors may be used to endorse or promote products
    derived from this software without specific prior written permission.
 
@@ -1016,7 +1016,7 @@ class When(Node):
                 else:
                     fireThen = True
         else:
-            # The default is to fire the then portion of the rule, if the When
+            # The default is to fire then portion of the rule, if the When
             # portion of the rule has no RuleCondition
             fireThen = True
 
@@ -1106,7 +1106,7 @@ class Then(Node):
 
     def eval(self, policy, ruleStmt, matches, objectBinding):
         '''
-        Evaluate the then portion.
+        Evaluate then portion.
         '''
 
         localScope = {}
