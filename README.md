@@ -241,47 +241,79 @@ if _exists_' pre-pends the _when_-portions's _ruleCondition_.
 
 To be written.
 
-### _modify_, _delete_, and _insert _actions:
+###  _learn_, _modify_, _forget_, and _halt_ _actions_:
 
 Earlier, I mentioned the use of _modify_, _delete_, _insert_ grammar 
 defined _action_s in the _then_-portions of a rule.
 
-The following:
- 
-	13	modify $classB:
-	14		# add " hell world" to 'property1' of 'ClassB' matches
-	15		property1 = $classB.property1 + " " + test.helloworld()
-	16		# return true from the ClassB's 'trueValue()' method and use it to set the matches modified property
-	17		modified = $classB.trueValue()
-	18		# increment the match's 'property2' value by 1000
-	19		property2 = $classB.property2 + 1000
+#### _learn_ _action_
 
-illustrates the use of a _modify_ _action_ to modify each match returned by
-rule_a's _when_-portion. Cannot be used in conjunction with _exists_. The
-_modify_ _action_ can also be used to chain _ruleStmts_, what you do is 
-modify the fact (toggle a boolean property, set a property's value, et cetera) 
+A rule entitled "Time to buy new sheep?" might look like the following:
+
+	51	rule "Time to buy new sheep?":
+	52		when:
+	53			$buyOrder := BuyOrder( )
+	54		then:
+	55			print( "Buying a new sheep." )
+	56			modify $buyOrder:
+	57				count = $buyOrder.count - 1
+	58			learn BlackSheep()
+
+at line 58 illustrates the use of a _learn_ _action_ to learn/insert 
+a BlackSheep fact. Line 58 can also be written as:
+
+	58			insert BlackSheep()
+
+#### _modify_ _action_ 
+
+The following rule:
+ 
+	51	rule "Time to buy new sheep?":
+	52		when:
+	53			$buyOrder := BuyOrder( )
+	54		then:
+	55			print( "Buying a new sheep." )
+	56			modify $buyOrder:
+	57				count = $buyOrder.count - 1
+	58			learn BlackSheep()
+
+illustrates the use of a _modify_ _action_ starting at line 56 to modify 
+each BuyOrder match returned by the rule's _when_-portion. Cannot be used 
+in conjunction with _exists_ rule conditions. The _modify_ _action_ can 
+also be used to chain _ruleStmts_, what you do is modify the fact (toggle 
+a boolean property, set a property's value, et cetera) 
 and then use this property to evaluate in the proceeding _ruleStmt_.
 
-A rule entitled  "delete those that don't match" might look like the following:
+#### _forget_ _action_
 
-	10	rule "delete those that don't match":
-	11		when:
-	12			not $bar := ClassD(property1 in [1,2,3])
-	13		then:
-	14			delete $bar
+A rule entitled "Remove empty buy orders" might look like the following:
 
-illustrates the use of a _delete_ _action_ to delete each match returned by
-the rule's _when_-portion. Cannot be used in conjunction with _exists_.
+	60	rule "Remove empty buy orders":
+	61		when:
+	62			$buyOrder := BuyOrder( count == 0 )
+	63		then:
+ 	64			forget $buyOrder
 
-For _insert_, rule "insert ClassD" might look like the following:
+at line 64 illustrates the use of a _forget_ _action_ to forget/delete each match 
+returned by the rule's _when_-portion. Line 64 can also be written as:
 
-	26	rule "insert ClassD":
-	27		then:
-	28			insert ClassD("foobar")
+	64			delete $buyOrder
 
-and illustrates the use of an _insert_ action to insert a ClassD fact. 
+Note: cannot be used in conjunction with _exists_.
 
-### Simple Statments (_SimpleStmt_):
+#### _halt_ _action_
+
+The following rule:
+
+    66	rule "End policy":
+    67		then:
+    68			log("Finished reasoning over policy.", "example", logging.DEBUG)
+    69			halt
+
+at line 68 illustrates the use of a _halt_ _action_ to tell the rules
+engine to halt reasoning over the policy.
+
+### Simple Statements (_SimpleStmt_):
 
 _SimpleStmts_ are supported actions for _then_-portion of a rule, and so one 
 can do the following:

@@ -600,6 +600,9 @@ class Policy(Node):
         Eval the policy
         '''
 
+        # reset halt to false
+        self.halt = False
+
         if not isinstance(agenda, (list, types.NoneType)):
             raise TypeError, "Parameter 'agenda' must be a List or NoneType."
 
@@ -1138,13 +1141,13 @@ class Then(Node):
                     # needed as the Action object wraps the actual Action
                     actualAction = action.action
 
-                    if isinstance(actualAction, DeleteAction):
+                    if isinstance(actualAction, ForgetAction):
                         # search through the objects that have been learned
                         # and delete the match
 
                         policy.intellect.forget(match)
 
-                    elif isinstance(actualAction, InsertAction):
+                    elif isinstance(actualAction, LearnAction):
 
                         # create a newObject with the arguments, if provided,
                         # and append it to learned objects in memory
@@ -1153,7 +1156,7 @@ class Then(Node):
                         # be a  problem down the road...
                         code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
 
-                        self.log("Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
+                        self.log("Code to be run for learnAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
                         try:
                             # Execute the code
@@ -1247,20 +1250,20 @@ class Then(Node):
                 # needed as the Action object wraps the actual Action
                 actualAction = action.action
 
-                if isinstance(actualAction, DeleteAction):
+                if isinstance(actualAction, ForgetAction):
 
-                    # As the DeleteAction acts on a specific match, one cannot
-                    # have DeleteAction statements in then-portion of a rule
+                    # As the ForgetAction acts on a specific match, one cannot
+                    # have ForgetAction statements in then-portion of a rule
                     # who's when-portion evaluated on "exists".
-                    raise SyntaxError, "deleteAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path)
+                    raise SyntaxError, "forgetAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path)
 
-                elif isinstance(actualAction, InsertAction):
+                elif isinstance(actualAction, LearnAction):
 
                     # create a newObject with the arguments, if provided,
                     # and append it to learned objects in memory
                     code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
 
-                    self.log("Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
+                    self.log("Code to be run for learnAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
                     try:
                         # Execute the code
@@ -1507,7 +1510,7 @@ class Action(Node):
     @property
     def action(self):
         '''
-        Returns either a DeleteAction, InsertAction, ModifyAction, or SimpleStmt
+        Returns either a ForgetAction, LearnAction, ModifyAction, or SimpleStmt
         object
         '''
         return self.first_child()
@@ -1555,22 +1558,22 @@ class AttributeAction(Node):
 
 
 
-class DeleteAction(Node):
+class ForgetAction(Node):
     '''
-    A DeleteAction node.
+    A ForgetAction node.
     '''
     @property
     def objectBinding(self):
         '''
-        Returns a str representing the object binding
+        Returns a str representing the object binding to be forgotten/deleted
         '''
         return self.children[1]
 
 
 
-class InsertAction(Node):
+class LearnAction(Node):
     '''
-    An InserttAction node.
+    An LearnAction node.
     '''
     @property
     def name(self):

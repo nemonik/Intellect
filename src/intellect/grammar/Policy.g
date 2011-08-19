@@ -126,8 +126,8 @@ classConstraint returns [object] // returns ClassConstraint object
 
 action returns [object] // returns an Action object
   : attributeAction  { $object = Action( $attributeAction.object, $attributeAction.object.line, $attributeAction.object.column ) }
-  | deleteAction     { $object = Action( $deleteAction.object, $deleteAction.object.line, $deleteAction.object.column ) }
-  | insertAction     { $object = Action( $insertAction.object, $insertAction.object.line, $insertAction.object.column ) }
+  | forgetAction     { $object = Action( $forgetAction.object, $forgetAction.object.line, $forgetAction.object.column ) }
+  | learnAction     { $object = Action( $learnAction.object, $learnAction.object.line, $learnAction.object.column ) }
   | modifyAction     { $object = Action( $modifyAction.object, $modifyAction.object.line, $modifyAction.object.column ) }
   | haltAction       { $object = Action( $haltAction.object, $haltAction.object.line, $haltAction.object.column ) }
   | simpleStmt       { $object = Action( $simpleStmt.object, $simpleStmt.object.line, $simpleStmt.object.column ) }
@@ -144,13 +144,17 @@ printStmt returns [object] // returns a PrintStmt object
       | RIGHTSHIFT comparisonList2=comparisonList { object.append_children( [$RIGHTSHIFT.text, $comparisonList2.object] ) } )? NEWLINE
   ;
 
-deleteAction returns [object] // returns a DeleteAction object
-  : DELETE OBJECTBINDING { $object = DeleteAction( [$DELETE.text, $OBJECTBINDING.text], $DELETE.getLine(), $DELETE.getCharPositionInLine() ) } NEWLINE
+forgetAction returns [object] // returns a ForgetAction object
+  : ( FORGET { $object = ForgetAction( $FORGET.text, $FORGET.getLine(), $FORGET.getCharPositionInLine() ) }
+      | DELETE { $object = ForgetAction( $DELETE.text, $DELETE.getLine(), $DELETE.getCharPositionInLine() ) } ) 
+      OBJECTBINDING { $object.append_child( $OBJECTBINDING.text ) } NEWLINE
   ;
 
-insertAction returns [object] // returns an InsertActions object
-  : INSERT NAME LPAREN { $object = InsertAction( [$INSERT.text, $NAME.text, $LPAREN.text], $INSERT.getLine(), $INSERT.getCharPositionInLine() ) }
-      ( argumentList { $object.append_child( $argumentList.object ) } )? RPAREN { $object.append_child( $RPAREN.text ) } NEWLINE
+learnAction returns [object] // returns an LearnActions object
+  : ( LEARN { $object = LearnAction( $LEARN.text, $LEARN.getLine(), $LEARN.getCharPositionInLine() ) }
+      | INSERT { $object = LearnAction( $INSERT.text, $INSERT.getLine(), $INSERT.getCharPositionInLine() ) } ) 
+        NAME LPAREN { $object.append_children( [$NAME.text, $LPAREN.text] ) }
+        ( argumentList { $object.append_child( $argumentList.object ) } )? RPAREN { $object.append_child( $RPAREN.text ) } NEWLINE
   ;
 
 modifyAction returns [object] // returns a ModifyAction object
@@ -599,8 +603,16 @@ INSERT
   : 'insert'
   ;
 
+LEARN
+  : 'learn'
+  ;
+
 DELETE
   : 'delete'
+  ;
+
+FORGET
+  : 'forget'
   ;
 
 HALT

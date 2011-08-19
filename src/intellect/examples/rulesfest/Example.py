@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 Created on Aug 17, 2011
 
-@author: walsh
+@author: Michael Joseph Walsh
 '''
 
 import sys, logging, time
@@ -39,7 +39,6 @@ import sys, logging, time
 from intellect.Intellect import Intellect
 from intellect.Intellect import Callable
 
-from intellect.examples.rulesfest.BlackSheep import BlackSheep
 from intellect.examples.rulesfest.BuyOrder import BuyOrder
 
 class MyIntellect(Intellect):
@@ -57,7 +56,7 @@ if __name__ == '__main__':
 
     # set up logging for the example
     logger = logging.getLogger('example')
-    logger.setLevel(logging.ERROR)
+    logger.setLevel(logging.DEBUG)
 
     consoleHandler = logging.StreamHandler(stream=sys.stdout)
     consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
