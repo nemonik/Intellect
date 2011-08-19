@@ -74,14 +74,14 @@ if __name__ == "__main__":
 
     myIntellect = MyIntellect()
 
-    policy_a = myIntellect.learn("../rulesets/test_a.policy")
-    policy_d = myIntellect.learn("../rulesets/test_d.policy")
+    policy_a = myIntellect.learn("./rulesets/test_a.policy")
+    policy_d = myIntellect.learn("./rulesets/test_d.policy")
 
     myIntellect.reason(["test_d", "test_a"])
 
     myIntellect.forget_all()
 
-    from intellect.testing.subModule.ClassB import ClassB
+    from intellect.examples.testing.subModule.ClassB import ClassB
 
     # keep an identifier (b1) around to a ClassB, to demonstrate that a rule
     # can modify the object and the change is reflected in b1
@@ -92,8 +92,8 @@ if __name__ == "__main__":
     myIntellect.learn(b)
 
     # learn policy at '../rulesets/test_a.policy'
-    policy_a = myIntellect.learn("../rulesets/test_a.policy")
-    policy_a = myIntellect.learn("../rulesets/test_b.policy")
+    policy_a = myIntellect.learn("./rulesets/test_a.policy")
+    policy_a = myIntellect.learn("./rulesets/test_b.policy")
     #print policy.str_tree()
     #print str(policy_a)
 
@@ -134,6 +134,6 @@ if __name__ == "__main__":
 
     myIntellect.forget_all()
 
-    policy_c = myIntellect.learn("../rulesets/test_c.policy")
+    policy_c = myIntellect.learn("./rulesets/test_c.policy")
 
     myIntellect.reason(["1", "2", "3", "4", "5", "6"])

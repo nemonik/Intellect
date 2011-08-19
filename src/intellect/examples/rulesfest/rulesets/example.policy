@@ -1,0 +1,64 @@
+from intellect.examples.rulesfest.BlackSheep import BlackSheep
+from intellect.examples.rulesfest.BuyOrder import BuyOrder
+import logging
+import random
+
+rule "alway print":
+	then:
+		log("policy is being reasoned over", "example", logging.DEBUG)
+
+rule "Baa, baa, black sheep, Have you any wool?":
+	when:
+		exists BlackSheep()
+	then:
+		print( "Me:  Baa, baa, black sheep, Have you any wool?" )
+
+rule "0 bags full":
+	when: 
+		$sheep := BlackSheep( bags_of_wool == 0 )
+	then:
+		print( "{0}: No, sir, No, sir.".format( $sheep.name ) )
+
+rule "at least 1 bag full?":
+	when:
+		$sheep := BlackSheep( bags_of_wool >= 1 )
+	then:
+		print( "{0}: Yes, sir, yes, sir,".format( $sheep.name ) )
+		print( "{0}: {1} bags full".format( $sheep.name, $sheep.bags_of_wool ) )
+		print( "{0}: One for my master,".format( $sheep.name ) )
+
+rule "at least 2 bags full?":
+	when:
+		$sheep := BlackSheep( bags_of_wool >= 2 )
+	then:
+		print("{0}: And one for my dame,".format( $sheep.name ) )
+
+rule "3 bags full?":
+	when:
+		$sheep := BlackSheep( bags_of_wool == 3 )
+	then:
+		print( "{0}: and one for the little boy".format( $sheep.name ) )
+		print( "{0}: Who lives down the lane.".format( $sheep.name ) )
+
+rule "retire the sheep and insert a buy order":
+	when:
+		$sheep := BlackSheep( bags_of_wool == 3 )
+	then:
+		print( "Retiring {0}.".format( $sheep.name ) )
+		delete $sheep
+		insert BuyOrder(random.randint(1, 1))
+
+rule "buy a new sheep?":
+	when:
+		$buyOrder := BuyOrder( count > 0 )
+	then:
+		print( "Buying a new sheep." )
+		modify $buyOrder:
+			count = $buyOrder.count - 1
+		insert BlackSheep()
+
+rule "remove empty buy orders":
+	when:
+		$buyOrder := BuyOrder( count == 0 )
+	then:
+		delete $buyOrder

@@ -1,5 +1,5 @@
-from intellect.testing.subModule.ClassB import ClassB
-import intellect.testing.Test as Test
+from intellect.examples.testing.subModule.ClassB import ClassB
+import intellect.examples.testing.Test as Test
 import logging
 
 fruits_of_interest = ["apple", "grape", "mellon", "pear"]

@@ -349,11 +349,12 @@ class Node(object):
         self.globals[object_reference] = value
 
 
-    def log(self, level = logging.DEBUG, msg = None):
+    def log(self, msg, name = "intellect", level = logging.DEBUG):
         '''
         Logs at the 'level' for the messaged 'msg'
 
         Args:
+            name: the name of the logger
             level:  must be either logging.DEBUG, logging.INFO, logging.WARNING,
                 logging.ERROR, logging.CRITICAL
             msg: message string
@@ -363,7 +364,7 @@ class Node(object):
                 logging.ERROR, logging.CRITICAL]:
             raise ValueError, "'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL"
 
-        logging.getLogger("strongarm").log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
+        logging.getLogger(name).log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
 
 
     @staticmethod
@@ -605,12 +606,12 @@ class Policy(Node):
         if not agenda:
             agenda = ["MAIN"]
 
-        self.log(msg="agenda: {0}".format(agenda))
+        self.log("agenda: {0}".format(agenda))
 
         # put the imports into the policy's global namespace
         for importStmt in self.importStmts:
             try:
-                self.log(msg="Evaluating: {0}".format(importStmt))
+                self.log("Evaluating: {0}".format(importStmt))
                 exec(str(importStmt), self.globals)
             except ImportError as error:
                 raise ImportError, error.message + " at line: {0} from policy file: '{1}'".format(importStmt.line, importStmt.file.path)
@@ -626,12 +627,12 @@ class Policy(Node):
                     raise SyntaxError, "invalid syntax:  global '{0}' is a reserved keyword: {1} from policy file: '{2}'.".format(atom.first_child(), attributeStmt.line, atom.file.path)
 
             # add globals to the namespace
-            self.log(msg="Evaluating: {0}".format(attributeStmt))
+            self.log("Evaluating: {0}".format(attributeStmt))
             exec(str(attributeStmt), self.globals)
 
         if self.ruleStmts:
 
-            self.log(msg="Evaluating ruleStmts")
+            self.log("Evaluating ruleStmts")
 
             # fire the rules in order according to the agenda
             # until all fired or told to halt
@@ -646,12 +647,12 @@ class Policy(Node):
                         break
 
                     if (ruleStmt.agenda_group_id == agenda_group):
-                        self.log(msg="Evaluating: '{0}' from agenda group '{1}'".format(ruleStmt.id, ruleStmt.agenda_group_id))
+                        self.log("Evaluating: '{0}' from agenda group '{1}'".format(ruleStmt.id, ruleStmt.agenda_group_id))
                         ruleStmt.eval(self)
                     else:
-                        self.log(msg="Ignoring: '{0}' from agenda group '{1}' as it is not on the agenda".format(ruleStmt.id, ruleStmt.agenda_group_id))
+                        self.log("Ignoring: '{0}' from agenda group '{1}' as it is not on the agenda".format(ruleStmt.id, ruleStmt.agenda_group_id))
                 else:
-                    self.log(msg="Halting...")
+                    self.log("Halting...")
 
 
 class File(Node):
@@ -841,7 +842,7 @@ class RuleStmt(Statement):
         Evaluate the RuleStmt over known objects held within the associated
         Intellect object.
         '''
-        self.log(logging.DEBUG, "Evaluating rule: '{0}' from policy file: '{1}'".format(self.id, self.file.path))
+        self.log("Evaluating rule: '{0}' from policy file: '{1}'".format(self.id, self.file.path))
 
         if self.when:
             whenResults = self.when.eval(policy, self)
@@ -852,13 +853,13 @@ class RuleStmt(Statement):
 
             whenResults = Result(fireThen = True, matches = [], objectBinding = None)
 
-        self.log(logging.DEBUG, "When results for {0}:  {1}".format(self.id, whenResults))
+        self.log("When results for '{0}':  {1}".format(self.id, whenResults))
 
         if whenResults.fireThen:
             # fire the Then portion of the rule
             self.then.eval(policy, self, whenResults.matches, whenResults.objectBinding)
         else:
-            self.log(logging.DEBUG, "When portion of {0} evaluated false, not firing Then portion".format(self.id))
+            self.log("When portion of {0} evaluated false, not firing Then portion".format(self.id))
 
 
 
@@ -940,7 +941,7 @@ class When(Node):
 
             classConstraint = self.ruleCondition.notCondition.condition.classConstraint
 
-            #self.log(logging.DEBUG, (classConstraint.str_tree())
+            #self.log(classConstraint.str_tree())
 
             # Determine the ClassConstraint.name'ed class-type
             klazz = reflection.class_from_string(classConstraint.name, policy)
@@ -970,13 +971,13 @@ class When(Node):
                 # learned objects
                 code += str(rewrittenConstraint) + (")" if self.ruleCondition.notCondition.is_negated() else "") + "]"
 
-                self.log(logging.DEBUG, "Filter using the following list comprehension: {0}".format(code))
+                self.log("Filter using the following list comprehension: {0}".format(code))
 
                 try:
                     # Execute the dynamically built list comprehension code
 
-                    self.log(msg="policy.globals.keys = {0}".format(policy.globals.keys()))
-                    self.log(msg="localScope = {0}".format(localScope.keys()))
+                    self.log("policy.globals.keys = {0}".format(policy.globals.keys()))
+                    self.log("localScope = {0}".format(localScope.keys()))
                     exec(code, policy.globals, localScope)
 
                     matches = localScope["matches"]
@@ -984,26 +985,32 @@ class When(Node):
                 except Exception as error:
                     raise SyntaxError("{0} in rule: '{1}', near line: {2} in policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path))
 
-                self.log(logging.DEBUG, "The matches found in memory: {0}".format(matches))
+                self.log("The matches found in memory: {0}".format(matches))
             else:
-                # not having a ClassConstraint.constraint, match all the
-                # learned objects of ClassConstraint.name'ed class-type
+                # not having a ClassConstraint.constraint
+                if not self.ruleCondition.notCondition.is_negated():
+                    # match all the learned objects of ClassConstraint.name'ed class-type
+                    matches = [fact for fact in policy.intellect.knowledge if isinstance(fact, klazz)]
+                else:
+                    # match all the learned objects that are not the ClassConstraint.name'ed class-type
+                    matches = [fact for fact in policy.intellect.knowledge if not isinstance(fact, klazz)]
 
-                matches = [fact for fact in policy.intellect.knowledge if isinstance(fact, klazz)]
+                self.log("The matches found in memory: {0}".format(matches))
 
             if classConstraint.objectBinding:
                 # hold the objectBinding, if it exists for later use
                 objectBinding = classConstraint.objectBinding
+                self.log("objectBinding is '{0}'".format(objectBinding))
 
-            if self.ruleCondition.notCondition.condition.exists and classConstraint.constraint:
-                # The Condition holds an Exists token and
-                # ClassContraint.constraint is not None
+            if self.ruleCondition.notCondition.condition.exists:
+                #"The Condition holds an Exists token
+
                 if not matches:
                     fireThen = False
                 else:
                     # matches exist for the ClassConstraint.constraint,
                     # fire the Then portion of the rule
-                    self.log(logging.DEBUG, "classConstraint prepended with 'exists'.")
+                    self.log("classConstraint prepended with 'exists'.")
                     fireThen = True
                     # the following no longer of relevance
                     matches = []
@@ -1146,7 +1153,7 @@ class Then(Node):
                         # be a  problem down the road...
                         code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
 
-                        self.log(logging.DEBUG, "Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
+                        self.log("Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
                         try:
                             # Execute the code
@@ -1165,47 +1172,53 @@ class Then(Node):
                         for knowledgeIndex, fact in enumerate(policy.intellect.knowledge):
                             # TODO: modify the line below
                             if id(match) == id(fact):
+
                                 for propertyAssignment in actualAction.propertyAssignments:
+
                                     try:
+                                        self.log("value" + " = " + str(Then.rewrite(propertyAssignment.constraint, Constraint(), objectBinding)))
                                         exec("value" + " = " + str(Then.rewrite(propertyAssignment.constraint, Constraint(), objectBinding)), policy.globals, localScope)
                                     except Exception as error:
                                         raise SyntaxError("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path))
 
-                                    if localScope["value"]:
+                                    #if localScope["value"]:
 
-                                        self.log(msg = "modifying {0} property {1} with value of {2} with assignment of {3}".format(objectBinding, propertyAssignment, localScope["value"], propertyAssignment.assignment))
+                                    self.log("modifying {0} property {1} with value of {2} with assignment of {3}".format(objectBinding, propertyAssignment, localScope["value"], propertyAssignment.assignment))
 
-                                        if (str(propertyAssignment.assignment) == "="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "+="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) + localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "-="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) - localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "*="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) * localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "/="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) / localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "%="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) % localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "&="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) & localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "|="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) | localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "^="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) ^ localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == "<<="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) << localScope["value"])
-                                        elif  (str(propertyAssignment.assignment) == ">>="):
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) >> localScope["value"])
-                                        else:
-                                            setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) // localScope["value"])
+                                    if (str(propertyAssignment.assignment) == "="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "+="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) + localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "-="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) - localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "*="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) * localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "/="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) / localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "%="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) % localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "&="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) & localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "|="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) | localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "^="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) ^ localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == "<<="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) << localScope["value"])
+                                    elif  (str(propertyAssignment.assignment) == ">>="):
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) >> localScope["value"])
+                                    else:
+                                        setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) // localScope["value"])
+
+                                    # if had ended here
+
                                 break
 
                     elif isinstance(actualAction, HaltAction):
 
                         policy.halt = True
 
-                        self.log(msg="Halt called in rule: '{0}' from policy file: '{1}'.".format(ruleStmt.id, self.file.path))
+                        self.log("Halt called in rule: '{0}' from policy file: '{1}'.".format(ruleStmt.id, self.file.path))
 
                         break
 
@@ -1247,7 +1260,7 @@ class Then(Node):
                     # and append it to learned objects in memory
                     code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
 
-                    self.log(logging.DEBUG, "Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
+                    self.log("Code to be run for insertAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
                     try:
                         # Execute the code
@@ -1268,7 +1281,7 @@ class Then(Node):
 
                     policy.halt = True
 
-                    self.log(msg="Halt called in rule: '{0}' from policy file: '{1}'.".format(ruleStmt.id, self.file.path))
+                    self.log("Halt called in rule: '{0}' from policy file: '{1}'.".format(ruleStmt.id, self.file.path))
 
                     break
 
@@ -1299,7 +1312,7 @@ class Then(Node):
         Executes the code
         '''
 
-        self.log(logging.DEBUG, "Code to be run for simpleStatement in rule: '{0}' near line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, self.line, self.file.path, code))
+        self.log("Code to be run for simpleStatement in rule: '{0}' near line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, self.line, self.file.path, code))
 
         try:
             # Execute the code, wrapped to collect stdout

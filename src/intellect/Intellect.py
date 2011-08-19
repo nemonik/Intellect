@@ -117,7 +117,7 @@ class Intellect(object):
                 return self.learn_policy(identifier)
             elif self.knowledge.count(identifier) == 0:
                 self.knowledge.append(identifier)
-                self.log(logging.DEBUG, "Learned: {0}:{1}".format(type(identifier), identifier.__dict__))
+                self.log("Learned: {0}:{1}".format(type(identifier), identifier.__dict__))
             else:
                 raise ValueError, "{0}:{1} already exists in knowledge.".format(type(identifier), identifier.__dict__)
         else:
@@ -149,11 +149,11 @@ class Intellect(object):
                 isFile = False
 
                 if os.path.exists(identifier):
-                    self.log(logging.DEBUG, "learning policy messaged as file path: {0}".format(identifier))
+                    self.log("learning policy messaged as file path: {0}".format(identifier))
                     stream = FileStream(identifier)
                     isFile = True
                 else:
-                    self.log(logging.DEBUG, "learning policy messaged as string: {0}".format(identifier))
+                    self.log("learning policy messaged as string: {0}".format(identifier))
                     stream = ANTLRStringStream(identifier)
 
                 lexer = PolicyLexer(stream)
@@ -214,14 +214,14 @@ class Intellect(object):
                 # remove the fact from the knowledge
                 for index, fact in enumerate(self.knowledge):
                     if identifier == id(fact):
-                        self.log(logging.DEBUG, "Forgetting fact with id: {0} of type: {1} from knowledge. fact.__dict__: {2}".format(identifier, type(fact), fact.__dict__))
+                        self.log("Forgetting fact with id: {0} of type: {1} from knowledge. fact.__dict__: {2}".format(identifier, type(fact), fact.__dict__))
                         self.knowledge.remove(fact)
                         return
                 # fact doesn't exist in memory, attempt to remove a policy file/String
                 # from knowledge with this identifier
                 for index, file in self.policy.files:
                     if identifier == id(file):
-                        self.log(logging.DEBUG, "Forgetting policy loaded from file path : {0}".format(identifier.path))
+                        self.log("Forgetting policy loaded from file path : {0}".format(identifier.path))
                         self.policy.files.remove(file)
                         return
                 # neither fact nor policy so raise an exception
@@ -233,20 +233,20 @@ class Intellect(object):
                         if file.path == identifier:
                             self.policy.files.pop(fileIndex)
 
-                    self.log(logging.DEBUG, "Forgetting policy loaded from file path : {0}".format(identifier))
+                    self.log("Forgetting policy loaded from file path : {0}".format(identifier))
                 except KeyError:
                     raise ValueError, "policy for file path: {0} is not in knowledge".format(identifier)
             elif isinstance(identifier, File):
                 try:
                     index = self.policy.files.index(identifier)
                     self.policy.files.pop(index)
-                    self.log(logging.DEBUG, "Forgetting policy loaded from file path : {0}".format(identifier.path))
+                    self.log("Forgetting policy loaded from file path : {0}".format(identifier.path))
                 except:
                     raise ValueError, "policy: {0} not in knowledge".format(identifier.path)
             else:
                 try:
                     self.knowledge.remove(identifier)
-                    self.log(logging.DEBUG, "Forgetting fact: {0}".format(identifier))
+                    self.log("Forgetting fact: {0}".format(identifier))
                 except:
                     raise ValueError, "fact: {0} is not in knowledge".format(identifier)
         else:
@@ -292,7 +292,7 @@ class Intellect(object):
         self.knowledge = []
         self.policy = Policy()
 
-        self.log(logging.DEBUG, "forgot all")
+        self.log("forgot all")
 
 
     def reason(self, agenda = None):
@@ -314,7 +314,7 @@ class Intellect(object):
 
             So, in the scenario above an agenda may look like:
 
-                agenda = {"targeting sequence", "firing sequence", "after firing sequence" }
+                agenda = ["targeting sequence", "firing sequence", "after firing sequence" ]
 
             First, all the rules associated with the "targeting sequence" agenda
             group will fire, then those associated with the "firing sequence"
@@ -342,11 +342,12 @@ class Intellect(object):
 
 
     @Callable
-    def log(self, level, msg):
+    def log(self, msg, name = "intellect", level = logging.DEBUG):
         '''
         Logs at the 'level' for the messaged 'msg'
 
         Args:
+            name: the name of the logger
             level:  must be either logging.DEBUG, logging.INFO, logging.WARNING,
                 logging.ERROR, logging.CRITICAL
             msg: message string
@@ -361,4 +362,4 @@ class Intellect(object):
                 logging.ERROR, logging.CRITICAL]:
             raise ValueError, "A value of '{0}' for 'level' is invalid, must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL".format(level)
 
-        logging.getLogger("strongarm").log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
+        logging.getLogger(name).log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))

@@ -48,11 +48,12 @@ STATIC_METHOD = staticmethod
 PROPERTY = property
 DATA = "data"
 
-def log(level = logging.DEBUG, msg = None):
+def log(msg, name = "intellect", level = logging.DEBUG):
     '''
     Logs at the 'level' for the messaged 'msg'
 
     Args:
+        name: the name of the logger
         level:  must be either logging.DEBUG, logging.INFO, logging.WARNING,
             logging.ERROR, logging.CRITICAL
         msg: message string
@@ -62,7 +63,7 @@ def log(level = logging.DEBUG, msg = None):
             logging.ERROR, logging.CRITICAL]:
         raise ValueError, "'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL"
 
-    logging.getLogger("strongarm").log(level, "{0} :: {1}".format(__name__, msg))
+    logging.getLogger(name).log(level, "{0} :: {1}".format(__name__, msg))
 
 
 def is_method(object, name):
@@ -342,7 +343,7 @@ def class_from_string(className, policy):
                 raise SyntaxError("'{0}' does not exist in module imported from at line: {1} in policy file: '{2}'".format(identifier, matchedImportFrom.line, policy.path))
 
             # return the class
-            log(logging.DEBUG, "returning {0} for '{1}'".format(klazz, className))
+            log("returning {0} for '{1}'".format(klazz, className))
 
             return klazz
 
@@ -406,7 +407,7 @@ def module_from_string(moduleName, policy):
                 raise SyntaxError("{0} at line: {1} in policy file: '{2}'".format(detail, matchedImportName.line, policy.path))
 
             # returning the module, not the package...
-            log(logging.DEBUG, "returning a {0}".format(module))
+            log("returning a {0}".format(module))
 
             return module
 
@@ -420,5 +421,5 @@ def class_from_str(name):
     module = __import__(str(dottedName), globals(), locals(), [identifier])
     klazz = getattr(module, identifier)
 
-    log(logging.DEBUG, "returning {0} for {1}".format(klazz, name))
+    log("returning {0} for {1}".format(klazz, name))
     return klazz

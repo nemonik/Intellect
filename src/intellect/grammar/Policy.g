@@ -95,17 +95,18 @@ agendaGroup returns [object] // returns a RuleGroup
   ;
 
 when returns [object] //returns a When object
-  : ( WHEN COLON NEWLINE { $object = When( [$WHEN.text, $COLON.text], $WHEN.getLine(), $WHEN.getCharPositionInLine() ) }
-      INDENT ( ruleCondition { $object.append_child( $ruleCondition.object ) } )? DEDENT )
+  : WHEN COLON NEWLINE { $object = When( [$WHEN.text, $COLON.text], $WHEN.getLine(), $WHEN.getCharPositionInLine() ) }
+      INDENT ( ruleCondition { $object.append_child( $ruleCondition.object ) } )? DEDENT
   ;
 
 then returns [object] //return a Then object
-  : ( THEN COLON NEWLINE { $object = Then( [$THEN.text, $COLON.text], $THEN.getLine(), $THEN.getCharPositionInLine() ) }
-      INDENT ( action { $object.append_child( $action.object ) } )+ DEDENT )
+  : THEN COLON NEWLINE { $object = Then( [$THEN.text, $COLON.text], $THEN.getLine(), $THEN.getCharPositionInLine() ) }
+      INDENT ( action { $object.append_child( $action.object ) } )+ DEDENT
   ;
 
 ruleCondition returns [object] // returns a NotCondition object
-  : notCondition NEWLINE { $object = RuleCondition($notCondition.object) };
+  : notCondition NEWLINE { $object = RuleCondition($notCondition.object) }
+  ;
 
 notCondition returns [object] // returns a NotCondition object
   @init{ $object = NotCondition() }
