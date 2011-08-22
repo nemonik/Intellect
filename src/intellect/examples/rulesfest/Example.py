@@ -68,6 +68,8 @@ if __name__ == '__main__':
 
     logging.getLogger("example").debug("asking the engine to learn my policy")
     myIntellect.learn("./rulesets/example.policy")
+    
+    print myIntellect.policy.str_tree("semantic model:")
 
     logging.getLogger("example").debug("asking the engine to learn about BuyOrder")
     myIntellect.learn(BuyOrder())

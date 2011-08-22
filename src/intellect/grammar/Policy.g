@@ -125,17 +125,21 @@ classConstraint returns [object] // returns ClassConstraint object
   ;
 
 action returns [object] // returns an Action object
-  : attributeAction  { $object = Action( $attributeAction.object, $attributeAction.object.line, $attributeAction.object.column ) }
-  | forgetAction     { $object = Action( $forgetAction.object, $forgetAction.object.line, $forgetAction.object.column ) }
+  : simpleStmt       { $object = Action( $simpleStmt.object, $simpleStmt.object.line, $simpleStmt.object.column ) }
+  | attributeAction  { $object = Action( $attributeAction.object, $attributeAction.object.line, $attributeAction.object.column ) }
   | learnAction     { $object = Action( $learnAction.object, $learnAction.object.line, $learnAction.object.column ) }
+  | forgetAction     { $object = Action( $forgetAction.object, $forgetAction.object.line, $forgetAction.object.column ) }
   | modifyAction     { $object = Action( $modifyAction.object, $modifyAction.object.line, $modifyAction.object.column ) }
   | haltAction       { $object = Action( $haltAction.object, $haltAction.object.line, $haltAction.object.column ) }
-  | simpleStmt       { $object = Action( $simpleStmt.object, $simpleStmt.object.line, $simpleStmt.object.column ) }
   ;
 
 simpleStmt returns [object] // returns a SimpleStmt object
   : expressionStmt       { $object = SimpleStmt( $expressionStmt.object ) }
   | printStmt            { $object = SimpleStmt( $printStmt.object, $printStmt.object.line, $printStmt.object.column ) }
+  ;
+
+attributeAction returns [object] // returns a AttributeAction object
+  : ATTRIBUTE expressionStmt { $object = AttributeAction( [ $ATTRIBUTE.text, $expressionStmt.object ] , $ATTRIBUTE.getLine(), $ATTRIBUTE.getCharPositionInLine() ) }
   ;
 
 printStmt returns [object] // returns a PrintStmt object
@@ -160,10 +164,6 @@ learnAction returns [object] // returns an LearnActions object
 modifyAction returns [object] // returns a ModifyAction object
   : MODIFY OBJECTBINDING COLON NEWLINE { $object = ModifyAction( [$MODIFY.text, $OBJECTBINDING.text, $COLON.text], $MODIFY.getLine(), $MODIFY.getCharPositionInLine() ) }
       INDENT ( propertyAssignment { $object.append_child( $propertyAssignment.object ) } )+ DEDENT
-  ;
-
-attributeAction returns [object] // returns a AttributeAction object
-  : ATTRIBUTE expressionStmt { $object = AttributeAction( [ $ATTRIBUTE.text, $expressionStmt.object ] , $ATTRIBUTE.getLine(), $ATTRIBUTE.getCharPositionInLine() ) }
   ;
 
 haltAction returns [object] // returns a HaltAction object

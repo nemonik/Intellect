@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g 2011-08-19 11:05:39
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g 2011-08-22 16:34:20
 
 import sys
 from antlr3 import *
@@ -32,7 +32,7 @@ RPAREN=19
 IMPORT=42
 NAME=9
 GREATER=50
-INSERT=25
+INSERT=26
 DOUBLESTAREQUAL=40
 LESS=49
 COMMENT=91
@@ -40,19 +40,19 @@ RBRACK=69
 RULE=7
 LCURLY=70
 INT=72
-DELETE=23
-RIGHTSHIFT=21
+DELETE=24
+RIGHTSHIFT=22
 DOUBLESLASHEQUAL=41
 WS=89
 VBAREQUAL=36
 OR=47
 LONGINT=73
-FORGET=22
+FORGET=23
 FROM=43
 PERCENTEQUAL=34
 LESSEQUAL=53
 DOLLAR=77
-MODIFY=26
+MODIFY=27
 DOUBLESLASH=65
 LBRACK=68
 CONTINUED_LINE=88
@@ -60,12 +60,12 @@ OBJECTBINDING=16
 DOUBLESTAR=67
 HALT=28
 ESC=87
-ATTRIBUTE=27
+ATTRIBUTE=20
 DEDENT=5
 FLOAT=74
 RIGHTSHIFTEQUAL=39
 AND=48
-LEARN=24
+LEARN=25
 INDENT=4
 LPAREN=18
 PLUSEQUAL=30
@@ -88,7 +88,7 @@ AGENDAGROUP=11
 PERCENT=64
 MINUS=61
 SEMI=76
-PRINT=20
+PRINT=21
 COLON=8
 TRIQUOTE=86
 AMPEREQUAL=35
@@ -107,18 +107,17 @@ tokenNames = [
     "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
     "INDENT", "DEDENT", "NEWLINE", "RULE", "COLON", "NAME", "STRING", "AGENDAGROUP", 
     "WHEN", "THEN", "NOT", "EXISTS", "OBJECTBINDING", "ASSIGNEQUAL", "LPAREN", 
-    "RPAREN", "PRINT", "RIGHTSHIFT", "FORGET", "DELETE", "LEARN", "INSERT", 
-    "MODIFY", "ATTRIBUTE", "HALT", "ASSIGN", "PLUSEQUAL", "MINUSEQUAL", 
-    "STAREQUAL", "SLASHEQUAL", "PERCENTEQUAL", "AMPEREQUAL", "VBAREQUAL", 
-    "CIRCUMFLEXEQUAL", "LEFTSHIFTEQUAL", "RIGHTSHIFTEQUAL", "DOUBLESTAREQUAL", 
-    "DOUBLESLASHEQUAL", "IMPORT", "FROM", "COMMA", "AS", "DOT", "OR", "AND", 
-    "LESS", "GREATER", "EQUAL", "GREATEREQUAL", "LESSEQUAL", "ALT_NOTEQUAL", 
-    "NOTEQUAL", "VBAR", "CIRCUMFLEX", "AMPER", "LEFTSHIFT", "PLUS", "MINUS", 
-    "STAR", "SLASH", "PERCENT", "DOUBLESLASH", "TILDE", "DOUBLESTAR", "LBRACK", 
-    "RBRACK", "LCURLY", "RCURLY", "INT", "LONGINT", "FLOAT", "COMPLEX", 
-    "SEMI", "DOLLAR", "BACKQUOTE", "GLOBAL", "IN", "IS", "LETTER", "DIGIT", 
-    "EXPONENT", "TRIAPOS", "TRIQUOTE", "ESC", "CONTINUED_LINE", "WS", "LEADING_WS", 
-    "COMMENT"
+    "RPAREN", "ATTRIBUTE", "PRINT", "RIGHTSHIFT", "FORGET", "DELETE", "LEARN", 
+    "INSERT", "MODIFY", "HALT", "ASSIGN", "PLUSEQUAL", "MINUSEQUAL", "STAREQUAL", 
+    "SLASHEQUAL", "PERCENTEQUAL", "AMPEREQUAL", "VBAREQUAL", "CIRCUMFLEXEQUAL", 
+    "LEFTSHIFTEQUAL", "RIGHTSHIFTEQUAL", "DOUBLESTAREQUAL", "DOUBLESLASHEQUAL", 
+    "IMPORT", "FROM", "COMMA", "AS", "DOT", "OR", "AND", "LESS", "GREATER", 
+    "EQUAL", "GREATEREQUAL", "LESSEQUAL", "ALT_NOTEQUAL", "NOTEQUAL", "VBAR", 
+    "CIRCUMFLEX", "AMPER", "LEFTSHIFT", "PLUS", "MINUS", "STAR", "SLASH", 
+    "PERCENT", "DOUBLESLASH", "TILDE", "DOUBLESTAR", "LBRACK", "RBRACK", 
+    "LCURLY", "RCURLY", "INT", "LONGINT", "FLOAT", "COMPLEX", "SEMI", "DOLLAR", 
+    "BACKQUOTE", "GLOBAL", "IN", "IS", "LETTER", "DIGIT", "EXPONENT", "TRIAPOS", 
+    "TRIQUOTE", "ESC", "CONTINUED_LINE", "WS", "LEADING_WS", "COMMENT"
 ]
 
 
@@ -705,7 +704,7 @@ class PolicyParser(Parser):
                     alt8 = 2
                     LA8_0 = self.input.LA(1)
 
-                    if ((NAME <= LA8_0 <= STRING) or LA8_0 == NOT or LA8_0 == OBJECTBINDING or LA8_0 == LPAREN or LA8_0 == PRINT or (FORGET <= LA8_0 <= HALT) or (PLUS <= LA8_0 <= MINUS) or LA8_0 == TILDE or LA8_0 == LBRACK or LA8_0 == LCURLY or (INT <= LA8_0 <= COMPLEX)) :
+                    if ((NAME <= LA8_0 <= STRING) or LA8_0 == NOT or LA8_0 == OBJECTBINDING or LA8_0 == LPAREN or (ATTRIBUTE <= LA8_0 <= PRINT) or (FORGET <= LA8_0 <= HALT) or (PLUS <= LA8_0 <= MINUS) or LA8_0 == TILDE or LA8_0 == LBRACK or LA8_0 == LCURLY or (INT <= LA8_0 <= COMPLEX)) :
                         alt8 = 1
 
 
@@ -975,40 +974,40 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "action"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:127:1: action returns [object] : ( attributeAction | forgetAction | learnAction | modifyAction | haltAction | simpleStmt );
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:127:1: action returns [object] : ( simpleStmt | attributeAction | learnAction | forgetAction | modifyAction | haltAction );
     def action(self, ):
 
         object = None
 
-        attributeAction34 = None
+        simpleStmt34 = None
 
-        forgetAction35 = None
+        attributeAction35 = None
 
         learnAction36 = None
 
-        modifyAction37 = None
+        forgetAction37 = None
 
-        haltAction38 = None
+        modifyAction38 = None
 
-        simpleStmt39 = None
+        haltAction39 = None
 
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:128:3: ( attributeAction | forgetAction | learnAction | modifyAction | haltAction | simpleStmt )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:128:3: ( simpleStmt | attributeAction | learnAction | forgetAction | modifyAction | haltAction )
                 alt13 = 6
                 LA13 = self.input.LA(1)
-                if LA13 == ATTRIBUTE:
+                if LA13 == NAME or LA13 == STRING or LA13 == NOT or LA13 == OBJECTBINDING or LA13 == LPAREN or LA13 == PRINT or LA13 == PLUS or LA13 == MINUS or LA13 == TILDE or LA13 == LBRACK or LA13 == LCURLY or LA13 == INT or LA13 == LONGINT or LA13 == FLOAT or LA13 == COMPLEX:
                     alt13 = 1
-                elif LA13 == FORGET or LA13 == DELETE:
+                elif LA13 == ATTRIBUTE:
                     alt13 = 2
                 elif LA13 == LEARN or LA13 == INSERT:
                     alt13 = 3
-                elif LA13 == MODIFY:
+                elif LA13 == FORGET or LA13 == DELETE:
                     alt13 = 4
-                elif LA13 == HALT:
+                elif LA13 == MODIFY:
                     alt13 = 5
-                elif LA13 == NAME or LA13 == STRING or LA13 == NOT or LA13 == OBJECTBINDING or LA13 == LPAREN or LA13 == PRINT or LA13 == PLUS or LA13 == MINUS or LA13 == TILDE or LA13 == LBRACK or LA13 == LCURLY or LA13 == INT or LA13 == LONGINT or LA13 == FLOAT or LA13 == COMPLEX:
+                elif LA13 == HALT:
                     alt13 = 6
                 else:
                     nvae = NoViableAltException("", 13, 0, self.input)
@@ -1016,33 +1015,33 @@ class PolicyParser(Parser):
                     raise nvae
 
                 if alt13 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:128:5: attributeAction
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:128:5: simpleStmt
                     pass 
-                    self._state.following.append(self.FOLLOW_attributeAction_in_action569)
-                    attributeAction34 = self.attributeAction()
+                    self._state.following.append(self.FOLLOW_simpleStmt_in_action569)
+                    simpleStmt34 = self.simpleStmt()
 
                     self._state.following.pop()
                     #action start
-                    object = Action( attributeAction34, attributeAction34.line, attributeAction34.column ) 
+                    object = Action( simpleStmt34, simpleStmt34.line, simpleStmt34.column ) 
                     #action end
 
 
                 elif alt13 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:129:5: forgetAction
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:129:5: attributeAction
                     pass 
-                    self._state.following.append(self.FOLLOW_forgetAction_in_action578)
-                    forgetAction35 = self.forgetAction()
+                    self._state.following.append(self.FOLLOW_attributeAction_in_action583)
+                    attributeAction35 = self.attributeAction()
 
                     self._state.following.pop()
                     #action start
-                    object = Action( forgetAction35, forgetAction35.line, forgetAction35.column ) 
+                    object = Action( attributeAction35, attributeAction35.line, attributeAction35.column ) 
                     #action end
 
 
                 elif alt13 == 3:
                     # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:130:5: learnAction
                     pass 
-                    self._state.following.append(self.FOLLOW_learnAction_in_action590)
+                    self._state.following.append(self.FOLLOW_learnAction_in_action592)
                     learnAction36 = self.learnAction()
 
                     self._state.following.pop()
@@ -1052,38 +1051,38 @@ class PolicyParser(Parser):
 
 
                 elif alt13 == 4:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:131:5: modifyAction
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:131:5: forgetAction
                     pass 
-                    self._state.following.append(self.FOLLOW_modifyAction_in_action602)
-                    modifyAction37 = self.modifyAction()
+                    self._state.following.append(self.FOLLOW_forgetAction_in_action604)
+                    forgetAction37 = self.forgetAction()
 
                     self._state.following.pop()
                     #action start
-                    object = Action( modifyAction37, modifyAction37.line, modifyAction37.column ) 
+                    object = Action( forgetAction37, forgetAction37.line, forgetAction37.column ) 
                     #action end
 
 
                 elif alt13 == 5:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:132:5: haltAction
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:132:5: modifyAction
                     pass 
-                    self._state.following.append(self.FOLLOW_haltAction_in_action614)
-                    haltAction38 = self.haltAction()
+                    self._state.following.append(self.FOLLOW_modifyAction_in_action616)
+                    modifyAction38 = self.modifyAction()
 
                     self._state.following.pop()
                     #action start
-                    object = Action( haltAction38, haltAction38.line, haltAction38.column ) 
+                    object = Action( modifyAction38, modifyAction38.line, modifyAction38.column ) 
                     #action end
 
 
                 elif alt13 == 6:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:133:5: simpleStmt
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:133:5: haltAction
                     pass 
-                    self._state.following.append(self.FOLLOW_simpleStmt_in_action628)
-                    simpleStmt39 = self.simpleStmt()
+                    self._state.following.append(self.FOLLOW_haltAction_in_action628)
+                    haltAction39 = self.haltAction()
 
                     self._state.following.pop()
                     #action start
-                    object = Action( simpleStmt39, simpleStmt39.line, simpleStmt39.column ) 
+                    object = Action( haltAction39, haltAction39.line, haltAction39.column ) 
                     #action end
 
 
@@ -1161,14 +1160,52 @@ class PolicyParser(Parser):
     # $ANTLR end "simpleStmt"
 
 
+    # $ANTLR start "attributeAction"
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:141:1: attributeAction returns [object] : ATTRIBUTE expressionStmt ;
+    def attributeAction(self, ):
+
+        object = None
+
+        ATTRIBUTE42 = None
+        expressionStmt43 = None
+
+
+        try:
+            try:
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:142:3: ( ATTRIBUTE expressionStmt )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:142:5: ATTRIBUTE expressionStmt
+                pass 
+                ATTRIBUTE42=self.match(self.input, ATTRIBUTE, self.FOLLOW_ATTRIBUTE_in_attributeAction699)
+                self._state.following.append(self.FOLLOW_expressionStmt_in_attributeAction701)
+                expressionStmt43 = self.expressionStmt()
+
+                self._state.following.pop()
+                #action start
+                object = AttributeAction( [ ATTRIBUTE42.text, expressionStmt43 ] , ATTRIBUTE42.getLine(), ATTRIBUTE42.getCharPositionInLine() ) 
+                #action end
+
+
+
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+        return object
+
+    # $ANTLR end "attributeAction"
+
+
     # $ANTLR start "printStmt"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:141:1: printStmt returns [object] : PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE ;
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:145:1: printStmt returns [object] : PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE ;
     def printStmt(self, ):
 
         object = None
 
-        PRINT42 = None
-        RIGHTSHIFT43 = None
+        PRINT44 = None
+        RIGHTSHIFT45 = None
         comparisonList1 = None
 
         comparisonList2 = None
@@ -1176,14 +1213,14 @@ class PolicyParser(Parser):
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:142:3: ( PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE )
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:142:5: PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:146:3: ( PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:146:5: PRINT (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )? NEWLINE
                 pass 
-                PRINT42=self.match(self.input, PRINT, self.FOLLOW_PRINT_in_printStmt699)
+                PRINT44=self.match(self.input, PRINT, self.FOLLOW_PRINT_in_printStmt721)
                 #action start
-                object = PrintStmt( PRINT42.text, PRINT42.getLine(), PRINT42.getCharPositionInLine() ) 
+                object = PrintStmt( PRINT44.text, PRINT44.getLine(), PRINT44.getCharPositionInLine() ) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:143:7: (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )?
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:147:7: (comparisonList1= comparisonList | RIGHTSHIFT comparisonList2= comparisonList )?
                 alt15 = 3
                 LA15_0 = self.input.LA(1)
 
@@ -1192,9 +1229,9 @@ class PolicyParser(Parser):
                 elif (LA15_0 == RIGHTSHIFT) :
                     alt15 = 2
                 if alt15 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:143:9: comparisonList1= comparisonList
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:147:9: comparisonList1= comparisonList
                     pass 
-                    self._state.following.append(self.FOLLOW_comparisonList_in_printStmt713)
+                    self._state.following.append(self.FOLLOW_comparisonList_in_printStmt735)
                     comparisonList1 = self.comparisonList()
 
                     self._state.following.pop()
@@ -1204,20 +1241,20 @@ class PolicyParser(Parser):
 
 
                 elif alt15 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:144:9: RIGHTSHIFT comparisonList2= comparisonList
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:148:9: RIGHTSHIFT comparisonList2= comparisonList
                     pass 
-                    RIGHTSHIFT43=self.match(self.input, RIGHTSHIFT, self.FOLLOW_RIGHTSHIFT_in_printStmt725)
-                    self._state.following.append(self.FOLLOW_comparisonList_in_printStmt729)
+                    RIGHTSHIFT45=self.match(self.input, RIGHTSHIFT, self.FOLLOW_RIGHTSHIFT_in_printStmt747)
+                    self._state.following.append(self.FOLLOW_comparisonList_in_printStmt751)
                     comparisonList2 = self.comparisonList()
 
                     self._state.following.pop()
                     #action start
-                    object.append_children( [RIGHTSHIFT43.text, comparisonList2] ) 
+                    object.append_children( [RIGHTSHIFT45.text, comparisonList2] ) 
                     #action end
 
 
 
-                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_printStmt736)
+                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_printStmt758)
 
 
 
@@ -1234,21 +1271,21 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "forgetAction"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:147:1: forgetAction returns [object] : ( FORGET | DELETE ) OBJECTBINDING NEWLINE ;
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:151:1: forgetAction returns [object] : ( FORGET | DELETE ) OBJECTBINDING NEWLINE ;
     def forgetAction(self, ):
 
         object = None
 
-        FORGET44 = None
-        DELETE45 = None
-        OBJECTBINDING46 = None
+        FORGET46 = None
+        DELETE47 = None
+        OBJECTBINDING48 = None
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:148:3: ( ( FORGET | DELETE ) OBJECTBINDING NEWLINE )
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:148:5: ( FORGET | DELETE ) OBJECTBINDING NEWLINE
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:152:3: ( ( FORGET | DELETE ) OBJECTBINDING NEWLINE )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:152:5: ( FORGET | DELETE ) OBJECTBINDING NEWLINE
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:148:5: ( FORGET | DELETE )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:152:5: ( FORGET | DELETE )
                 alt16 = 2
                 LA16_0 = self.input.LA(1)
 
@@ -1262,29 +1299,29 @@ class PolicyParser(Parser):
                     raise nvae
 
                 if alt16 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:148:7: FORGET
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:152:7: FORGET
                     pass 
-                    FORGET44=self.match(self.input, FORGET, self.FOLLOW_FORGET_in_forgetAction756)
+                    FORGET46=self.match(self.input, FORGET, self.FOLLOW_FORGET_in_forgetAction778)
                     #action start
-                    object = ForgetAction( FORGET44.text, FORGET44.getLine(), FORGET44.getCharPositionInLine() ) 
+                    object = ForgetAction( FORGET46.text, FORGET46.getLine(), FORGET46.getCharPositionInLine() ) 
                     #action end
 
 
                 elif alt16 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:149:9: DELETE
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:153:9: DELETE
                     pass 
-                    DELETE45=self.match(self.input, DELETE, self.FOLLOW_DELETE_in_forgetAction768)
+                    DELETE47=self.match(self.input, DELETE, self.FOLLOW_DELETE_in_forgetAction790)
                     #action start
-                    object = ForgetAction( DELETE45.text, DELETE45.getLine(), DELETE45.getCharPositionInLine() ) 
+                    object = ForgetAction( DELETE47.text, DELETE47.getLine(), DELETE47.getCharPositionInLine() ) 
                     #action end
 
 
 
-                OBJECTBINDING46=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_forgetAction781)
+                OBJECTBINDING48=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_forgetAction803)
                 #action start
-                object.append_child( OBJECTBINDING46.text ) 
+                object.append_child( OBJECTBINDING48.text ) 
                 #action end
-                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_forgetAction785)
+                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_forgetAction807)
 
 
 
@@ -1301,25 +1338,25 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "learnAction"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:153:1: learnAction returns [object] : ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE ;
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:157:1: learnAction returns [object] : ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE ;
     def learnAction(self, ):
 
         object = None
 
-        LEARN47 = None
-        INSERT48 = None
-        NAME49 = None
-        LPAREN50 = None
-        RPAREN52 = None
-        argumentList51 = None
+        LEARN49 = None
+        INSERT50 = None
+        NAME51 = None
+        LPAREN52 = None
+        RPAREN54 = None
+        argumentList53 = None
 
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:154:3: ( ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE )
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:154:5: ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:158:3: ( ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:158:5: ( LEARN | INSERT ) NAME LPAREN ( argumentList )? RPAREN NEWLINE
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:154:5: ( LEARN | INSERT )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:158:5: ( LEARN | INSERT )
                 alt17 = 2
                 LA17_0 = self.input.LA(1)
 
@@ -1333,53 +1370,53 @@ class PolicyParser(Parser):
                     raise nvae
 
                 if alt17 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:154:7: LEARN
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:158:7: LEARN
                     pass 
-                    LEARN47=self.match(self.input, LEARN, self.FOLLOW_LEARN_in_learnAction805)
+                    LEARN49=self.match(self.input, LEARN, self.FOLLOW_LEARN_in_learnAction827)
                     #action start
-                    object = LearnAction( LEARN47.text, LEARN47.getLine(), LEARN47.getCharPositionInLine() ) 
+                    object = LearnAction( LEARN49.text, LEARN49.getLine(), LEARN49.getCharPositionInLine() ) 
                     #action end
 
 
                 elif alt17 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:155:9: INSERT
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:159:9: INSERT
                     pass 
-                    INSERT48=self.match(self.input, INSERT, self.FOLLOW_INSERT_in_learnAction817)
+                    INSERT50=self.match(self.input, INSERT, self.FOLLOW_INSERT_in_learnAction839)
                     #action start
-                    object = LearnAction( INSERT48.text, INSERT48.getLine(), INSERT48.getCharPositionInLine() ) 
+                    object = LearnAction( INSERT50.text, INSERT50.getLine(), INSERT50.getCharPositionInLine() ) 
                     #action end
 
 
 
-                NAME49=self.match(self.input, NAME, self.FOLLOW_NAME_in_learnAction832)
-                LPAREN50=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_learnAction834)
+                NAME51=self.match(self.input, NAME, self.FOLLOW_NAME_in_learnAction854)
+                LPAREN52=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_learnAction856)
                 #action start
-                object.append_children( [NAME49.text, LPAREN50.text] ) 
+                object.append_children( [NAME51.text, LPAREN52.text] ) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:157:9: ( argumentList )?
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:161:9: ( argumentList )?
                 alt18 = 2
                 LA18_0 = self.input.LA(1)
 
                 if ((NAME <= LA18_0 <= STRING) or LA18_0 == NOT or LA18_0 == OBJECTBINDING or LA18_0 == LPAREN or (PLUS <= LA18_0 <= MINUS) or LA18_0 == TILDE or LA18_0 == LBRACK or LA18_0 == LCURLY or (INT <= LA18_0 <= COMPLEX)) :
                     alt18 = 1
                 if alt18 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:157:11: argumentList
+                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:161:11: argumentList
                     pass 
-                    self._state.following.append(self.FOLLOW_argumentList_in_learnAction848)
-                    argumentList51 = self.argumentList()
+                    self._state.following.append(self.FOLLOW_argumentList_in_learnAction870)
+                    argumentList53 = self.argumentList()
 
                     self._state.following.pop()
                     #action start
-                    object.append_child( argumentList51 ) 
+                    object.append_child( argumentList53 ) 
                     #action end
 
 
 
-                RPAREN52=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_learnAction855)
+                RPAREN54=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_learnAction877)
                 #action start
-                object.append_child( RPAREN52.text ) 
+                object.append_child( RPAREN54.text ) 
                 #action end
-                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_learnAction859)
+                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_learnAction881)
 
 
 
@@ -1396,31 +1433,31 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "modifyAction"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:160:1: modifyAction returns [object] : MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT ;
+    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:164:1: modifyAction returns [object] : MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT ;
     def modifyAction(self, ):
 
         object = None
 
-        MODIFY53 = None
-        OBJECTBINDING54 = None
-        COLON55 = None
-        propertyAssignment56 = None
+        MODIFY55 = None
+        OBJECTBINDING56 = None
+        COLON57 = None
+        propertyAssignment58 = None
 
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:161:3: ( MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT )
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:161:5: MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:165:3: ( MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT )
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:165:5: MODIFY OBJECTBINDING COLON NEWLINE INDENT ( propertyAssignment )+ DEDENT
                 pass 
-                MODIFY53=self.match(self.input, MODIFY, self.FOLLOW_MODIFY_in_modifyAction877)
-                OBJECTBINDING54=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_modifyAction879)
-                COLON55=self.match(self.input, COLON, self.FOLLOW_COLON_in_modifyAction881)
-                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_modifyAction883)
+                MODIFY55=self.match(self.input, MODIFY, self.FOLLOW_MODIFY_in_modifyAction899)
+                OBJECTBINDING56=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_modifyAction901)
+                COLON57=self.match(self.input, COLON, self.FOLLOW_COLON_in_modifyAction903)
+                self.match(self.input, NEWLINE, self.FOLLOW_NEWLINE_in_modifyAction905)
                 #action start
-                object = ModifyAction( [MODIFY53.text, OBJECTBINDING54.text, COLON55.text], MODIFY53.getLine(), MODIFY53.getCharPositionInLine() ) 
+                object = ModifyAction( [MODIFY55.text, OBJECTBINDING56.text, COLON57.text], MODIFY55.getLine(), MODIFY55.getCharPositionInLine() ) 
                 #action end
-                self.match(self.input, INDENT, self.FOLLOW_INDENT_in_modifyAction893)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:162:14: ( propertyAssignment )+
+                self.match(self.input, INDENT, self.FOLLOW_INDENT_in_modifyAction915)
+                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:166:14: ( propertyAssignment )+
                 cnt19 = 0
                 while True: #loop19
                     alt19 = 2
@@ -1431,14 +1468,14 @@ class PolicyParser(Parser):
 
 
                     if alt19 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:162:16: propertyAssignment
+                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:166:16: propertyAssignment
                         pass 
-                        self._state.following.append(self.FOLLOW_propertyAssignment_in_modifyAction897)
-                        propertyAssignment56 = self.propertyAssignment()
+                        self._state.following.append(self.FOLLOW_propertyAssignment_in_modifyAction919)
+                        propertyAssignment58 = self.propertyAssignment()
 
                         self._state.following.pop()
                         #action start
-                        object.append_child( propertyAssignment56 ) 
+                        object.append_child( propertyAssignment58 ) 
                         #action end
 
 
@@ -1450,7 +1487,7 @@ class PolicyParser(Parser):
                         raise eee
 
                     cnt19 += 1
-                self.match(self.input, DEDENT, self.FOLLOW_DEDENT_in_modifyAction904)
+                self.match(self.input, DEDENT, self.FOLLOW_DEDENT_in_modifyAction926)
 
 
 
@@ -1464,44 +1501,6 @@ class PolicyParser(Parser):
         return object
 
     # $ANTLR end "modifyAction"
-
-
-    # $ANTLR start "attributeAction"
-    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:165:1: attributeAction returns [object] : ATTRIBUTE expressionStmt ;
-    def attributeAction(self, ):
-
-        object = None
-
-        ATTRIBUTE57 = None
-        expressionStmt58 = None
-
-
-        try:
-            try:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:166:3: ( ATTRIBUTE expressionStmt )
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:166:5: ATTRIBUTE expressionStmt
-                pass 
-                ATTRIBUTE57=self.match(self.input, ATTRIBUTE, self.FOLLOW_ATTRIBUTE_in_attributeAction922)
-                self._state.following.append(self.FOLLOW_expressionStmt_in_attributeAction924)
-                expressionStmt58 = self.expressionStmt()
-
-                self._state.following.pop()
-                #action start
-                object = AttributeAction( [ ATTRIBUTE57.text, expressionStmt58 ] , ATTRIBUTE57.getLine(), ATTRIBUTE57.getCharPositionInLine() ) 
-                #action end
-
-
-
-
-            except RecognitionException, re:
-                self.reportError(re)
-                self.recover(self.input, re)
-        finally:
-
-            pass
-        return object
-
-    # $ANTLR end "attributeAction"
 
 
     # $ANTLR start "haltAction"
@@ -4491,8 +4490,8 @@ class PolicyParser(Parser):
     FOLLOW_THEN_in_then376 = frozenset([8])
     FOLLOW_COLON_in_then378 = frozenset([6])
     FOLLOW_NEWLINE_in_then380 = frozenset([4])
-    FOLLOW_INDENT_in_then390 = frozenset([9, 10, 14, 16, 18, 20, 22, 23, 24, 25, 26, 27, 28, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_action_in_then394 = frozenset([5, 9, 10, 14, 16, 18, 20, 22, 23, 24, 25, 26, 27, 28, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_INDENT_in_then390 = frozenset([9, 10, 14, 16, 18, 20, 21, 23, 24, 25, 26, 27, 28, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_action_in_then394 = frozenset([5, 9, 10, 14, 16, 18, 20, 21, 23, 24, 25, 26, 27, 28, 60, 61, 66, 68, 70, 72, 73, 74, 75])
     FOLLOW_DEDENT_in_then401 = frozenset([1])
     FOLLOW_notCondition_in_ruleCondition419 = frozenset([6])
     FOLLOW_NEWLINE_in_ruleCondition421 = frozenset([1])
@@ -4506,39 +4505,39 @@ class PolicyParser(Parser):
     FOLLOW_LPAREN_in_classConstraint536 = frozenset([9, 10, 14, 16, 18, 19, 60, 61, 66, 68, 70, 72, 73, 74, 75])
     FOLLOW_constraint_in_classConstraint542 = frozenset([19])
     FOLLOW_RPAREN_in_classConstraint549 = frozenset([1])
-    FOLLOW_attributeAction_in_action569 = frozenset([1])
-    FOLLOW_forgetAction_in_action578 = frozenset([1])
-    FOLLOW_learnAction_in_action590 = frozenset([1])
-    FOLLOW_modifyAction_in_action602 = frozenset([1])
-    FOLLOW_haltAction_in_action614 = frozenset([1])
-    FOLLOW_simpleStmt_in_action628 = frozenset([1])
+    FOLLOW_simpleStmt_in_action569 = frozenset([1])
+    FOLLOW_attributeAction_in_action583 = frozenset([1])
+    FOLLOW_learnAction_in_action592 = frozenset([1])
+    FOLLOW_forgetAction_in_action604 = frozenset([1])
+    FOLLOW_modifyAction_in_action616 = frozenset([1])
+    FOLLOW_haltAction_in_action628 = frozenset([1])
     FOLLOW_expressionStmt_in_simpleStmt654 = frozenset([1])
     FOLLOW_printStmt_in_simpleStmt668 = frozenset([1])
-    FOLLOW_PRINT_in_printStmt699 = frozenset([6, 9, 10, 14, 16, 18, 21, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_comparisonList_in_printStmt713 = frozenset([6])
-    FOLLOW_RIGHTSHIFT_in_printStmt725 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_comparisonList_in_printStmt729 = frozenset([6])
-    FOLLOW_NEWLINE_in_printStmt736 = frozenset([1])
-    FOLLOW_FORGET_in_forgetAction756 = frozenset([16])
-    FOLLOW_DELETE_in_forgetAction768 = frozenset([16])
-    FOLLOW_OBJECTBINDING_in_forgetAction781 = frozenset([6])
-    FOLLOW_NEWLINE_in_forgetAction785 = frozenset([1])
-    FOLLOW_LEARN_in_learnAction805 = frozenset([9])
-    FOLLOW_INSERT_in_learnAction817 = frozenset([9])
-    FOLLOW_NAME_in_learnAction832 = frozenset([18])
-    FOLLOW_LPAREN_in_learnAction834 = frozenset([9, 10, 14, 16, 18, 19, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_argumentList_in_learnAction848 = frozenset([19])
-    FOLLOW_RPAREN_in_learnAction855 = frozenset([6])
-    FOLLOW_NEWLINE_in_learnAction859 = frozenset([1])
-    FOLLOW_MODIFY_in_modifyAction877 = frozenset([16])
-    FOLLOW_OBJECTBINDING_in_modifyAction879 = frozenset([8])
-    FOLLOW_COLON_in_modifyAction881 = frozenset([6])
-    FOLLOW_NEWLINE_in_modifyAction883 = frozenset([4])
-    FOLLOW_INDENT_in_modifyAction893 = frozenset([9])
-    FOLLOW_propertyAssignment_in_modifyAction897 = frozenset([5, 9])
-    FOLLOW_DEDENT_in_modifyAction904 = frozenset([1])
-    FOLLOW_ATTRIBUTE_in_attributeAction922 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_expressionStmt_in_attributeAction924 = frozenset([1])
+    FOLLOW_ATTRIBUTE_in_attributeAction699 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_expressionStmt_in_attributeAction701 = frozenset([1])
+    FOLLOW_PRINT_in_printStmt721 = frozenset([6, 9, 10, 14, 16, 18, 22, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_comparisonList_in_printStmt735 = frozenset([6])
+    FOLLOW_RIGHTSHIFT_in_printStmt747 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_comparisonList_in_printStmt751 = frozenset([6])
+    FOLLOW_NEWLINE_in_printStmt758 = frozenset([1])
+    FOLLOW_FORGET_in_forgetAction778 = frozenset([16])
+    FOLLOW_DELETE_in_forgetAction790 = frozenset([16])
+    FOLLOW_OBJECTBINDING_in_forgetAction803 = frozenset([6])
+    FOLLOW_NEWLINE_in_forgetAction807 = frozenset([1])
+    FOLLOW_LEARN_in_learnAction827 = frozenset([9])
+    FOLLOW_INSERT_in_learnAction839 = frozenset([9])
+    FOLLOW_NAME_in_learnAction854 = frozenset([18])
+    FOLLOW_LPAREN_in_learnAction856 = frozenset([9, 10, 14, 16, 18, 19, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_argumentList_in_learnAction870 = frozenset([19])
+    FOLLOW_RPAREN_in_learnAction877 = frozenset([6])
+    FOLLOW_NEWLINE_in_learnAction881 = frozenset([1])
+    FOLLOW_MODIFY_in_modifyAction899 = frozenset([16])
+    FOLLOW_OBJECTBINDING_in_modifyAction901 = frozenset([8])
+    FOLLOW_COLON_in_modifyAction903 = frozenset([6])
+    FOLLOW_NEWLINE_in_modifyAction905 = frozenset([4])
+    FOLLOW_INDENT_in_modifyAction915 = frozenset([9])
+    FOLLOW_propertyAssignment_in_modifyAction919 = frozenset([5, 9])
+    FOLLOW_DEDENT_in_modifyAction926 = frozenset([1])
     FOLLOW_HALT_in_haltAction944 = frozenset([6])
     FOLLOW_NEWLINE_in_haltAction948 = frozenset([1])
     FOLLOW_NAME_in_propertyAssignment966 = frozenset([29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41])
@@ -4626,10 +4625,10 @@ class PolicyParser(Parser):
     FOLLOW_shiftExpr_in_bitwiseAndExpr2003 = frozenset([1, 58])
     FOLLOW_AMPER_in_bitwiseAndExpr2015 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
     FOLLOW_shiftExpr_in_bitwiseAndExpr2019 = frozenset([1, 58])
-    FOLLOW_arithExpr_in_shiftExpr2044 = frozenset([1, 21, 59])
+    FOLLOW_arithExpr_in_shiftExpr2044 = frozenset([1, 22, 59])
     FOLLOW_LEFTSHIFT_in_shiftExpr2058 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
     FOLLOW_RIGHTSHIFT_in_shiftExpr2064 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_arithExpr_in_shiftExpr2082 = frozenset([1, 21, 59])
+    FOLLOW_arithExpr_in_shiftExpr2082 = frozenset([1, 22, 59])
     FOLLOW_term_in_arithExpr2107 = frozenset([1, 60, 61])
     FOLLOW_PLUS_in_arithExpr2121 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])
     FOLLOW_MINUS_in_arithExpr2127 = frozenset([9, 10, 14, 16, 18, 60, 61, 66, 68, 70, 72, 73, 74, 75])

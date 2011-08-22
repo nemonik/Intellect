@@ -62,7 +62,7 @@ class Intellect(object):
         '''
 
         # initialize list to hold learned objects
-        self._knowledge = []
+        self.knowledge = []
 
         # initialize the hold the combined sum of the policy files
         # as a single policy.
@@ -89,13 +89,26 @@ class Intellect(object):
             oneOrMoreObjects: Either a single facts or policy file or
                 a list of facts and/or policy files.
         """
-        if self.knowledge == None:
+        
+        try:
+            self.knowledge
+        except AttributeError:
             self._knowledge = []
 
         if not isinstance(oneOrMoreObjects, list):
-            self._knowledge.append(oneOrMoreObjects)
-        else:
-            self._knowledge.extend(oneOrMoreObjects)
+            self.knowledge.append(oneOrMoreObjects)
+        elif oneOrMoreObjects != []:
+            self.knowledge.extend(oneOrMoreObjects)
+
+
+    @property
+    def policy(self):
+        return self._policy
+
+
+    @policy.setter
+    def policy(self, value):
+        self._policy = value
 
 
     def learn(self, identifier):
