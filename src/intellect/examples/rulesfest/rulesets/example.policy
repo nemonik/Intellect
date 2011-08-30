@@ -15,34 +15,34 @@ rule "Baa, baa, black sheep, Have you any wool?":
 
 rule "Have you no bags full?":
 	when: 
-		$sheep := BlackSheep( bags_of_wool == 0 )
+		$sheep := BlackSheep( len(bags_of_wool) == 0 )
 	then:
 		print( "{0}: No, sir, No, sir.".format( $sheep.name ) )
 
 rule "At least 1 bag full?":
 	when:
-		$sheep := BlackSheep( bags_of_wool >= 1 )
+		$sheep := BlackSheep( len(bags_of_wool) >= 1 )
 	then:
 		print( "{0}: Yes, sir, yes, sir,".format( $sheep.name ) )
-		print( "{0}: {1} bags full".format( $sheep.name, $sheep.bags_of_wool ) )
+		print( "{0}: {1} bags full".format( $sheep.name, len($sheep.bags_of_wool) ) )
 		print( "{0}: One for my master,".format( $sheep.name ) )
 
 rule "At least 2 bags full?":
 	when:
-		$sheep := BlackSheep( bags_of_wool >= 2 )
+		$sheep := BlackSheep( len(bags_of_wool) >= 2 )
 	then:
 		print("{0}: And one for my dame,".format( $sheep.name ) )
 
 rule "3 bags full?":
 	when:
-		$sheep := BlackSheep( bags_of_wool == 3 )
+		$sheep := BlackSheep( len(bags_of_wool) == 3 )
 	then:
 		print( "{0}: and one for the little boy".format( $sheep.name ) )
 		print( "{0}: Who lives down the lane.".format( $sheep.name ) )
 
 rule "Retire the sheep and insert a buy order":
 	when:
-		$sheep := BlackSheep( bags_of_wool == 3 )
+		$sheep := BlackSheep( len(bags_of_wool) == 3 )
 	then:
 		print( "Retiring {0}.".format( $sheep.name ) )
 		forget $sheep

@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @author: Michael Joseph Walsh
  *
  *  A policy grammar derived from the ANTLR3 Python 2.3.3 Grammar authored by
- *  Terence Parr and Loring Craymer.
+ *  Terence Parr and Loring Craymer. 
  */
 
 grammar Policy;
@@ -68,6 +68,45 @@ statement returns [object] // returns a Statment object
   : importStmt  { $object = Statement( $importStmt.object, $importStmt.object.line, $importStmt.object.column ) }
   | attributeStmt  { $object = Statement( $attributeStmt.object ) }
   | ruleStmt    { $object = Statement( $ruleStmt.object, $ruleStmt.object.line, $ruleStmt.object.column ) }
+  ;
+
+importStmt returns [object] // returns a ImportStmt object
+  : importName { $object = ImportStmt( children = $importName.object, line = $importName.object.line ) }
+  | importFrom { $object = ImportStmt( children = $importFrom.object, line = $importFrom.object.line ) }
+  ;
+
+importName returns [object] // returns an ImportName object
+  : IMPORT dottedAsNames { $object = ImportName( children = [$IMPORT.text, $dottedAsNames.object], line = $IMPORT.getLine() ) } NEWLINE
+  ;
+
+importFrom returns [object] // returns an ImportFrom object
+  : FROM { $object = ImportFrom( children = $FROM.text, line = $FROM.getLine() ) } dottedName { $object.append_child( $dottedName.object ) } IMPORT { $object.append_child( $IMPORT.text ) }
+      ( importAsNames1=importAsNames { object.append_child( $importAsNames1.object ) }
+      | LPAREN  importAsNames2=importAsNames RPAREN { $object.append_children( [$LPAREN.text, $importAsNames2.object, $RPAREN.text] ) }
+      ) NEWLINE
+  ;
+
+importAsNames returns [object]
+  : importAsName1=importAsName { $object=ImportAsNames( $importAsName1.object ) }
+      ( COMMA importAsName2=importAsName { $object.append_children( [",", $importAsName2.object] ) } )* ( COMMA { $object.append_child( "," ) } )?
+  ;
+
+importAsName returns [object]
+  : name1=NAME { $object=ImportAsName( $name1.text ) } ( AS name2=NAME { $object.append_children( [$AS.text, $name2.text] ) } )?
+  ;
+
+dottedAsNames returns [object]
+  : dottedAsName1=dottedAsName { $object = DottedAsNames( $dottedAsName1.object ) }
+      ( COMMA dottedAsName2=dottedAsName { object.append_children( [$COMMA.text, $dottedAsName2.object] ) } )*
+  ;
+
+dottedAsName returns [object]
+  : dottedName { $object = DottedAsName( $dottedName.object ) } ( AS NAME { $object.append_children( [$AS.text, $NAME.text] ) } )?
+  ;
+
+dottedName returns [object] // returns a DottedName object
+  : name1=NAME { $object = DottedName( $name1.text ) }
+      ( DOT name2=NAME { $object.append_children( [$DOT.text, $name2.text] ) } )*
   ;
 
 attributeStmt returns [object] // returns an AttributeStmt object.
@@ -193,45 +232,6 @@ assignment returns [object] // returns a Assign object
   | RIGHTSHIFTEQUAL   { $object = Assignment( $RIGHTSHIFTEQUAL.text ) }
   | DOUBLESTAREQUAL   { $object = Assignment( $DOUBLESTAREQUAL.text ) }
   | DOUBLESLASHEQUAL  { $object = Assignment( $DOUBLESLASHEQUAL.text ) }
-  ;
-
-importStmt returns [object] // returns a ImportStmt object
-  : importName { $object = ImportStmt( children = $importName.object, line = $importName.object.line ) }
-  | importFrom { $object = ImportStmt( children = $importFrom.object, line = $importFrom.object.line ) }
-  ;
-
-importName returns [object] // returns an ImportName object
-  : IMPORT dottedAsNames { $object = ImportName( children = [$IMPORT.text, $dottedAsNames.object], line = $IMPORT.getLine() ) } NEWLINE
-  ;
-
-importFrom returns [object] // returns an ImportFrom object
-  : FROM { $object = ImportFrom( children = $FROM.text, line = $FROM.getLine() ) } dottedName { $object.append_child( $dottedName.object ) } IMPORT { $object.append_child( $IMPORT.text ) }
-      ( importAsNames1=importAsNames { object.append_child( $importAsNames1.object ) }
-      | LPAREN  importAsNames2=importAsNames RPAREN { $object.append_children( [$LPAREN.text, $importAsNames2.object, $RPAREN.text] ) }
-      ) NEWLINE
-  ;
-
-importAsNames returns [object]
-  : importAsName1=importAsName { $object=ImportAsNames( $importAsName1.object ) }
-      ( COMMA importAsName2=importAsName { $object.append_children( [",", $importAsName2.object] ) } )* ( COMMA { $object.append_child( "," ) } )?
-  ;
-
-importAsName returns [object]
-  : name1=NAME { $object=ImportAsName( $name1.text ) } (AS name2=NAME { $object.append_children( [$AS.text, $name2.text] ) } )?
-  ;
-
-dottedAsNames returns [object]
-  : dottedAsName1=dottedAsName { $object = DottedAsNames( $dottedAsName1.object ) }
-      (COMMA dottedAsName2=dottedAsName { object.append_children( [$COMMA.text, $dottedAsName2.object] ) } )*
-  ;
-
-dottedAsName returns [object]
-  : dottedName { $object = DottedAsName( $dottedName.object ) } ( AS NAME { $object.append_children( [$AS.text, $NAME.text] ) } )?
-  ;
-
-dottedName returns [object] // returns a DottedName object
-  : name1=NAME { $object = DottedName( $name1.text ) }
-      ( DOT name2=NAME { $object.append_children( [$DOT.text, $name2.text] ) } )*
   ;
 
 constraint returns [object] // returns a Contraint object

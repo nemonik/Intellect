@@ -29,55 +29,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 '''
-Created on Aug 17, 2011
+Created on Aug 29, 2011
 
 @author: Michael Joseph Walsh
 '''
 
-import sys, logging, time
-
-from intellect.Intellect import Intellect
-from intellect.Intellect import Callable
-
-from intellect.examples.rulesfest.BuyOrder import BuyOrder
-
-class MyIntellect(Intellect):
-    pass
+class BagOfWool(object):
+    '''
+        Used to signify a bag of wool
+    '''
 
 
-if __name__ == '__main__':
-
-    # tune down logging inside Intellect
-    logger = logging.getLogger('intellect')
-    logger.setLevel(logging.ERROR)
-    consoleHandler = logging.StreamHandler(stream=sys.stdout)
-    consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
-    logger.addHandler(consoleHandler)
-
-    # set up logging for the example
-    logger = logging.getLogger('example')
-    logger.setLevel(logging.DEBUG)
-
-    consoleHandler = logging.StreamHandler(stream=sys.stdout)
-    consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
-    logger.addHandler(consoleHandler)
-
-
-    logging.getLogger("example").debug("creating reasoning engine")
-    myIntellect = MyIntellect()
-
-    logging.getLogger("example").debug("asking the engine to learn my policy")
-    myIntellect.learn("./rulesets/example.policy")
-    
-    #print myIntellect.policy.str_tree("semantic model:")
-
-    logging.getLogger("example").debug("asking the engine to learn about BuyOrder")
-    myIntellect.learn(BuyOrder())
-
-    myIntellect.reason()
-
-    while True:
-        logging.getLogger("example").debug("{0} in knowledge.".format(myIntellect.knowledge))
-        time.sleep(5)
-        logging.getLogger("example").debug("messaging reasoning engine to reason")
-        myIntellect.reason()
+    def __init__(self):
+        '''
+        BagsOfWool Initializer
+        '''

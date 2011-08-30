@@ -35,22 +35,27 @@ Created on Aug 18, 2011
 '''
 
 import logging, time
-
 import thread, random
 from threading import Lock
 
+from intellect.examples.rulesfest.BagOfWool import BagOfWool
+
 def grow_wool(sheep):
     while True:
+        
         time.sleep(random.randint(2, 5))
 
         logging.getLogger("example").debug("{0}: adding some wool".format(sheep.name))
-        sheep.bags_of_wool = sheep.bags_of_wool + 1
+        sheep.bags_of_wool.append(BagOfWool())
 
-        if sheep.bags_of_wool == 3:
+        if len(sheep.bags_of_wool) == 3:
             logging.getLogger("example").debug("{0}: wait around for retirement".format(sheep.name))
             break
 
 class BlackSheep():
+    '''
+        Used to signify a black sheep
+    '''
 
     number = 0
 
@@ -58,7 +63,7 @@ class BlackSheep():
         '''
         BlackSheep Initializer
         '''
-        self.bags_of_wool = 0
+        self.bags_of_wool = []
         BlackSheep.number = BlackSheep.number + 1
         self._name = "Sheep #{0}".format(BlackSheep.number)
 
@@ -80,3 +85,14 @@ class BlackSheep():
         self.lock.acquire()
         self._bags_of_wool = value
         self.lock.release()
+
+
+if __name__ == '__main__':
+    sheep = BlackSheep()
+
+    while True:
+        time.sleep(5)
+        print len(sheep.bags_of_wool)
+
+        if len(sheep.bags_of_wool) == 3:
+            break
