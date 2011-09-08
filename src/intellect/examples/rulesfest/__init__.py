@@ -1,5 +1,5 @@
 """
-Copyright (c) 2011, The MITRE Corporation.
+Copyright (c) 2011, Michael Joseph Walsh.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
