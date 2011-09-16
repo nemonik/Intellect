@@ -1,6 +1,11 @@
 _My apologies, a better readme will follow..._
 
-# Overview
+# Intellect
+
+:Info: Intellect is a Domain-specific language and Rules Engine for Python.
+:Author: Michael Joseph Walsh (http://github.com/nemonik)
+
+# About
 
 Let's clear up what Intellect is.
 
@@ -8,6 +13,18 @@ Intellect is a DSL ("Domain-Specific Language") and Rule Engine for Python
 I authored for expressing policies to orchestrate and control a dynamic 
 network defense cyber-security platform being researched in The 
 MITRE Corporation's Innovation Program. 
+
+# Installation
+
+Download the source from GitHub and run python setup.py install.
+
+# Dependencies
+
+- ANTLR3 Python Runtime 3.1.3
+- Python itself, if you don't already have it.  I tested the code on
+Python 2.7.1 and 2.7.2. 
+
+# Background
 
 The language and rule engine form a "production rule system", where computer
 algorithms are used to provide some form of artificial intelligence, which
@@ -67,12 +84,6 @@ ANTLR3 Parse Generator and  Runtime for Python.
 # Walkthrough
 
 A walkthrough to get you jump-started.
-
-## Dependencies
-
-You need to download and install the ANTLR3 3.1.3 Python Runtime, 
-and Python itself, if you don't already have it.  I tested the code on
-Python 2.7.1 and 2.7.2. 
 
 ## Facts (Data being reasoned over)
 
