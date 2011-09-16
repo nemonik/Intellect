@@ -32,26 +32,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import os
 from setuptools import setup, find_packages
-from intellect.define import VERSION, PROJECT
 
-README = os.path.join(os.path.dirname(__file__),'README.md')
-long_description = open(README).read() + "\n"
+DESCRIPTION = 'A Domain-specific language and Rules Engine for Python'
 
-setup(name=PROJECT,
+LONG_DESCRIPTION = None
+try:
+    LONG_DESCRIPTION = open('README.md').read()
+except:
+    pass
+
+def get_version(version_tuple):
+    version = '%s.%s' % (version_tuple[0], version_tuple[1])
+    if version_tuple[2]:
+        version = '%s.%s' % (version, version_tuple[2])
+    return version
+
+init = os.path.join(os.path.dirname(__file__), 'Intellect', '__init__.py')
+version_line = filter(lambda l: l.startswith('VERSION'), open(init))[0]
+VERSION = get_version(eval(version_line.split('=')[-1]))
+print VERSION
+
+CLASSIFIERS = [
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Operating System :: OS Independent',
+    'Topic :: Rules Engine',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+]
+
+setup(name="Intellect",
       version=VERSION,
-      description="A Domain-specific language and Rules Engine for Python",
+      description=DESCRIPTION,
+      long_description=LONG_DESCRIPTION,
       author='Michael Joseph Walsh',
-      author_email='github.com@nemonik.com',
+      author_email='github.com{nospam}nemonik.com',
       url='http://github.com/nemonik/Intellect',
-      classifiers=[
-        "Development Status :: 4 - Beta",
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Topic :: Rules Engine',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-      ],
+      classifiers=CLASSIFIERS,
       keywords='intellect rules engine dsl policy',
       license='BSD, 4-clause license',
       packages=find_packages('src'),
