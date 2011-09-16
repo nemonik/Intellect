@@ -3,6 +3,7 @@ _My apologies, a better readme will follow..._
 # Intellect
 
 :Info: Intellect is a Domain-specific language and Rules Engine for Python.
+
 :Author: Michael Joseph Walsh (http://github.com/nemonik)
 
 # About
@@ -16,15 +17,21 @@ MITRE Corporation's Innovation Program.
 
 # Installation
 
-If you have `setuptools <http://peak.telecommunity.com/DevCenter/setuptools>`
-you can use ``easy_install -U Intellect``, or download the source from 
-`GitHub <http://github.com/nemonik/Intellect>` and run ``python setup.py install``.
+If you have [setuptools](http://peak.telecommunity.com/DevCenter/setuptools)
+you can use easy_install -U Intellect, or download the source from
+[GitHub](http://github.com/nemonik/Intellect) and run python setup.py install.
 
 # Dependencies
 
 - ANTLR3 Python Runtime 3.1.3
 - Python itself, if you don't already have it.  I tested the code on
 Python 2.7.1 and 2.7.2. 
+
+## Contribution
+
+The source code is available under the BSD 4-clause license. If you have ideas, code, bug reports, or fixes you would like to contribute please do so.
+
+Bugs and feature requests can be filed on [Github](http://github.com/nemonik/Intellect).
 
 # Background
 
@@ -439,5 +446,4 @@ to the _ruleCondition_ on line 11, like so:
 	23			# call MyIntellect's bar method as it is decorated as callable
 	24			bar()
 	25			log(logging.DEBUG, "rule_a fired")
-
 
