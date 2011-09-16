@@ -18,8 +18,8 @@ MITRE Corporation's Innovation Program.
 # Installation
 
 If you have [setuptools](http://peak.telecommunity.com/DevCenter/setuptools)
-you can use _easy\_install -U Intellect_, or download the source from
-[GitHub](http://github.com/nemonik/Intellect) and _run python setup.py install_.
+you can use _``easy\_install -U Intellect``_, or download the source from
+[GitHub](http://github.com/nemonik/Intellect) and _``run python setup.py install``_.
 
 # Dependencies
 
@@ -31,7 +31,7 @@ Python 2.7.1 and 2.7.2.
 
 The source code is available under the BSD 4-clause license. If you have ideas, code, bug reports, or fixes you would like to contribute please do so.
 
-Bugs and feature requests can be filed on [Github](http://github.com/nemonik/Intellect).
+Bugs and feature requests can be filed at [Github](http://github.com/nemonik/Intellect).
 
 # Background
 
