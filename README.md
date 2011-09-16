@@ -18,8 +18,8 @@ MITRE Corporation's Innovation Program.
 # Installation
 
 If you have [setuptools](http://peak.telecommunity.com/DevCenter/setuptools)
-you can use easy_install -U Intellect, or download the source from
-[GitHub](http://github.com/nemonik/Intellect) and run python setup.py install.
+you can use _easy\_install -U Intellect_, or download the source from
+[GitHub](http://github.com/nemonik/Intellect) and _run python setup.py install_.
 
 # Dependencies
 
