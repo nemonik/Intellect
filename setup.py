@@ -37,7 +37,7 @@ DESCRIPTION = 'A Domain-specific language and Rules Engine for Python'
 
 LONG_DESCRIPTION = None
 try:
-    LONG_DESCRIPTION = open('README.md').read()
+    LONG_DESCRIPTION = open('README.md').read().encode("UTF-8")
 except:
     pass
 
@@ -57,7 +57,6 @@ CLASSIFIERS = [
     'Intended Audience :: Developers',
     'License :: OSI Approved :: BSD License',
     'Operating System :: OS Independent',
-    'Topic :: Rules Engine',
     'Programming Language :: Python :: 2.6',
     'Programming Language :: Python :: 2.7',
 ]
