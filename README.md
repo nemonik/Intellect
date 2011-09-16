@@ -2,8 +2,7 @@ _My apologies, a better readme will follow..._
 
 # Intellect
 
-:Info: Intellect is a Domain-specific language and Rules Engine for Python.
-
+:Info: Intellect is a Domain-specific language and Rules Engine for Python.  
 :Author: Michael Joseph Walsh (http://github.com/nemonik)
 
 # About
