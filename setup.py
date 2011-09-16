@@ -47,7 +47,7 @@ def get_version(version_tuple):
         version = '%s.%s' % (version, version_tuple[2])
     return version
 
-init = os.path.join(os.path.dirname(__file__), 'src', 'Intellect', '__init__.py')
+init = os.path.join(os.path.dirname(__file__), 'src', 'intellect', '__init__.py')
 version_line = filter(lambda l: l.startswith('VERSION'), open(init))[0]
 VERSION = get_version(eval(version_line.split('=')[-1]))
 print VERSION
