@@ -25,7 +25,6 @@ ties written into the language nor the rule engine to cyber security
 and thus the system in its entirety can be more  broadly used in
 other domains.
 
-
 # Installation
 
 If you have [setuptools](http://peak.telecommunity.com/DevCenter/setuptools)
@@ -89,7 +88,6 @@ needs, a policy language and naive forward chaining rules engine were built
 from scratch. The policy language's grammar is based on a subset of Python 
 language syntax.  The policy DSL is parsed and lexed with the help of the 
 ANTLR3 Parse Generator and  Runtime for Python. 
-
 
 # Walkthrough
 
