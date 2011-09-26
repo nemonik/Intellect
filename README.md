@@ -102,7 +102,7 @@ objects for conferring discrete network conditions, referred to as "facts",
 are also authored in Python. Python's approach to the object-orientated programming
 paradigm, where objects consist of data fields and methods, did not easily
 lend itself to describing "facts". Because the data fields of a Python object 
-referred to syntactically as â "attributes"â can and often are set on an 
+referred to syntactically as "attributes" can and often are set on an 
 instance of a class, they will not exist prior to a class's instantiation. 
 In order for a rules engine to work, it must be able to fully introspect an 
 object instance representing a condition. This proves to be very difficult 
