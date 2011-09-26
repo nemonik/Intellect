@@ -2,17 +2,29 @@ _My apologies, a better readme will follow..._
 
 # Intellect
 
-:Info: Intellect is a Domain-specific language and Rules Engine for Python.  
-:Author: Michael Joseph Walsh (http://github.com/nemonik)
-
-# About
-
-Let's clear up what Intellect is.
-
 Intellect is a DSL ("Domain-Specific Language") and Rule Engine for Python
-I authored for expressing policies to orchestrate and control a dynamic 
+I authored for expressing policies to orchestrate and control a dynamic
 network defense cyber-security platform being researched in The 
 MITRE Corporation's Innovation Program. 
+
+The rules engine provides an intellect, a form of artificial intelligence,
+a faculty of reasoning and understanding objectively over a working memory. 
+The memory retains knowledge relevant to the system, and a set of rules
+authored in the DSL that describe a necessary behavior to achieve some
+goal.  Each rule has an optional condition, and a suite of one or more
+actions.  These actions either further direct the behavior of the system,
+and/or further inform the system.  The engine starts with some facts,
+truths known about past or present circumstances, and uses rules to infer
+more facts.  These facts fire more rules, that infer more facts and so
+on.
+
+For the platform in the Innovation Program, the network defender uses
+the DSL to confer policy,  how the platform is to respond to network
+events mounted over covert network channels, but there are no direct
+ties written into the language nor the rule engine to cyber security
+and thus the system in its entirety can be more  broadly used in
+other domains.
+
 
 # Installation
 
@@ -28,20 +40,12 @@ Python 2.7.1 and 2.7.2.
 
 ## Contribution
 
-The source code is available under the BSD 4-clause license. If you have ideas, code, bug reports, or fixes you would like to contribute please do so.
+The source code is available under the BSD 4-clause license. If you have ideas, 
+code, bug reports, or fixes you would like to contribute please do so.
 
 Bugs and feature requests can be filed at [Github](http://github.com/nemonik/Intellect).
 
 # Background
-
-The language and rule engine form a "production rule system", where computer
-algorithms are used to provide some form of artificial intelligence, which
-consists primarily of a set of rules about behavior. For the platform in the
-Innovation Program, the network defender uses the DSL to confer policy, 
-how the platform is to respond to network events mounted over covert 
-network channels, but there are no direct ties written into the language 
-nor the rule engine to cyber-security and thus the system in its 
-entirety can be more broadly used in other domains.
 
 Many production rule system implementations have been open-sourced, such as
 JBoss Drools, Rools, Jess, Lisa, et cetera.  If you're familiar with the 
@@ -60,8 +64,6 @@ Thus, releasing the domain-specific language (DSL) and Rule Engine to Open
 Source in the hopes doing so will extend its use and increase its chances 
 for possible adoption, while at the same time mature the project with more 
 interested eyeballs being placed on it.
-
-# Background 
 
 Starting out, it was initially assumed the aforementioned platform would 
 be integrated with the best Open Source rules engine available for 
