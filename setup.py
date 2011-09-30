@@ -35,11 +35,9 @@ from setuptools import setup, find_packages
 
 DESCRIPTION = 'A Domain-specific language and Rules Engine for Python'
 
-LONG_DESCRIPTION = None
-try:
-    LONG_DESCRIPTION = open('README.md').read().encode("UTF-8")
-except:
-    pass
+readme_file = open(os.path.join(os.path.dirname(__file__), 'README.rst'))
+LONG_DESCRIPTION = readme_file.read()
+readme_file.close()
 
 def get_version(version_tuple):
     version = '%s.%s' % (version_tuple[0], version_tuple[1])
