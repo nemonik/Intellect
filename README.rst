@@ -325,7 +325,7 @@ using ``insert``::
 `````````````````
 
 The following rule::
-`
+
 	rule "Time to buy new sheep?":
 		when:
 			$buyOrder := BuyOrder( )
