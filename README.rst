@@ -454,25 +454,25 @@ For example, ``MyIntellect`` is created to sub-class ``Intellect``::
 		def bar(self):
 			self.log(logging.DEBUG, ">>>>>>>>>>>>>>  called MyIntellect's bar method as it was decorated as callable.")
 	
-		if __name__ == "__main__":
+	if __name__ == "__main__":
 	
-			# set up logging
-			logging.basicConfig(level=logging.DEBUG,
-				format='%(asctime)s %(name)-12s%(levelname)-8s%(message)s',
-				#filename="rules.log")
-				stream=sys.stdout)
+		# set up logging
+		logging.basicConfig(level=logging.DEBUG,
+			format='%(asctime)s %(name)-12s%(levelname)-8s%(message)s',
+			#filename="rules.log")
+			stream=sys.stdout)
 	
-			print "*"*80
-			print """create an instance of MyIntellect extending Intellect, create some facts, and exercise the MyIntellect's ability to learn and forget"""
-			print "*"*80
+		print "*"*80
+		print """create an instance of MyIntellect extending Intellect, create some facts, and exercise the MyIntellect's ability to learn and forget"""
+		print "*"*80
 	
-			myIntellect = MyIntellect()
+		myIntellect = MyIntellect()
 	
-			policy_a = myIntellect.learn("../rulesets/test_a.policy")
+		policy_a = myIntellect.learn("../rulesets/test_a.policy")
 	
-			myIntellect.reason()
+		myIntellect.reason()
 	
-			myIntellect.forget_all()
+		myIntellect.forget_all()
 
 
 The policy could then be authored, where the ``MyIntellect`` class's ``bar`` method 
