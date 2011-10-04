@@ -175,6 +175,10 @@ A rule statement at its simplest looks like so::
 
 The rule ``print`` will always print ``hello world!!!!`` to the ``sys.stdout``.
 
+Its syntax diagram:
+
+.. image:: images/ruleStmt.jpg
+
 More generally, a rule will have both a condition, the ``when`` portion containing
 as of now a single ``ruleCondition``, and an action, more specifically a suite of 
 one ore more actions, described by the ``then`` portion. Depending on the evaluation 
