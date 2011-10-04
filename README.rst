@@ -169,8 +169,6 @@ To be written.
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
    :scale: 50 %
-   :align: center
-   :width 800
    
    The syntax diagram for a rule statement.
 
