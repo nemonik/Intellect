@@ -306,7 +306,7 @@ If you are writing a very complicated ``constraint`` consider moving the
 evaluation necessary for the ``constraint`` into a method of fact being 
 reasoned over to increase readability.
 
-As in the case of the Rule Condition example::
+As in the case of the Rule Condition example, it could be rewritten to::
 
 			$classB := ClassB(property1ContainsTheStrApple() and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
 
