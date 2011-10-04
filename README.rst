@@ -302,6 +302,9 @@ objects of type ``ClassB`` in knowledge.
 7.3.2.2.2 Using Methods
 -----------------------
 
+To rewrite a complicated ``constraint``
+```````````````````````````````````````
+
 If you are writing a very complicated ``constraint`` consider moving the 
 evaluation necessary for the ``constraint`` into a method of fact being 
 reasoned over to increase readability.
@@ -314,6 +317,9 @@ If you were to add the method to ClassB::
 
 	def property1ContainsTheStrApple()
 		return re.search(r"\bapple\b", property1) != None
+
+Using modules and class and instance methods
+````````````````````````````````````````````
 
 This example, also demonstrates how the ``test`` module function ``greaterThanTen`` 
 can be messaged the instance's ``property2`` attribute and the function's return 
