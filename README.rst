@@ -177,7 +177,7 @@ The rule ``print`` will always print ``hello world!!!!`` to the ``sys.stdout``.
 
 Its syntax diagram:
 
-.. image:: images/ruleStmt.jpg
+.. image:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
 
 More generally, a rule will have both a condition, the ``when`` portion containing
 as of now a single ``ruleCondition``, and an action, more specifically a suite of 
