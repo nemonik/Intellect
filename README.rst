@@ -180,11 +180,16 @@ A rule statement at its simplest looks like so::
 
 The rule ``print`` will always print ``hello world!!!!`` to the ``sys.stdout``.
 
-More generally, a rule will have both a condition, the ``when`` portion containing
-as of now a single ``ruleCondition``, and an action, more specifically a suite of 
-one ore more actions, described by the ``then`` portion. Depending on the evaluation 
-of condition, facts in knowledge will be matched and then operated over in the action 
-of the rule. 
+A rule will have an ``id`` either a ``NAME`` or ``STRING`` token following Python's
+naming and string conventions.
+
+More generally, a rule will have both a ``when`` portion containing the condition 
+of the rule, as of now a single ``ruleCondition``, and an ``action`` described by the 
+``then`` portion. The ``action`` can be thought of in Python-terms as having more 
+specifically a suite of one ore more actions.
+
+Depending on the evaluation of ``condition``, facts in knowledge will be matched 
+and then operated over in the action of the rule. 
 
 Such as in the rule ``"delete those that don't match"``, all facts in knowledge 
 of type ``ClassD`` who's ``property1`` value is either a ``1`` or ``2`` or ``3``
@@ -200,68 +205,26 @@ will be deleted in action of the rule.
 		then:
 			delete $bar
 
+7.3.1 ``agenda-group`` rule property
+------------------------------------
 
-7.4.1 Rule Condition
+Optionally, a rules may have an ``agenda-group`` property that allows it to be 
+grouped in to agenda groups, and fired on an agenda.
+
+*More to follow...*
+
+
+7.3.2 Rule Condition
 --------------------
 
-A rule may have an optional boolean evaluation on the state of objects in knowledge.
-
-7.4.1.1 Using Regular Expressions
----------------------------------
-
-You can also use regular expressions in rule condition by simply importing the
-regular expression library straight from Python and then using like so::
-	
-	from intellect.testing.subModule.ClassB import ClassB 
-
-	import re
-	
-	rule rule_a:
-		when:
-			$classB := ClassB( re.search(r"\bapple\b", "apple")!=None and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
-
-
-To keep the policy files from turning into just another Python script you
-will want to keep as little code out of the suite of actions and thus the  policy 
-file was possible... 
-
-Use the ``modify``, ``delete``, ``insert`` grammar defined actions as well as 
-using ``simpleStatements``. If you are writing very complicated constraints 
-for a condition, consider moving the constraint into a method of fact being 
-reasoned over.
-
-For example, the above regular expression example would become::
-
-	import re
-	
-	rule rule_a:
-		when:
-			$classB := ClassB(property1ContainsTheStrApple() and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
-
-
-If you were to add the method to ClassB::
-
-	def property1ContainsTheStrApple()
-		return re.search(r"\bapple\b", property1) != None
-
-7.4.1.2 Using ``not``
----------------------
-
-Using ``not`` will return true when something does not exist. A ``ruleCondition``
-may be inveresed as follows::
-
-	rule rule_b:
-		when:
-			not $classB := ClassB( property1.startswith("apple") and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
-
-
-and thus negate the condition and return matches to the action of the rule to 
-be operated on. 
-
-7.4.1.3 Using ``exists``
-------------------------
-
-A ruleCondition may be prepended with ``exists`` as follows::
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/condition.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a condition.
+   
+A rule may have an optional condition, a boolean evaluation, on the state of objects 
+in knowledge defined by a Class Constraint (``classConstraint``), and may be 
+optionally prepended with ``exists`` as follows::
 
 	rule rule_c:
 		when:
@@ -278,19 +241,97 @@ A ruleCondition may be prepended with ``exists`` as follows::
 
 and thus the action will be called once if there are any object in memory matching 
 the condition. The action statements ``modify`` and ``delete`` may not be used in 
-the action if ``exists`` pre-pends the a conditon's ``ruleCondition``.
+the action if ``exists`` pre-pends the a conditon's ``classContraint``.
 
-7.4.2 Rule Action (Suite of Actions)
+Currently, the DSL only supports only one rule ``condition``, but work is ongoing
+to support more than one.
+
+7.3.2.1 A Class Constraint
+--------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/classConstraint.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a classConsraint.
+
+A class contraint defines how an objects in memory will be matched.  It defines an 
+``OBJECTBINDING``, the Python ``name`` of the object's class and the optional
+``contraint`` by which it will be matched for objects in knowledge.
+
+The ``OBJECTBINDING`` is a token that must first begin with a dollar-sign (``$``)
+followed by ``LETTER`` or ``_`` and then zero-or-more ``LETTERS``s, ``_``s, or ``DIGIT``.
+
+As in the case of the Rule Condition example::
+
+			exists $classB := ClassB(property1.startswith("apple") and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
+
+
+``$classB`` is the ``OBJECTBINDING`` that binds the matches of facts of type
+``ClassB`` in knowledge matching the ``constraint``.
+
+An ``OBJECTBINDING`` can be further used in the action of the rule, but not in the 
+case where the ``condition`` is pre-pended with ``exists`` as in this example.
+
+7.3.2.2 A Constraint
+------------------
+
+A ``constraint`` follows the basic ``and``, ``or``, and ``not`` grammar that Python
+follows.
+
+As in the case of the Rule Condition example::
+
+			exists $classB := ClassB(property1.startswith("apple") and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
+
+``ClassB`` type facts are matched in knowledge that have ``property1`` attributes that
+``startwith`` ``apple``, and ``property2`` attributes greater than ``5``.  More on the
+rest of the consraint follows in the sections below.
+
+7.3.2.2.1 Using Regular Expressions
+-----------------------------------
+
+You can also use regular expressions in constraint by simply importing the
+regular expression library straight from Python and then using like so::
+	
+As in the case of the Rule Condition example::
+
+			$classB := ClassB( re.search(r"\bapple\b", property1)!=None and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
+
+The regular expression ``r"\bapple\b"`` search is performed on ``property1`` of
+objects of type ``ClassB`` in knowledge.
+
+7.3.2.2.2 Using Methods
+-----------------------
+
+If you are writing very complicated ``constraint``s consider moving the 
+``constraint`` into a method of fact being 
+reasoned over.
+
+As in the case of the Rule Condition example::
+
+			$classB := ClassB(property1ContainsTheStrApple() and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
+
+If you were to add the method to ClassB::
+
+	def property1ContainsTheStrApple()
+		return re.search(r"\bapple\b", property1) != None
+
+This example, also demonstrates how the ``test`` module function ``greaterThanTen`` 
+can be messaged the instance's ``property2`` attribute and the function's return 
+evaluated, and a call to the instance's ``aMethod`` method can be evaluated for 
+a return of ``"a"``.
+
+7.3.3 Rule Action (Suite of Actions)
 ------------------------------------
 
 Rules may have one or more actions used in process of doing something, typically 
 to achieve an aim.
 
-Earlier, I mentioned the use of ``modify``, ``delete``, ``insert`` grammar 
-defined actions of a rule, but these actions may also be ``halt`` and simple 
-statements e.g. ``print``, and ``attribute`` statements.
+To keep the policy files from turning into just another Python script you
+will want to keep as little code out of the suite of actions and thus the  policy 
+file was possible...  You want to focus on using ``modify``, ``delete``, ``insert``
+``halt`` before heavily using large amounts of simple statements.
 
-7.4.2.1 ``learn`` action
+7.3.3.1 ``learn`` action
 ------------------------
 
 A rule entitled ``"Time to buy new sheep?"`` might look like the following::
@@ -318,7 +359,7 @@ using ``insert``::
 				count = $buyOrder.count - 1
 			insert BlackSheep()
 
-7.4.2.2 ``modify`` action
+7.3.3.2 ``modify`` action
 -------------------------
 
 The following rule::
@@ -339,7 +380,7 @@ rule conditions. The ``modify`` action can also be used to chain rules, what
 you do is modify the fact (toggle a boolean property, set a property's value,
 et cetera)  and then use this property to evaluate in the proceeding rule.
 
-7.4.2.3 ``forget`` action
+7.3.3.3 ``forget`` action
 -------------------------
 
 A rule entitled ``"Remove empty buy orders"`` might look like the following::
@@ -364,7 +405,7 @@ as the following using ``delete``::
 
 Note: cannot be used in conjunction with ``exists``.
 
-7.4.2.4 ``halt`` action
+7.3.3.4 ``halt`` action
 -----------------------
 
 The following rule::
@@ -377,7 +418,7 @@ The following rule::
 illustrates the use of a ``halt`` action to tell the rules engine to halt 
 reasoning over the policy.
 
-7.4.2.5 Simple Statements (``SimpleStmt``)
+7.3.3.5 Simple Statements (``SimpleStmt``)
 ------------------------------------------
 
 ``SimpleStmts`` are supported actions of a rule, and so one can do the following::
@@ -397,19 +438,10 @@ reasoning over the policy.
 The ``simpleStmt`` in the action will be executed if any facts in knowledge 
 exist matching the condition.
 
-7.4.2.6 ``attribute`` statements
+7.3.3.6 ``attribute`` statements
 --------------------------------
 
 To be written.
-
-7.4.3 ``agenda-group`` rule property
-------------------------------------
-
-Optionally, a rules may have an ``agenda-group`` property that allows it to be 
-grouped in to agenda groups, and fired on an agenda.
-
-*More to follow...*
-
 
 8. Creating and using a Rules Engine with a single policy
 ---------------------------------------------------------
