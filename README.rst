@@ -100,12 +100,8 @@ from scratch. The policy language's grammar is based on a subset of Python
 language syntax.  The policy DSL is parsed and lexed with the help of the 
 ANTLR3 Parse Generator and  Runtime for Python. 
 
-6. Walkthrough
---------------
 
-A walkthrough to get you jump-started.
-
-7. Facts (Data being reasoned over)
+6. Facts (Data being reasoned over)
 -----------------------------------
 
 The interpreter, the rules engine, and the remainder of the code such as 
@@ -146,13 +142,13 @@ reason over::
 		def property0(self, value):
 			self._property0 = value
 
-8. The Policy DSL
+7. The Policy DSL
 -----------------
 
 Example policy files can be found at the path ``intellect/rulesets``, and must follow
 the Policy grammar as define in ``intellect/grammar/Policy.g``.
 
-8.1 Import Statements (``ImportStmts``)
+7.1 Import Statements (``ImportStmts``)
 ---------------------------------------
 
 Import statement basically follow Python's with a few limitations (For
@@ -163,12 +159,12 @@ level of ``ruleStmt`` statements as per the grammar, and are typically at the to
 policy file, but are not limited to. In fact, if you break up your policy across several 
 files the last imported as class or module wins as the one being named.
 
-8.2 Attribute Statements (``attribute``)
+7.2 Attribute Statements (``attribute``)
 ----------------------------------------
 
 To be written.
 
-8.3 Rule Statements (``ruleStmt``)
+7.3 Rule Statements (``ruleStmt``)
 ----------------------------------
 
 A rule statement at its simplest looks like so::
@@ -200,12 +196,12 @@ will be deleted in action of the rule.
 			delete $bar
 
 
-8.4.1 Rule Condition
+7.4.1 Rule Condition
 --------------------
 
 A rule may have an optional boolean evaluation on the state of objects in knowledge.
 
-8.4.1.1 Using Regular Expressions
+7.4.1.1 Using Regular Expressions
 ---------------------------------
 
 You can also use regular expressions in rule condition by simply importing the
@@ -243,7 +239,7 @@ If you were to add the method to ClassB::
 	def property1ContainsTheStrApple()
 		return re.search(r"\bapple\b", property1) != None
 
-8.4.1.2 Using ``not``
+7.4.1.2 Using ``not``
 ---------------------
 
 Using ``not`` will return true when something does not exist. A ``ruleCondition``
@@ -257,7 +253,7 @@ may be inveresed as follows::
 and thus negate the condition and return matches to the action of the rule to 
 be operated on. 
 
-8.4.1.3 Using ``exists``
+7.4.1.3 Using ``exists``
 ------------------------
 
 A ruleCondition may be prepended with ``exists`` as follows::
@@ -279,7 +275,7 @@ and thus the action will be called once if there are any object in memory matchi
 the condition. The action statements ``modify`` and ``delete`` may not be used in 
 the action if ``exists`` pre-pends the a conditon's ``ruleCondition``.
 
-8.4.2 Rule Action (Suite of Actions)
+7.4.2 Rule Action (Suite of Actions)
 ------------------------------------
 
 Rules may have one or more actions used in process of doing something, typically 
@@ -289,7 +285,7 @@ Earlier, I mentioned the use of ``modify``, ``delete``, ``insert`` grammar
 defined actions of a rule, but these actions may also be ``halt`` and simple 
 statements e.g. ``print``, and ``attribute`` statements.
 
-8.4.2.1 ``learn`` action
+7.4.2.1 ``learn`` action
 ------------------------
 
 A rule entitled ``"Time to buy new sheep?"`` might look like the following::
@@ -317,7 +313,7 @@ using ``insert``::
 				count = $buyOrder.count - 1
 			insert BlackSheep()
 
-8.4.2.2 ``modify`` action
+7.4.2.2 ``modify`` action
 -------------------------
 
 The following rule::
@@ -338,7 +334,7 @@ rule conditions. The ``modify`` action can also be used to chain rules, what
 you do is modify the fact (toggle a boolean property, set a property's value,
 et cetera)  and then use this property to evaluate in the proceeding rule.
 
-8.4.2.3 ``forget`` action
+7.4.2.3 ``forget`` action
 -------------------------
 
 A rule entitled ``"Remove empty buy orders"`` might look like the following::
@@ -363,7 +359,7 @@ as the following using ``delete``::
 
 Note: cannot be used in conjunction with ``exists``.
 
-8.4.2.4 ``halt`` action
+7.4.2.4 ``halt`` action
 -----------------------
 
 The following rule::
@@ -376,7 +372,7 @@ The following rule::
 illustrates the use of a ``halt`` action to tell the rules engine to halt 
 reasoning over the policy.
 
-8.4.2.5 Simple Statements (``SimpleStmt``)
+7.4.2.5 Simple Statements (``SimpleStmt``)
 ------------------------------------------
 
 ``SimpleStmts`` are supported actions of a rule, and so one can do the following::
@@ -396,12 +392,12 @@ reasoning over the policy.
 The ``simpleStmt`` in the action will be executed if any facts in knowledge 
 exist matching the condition.
 
-8.4.2.6 ``attribute`` statements
+7.4.2.6 ``attribute`` statements
 --------------------------------
 
 To be written.
 
-8.4.3 ``agenda-group`` rule property
+7.4.3 ``agenda-group`` rule property
 ------------------------------------
 
 Optionally, a rules may have an ``agenda-group`` property that allows it to be 
@@ -410,7 +406,7 @@ grouped in to agenda groups, and fired on an agenda.
 *More to follow...*
 
 
-9. Creating and using a Rules Engine with a single policy
+8. Creating and using a Rules Engine with a single policy
 ---------------------------------------------------------
 
 At its simplest a rules engine can be created and used like so::
