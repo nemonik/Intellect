@@ -259,7 +259,7 @@ A class contraint defines how an objects in memory will be matched.  It defines 
 ``contraint`` by which it will be matched for objects in knowledge.
 
 The ``OBJECTBINDING`` is a token that must first begin with a dollar-sign (``$``)
-followed by ``NAME`` following Python's naming convention.
+followed by a ``NAME`` following Python's naming convention.
 
 As in the case of the Rule Condition example::
 
@@ -302,9 +302,9 @@ objects of type ``ClassB`` in knowledge.
 7.3.2.2.2 Using Methods
 -----------------------
 
-If you are writing very complicated ``constraint``s consider moving the 
-``constraint`` into a method of fact being 
-reasoned over.
+If you are writing a very complicated ``constraint`` consider moving the 
+evaluation necessary for the ``constraint`` into a method of fact being 
+reasoned over to increase readability.
 
 As in the case of the Rule Condition example::
 
