@@ -167,6 +167,13 @@ To be written.
 7.3 Rule Statements (``ruleStmt``)
 ----------------------------------
 
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
+   :scale: 50 %
+   :align: center
+   :width 800
+   
+   The syntax diagram for a rule statement.
+
 A rule statement at its simplest looks like so::
 
 	rule "print":	
@@ -174,10 +181,6 @@ A rule statement at its simplest looks like so::
 			print("hello world!!!!")
 
 The rule ``print`` will always print ``hello world!!!!`` to the ``sys.stdout``.
-
-Its syntax diagram:
-
-.. image:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
 
 More generally, a rule will have both a condition, the ``when`` portion containing
 as of now a single ``ruleCondition``, and an action, more specifically a suite of 
