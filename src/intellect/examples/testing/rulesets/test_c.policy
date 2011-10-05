@@ -5,6 +5,7 @@ rule rule_e:
 	then:
 		attribute i = i + 1
 		print i
+		halt
 
 rule rule_f:
 	agenda-group "2"
