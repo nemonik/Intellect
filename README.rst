@@ -526,8 +526,8 @@ For example::
 			print i
 
 If the rules engine is instructed to reason seeking to activate 
-rules on agenda  ``"1"``, ``"2"``, ``"3"``, ``"4"``, ``"5"``, and ``"6"`` 
-like so::
+rules on agenda in the order describe by the Python list
+``["1", "2", "3", "4", "5", "6"]`` like so::
 
 	class MyIntellect(Intellect):
 		pass
