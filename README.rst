@@ -166,8 +166,8 @@ files the last imported as class or module wins as the one being named.
    
    The syntax diagram for a ``attributeStmt``.
 
-``attributeStmt`` statements are policy expressions used for policy attributes, a form of
-global accessible from inside of rules.
+``attributeStmt`` statements are expressions used to create policy attributes, a form of
+globals, that are accessible from rules.
 
 For example, a policy could be written::
 
