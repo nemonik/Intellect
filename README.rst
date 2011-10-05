@@ -151,7 +151,7 @@ the Policy grammar as define in ``intellect/grammar/Policy.g``.
 7.1 Import Statements (``ImportStmts``)
 ---------------------------------------
 
-Import statement basically follow Python's with a few limitations (For
+Import statements basically follow Python's with a few limitations (For
 example, The wild card form of import is not supported for the reasons
 elaborated `here <http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html#importing>`_
 and follow the Python 2.7.2 grammar. ``ImportStmt`` statements exist only at the same
@@ -162,7 +162,90 @@ files the last imported as class or module wins as the one being named.
 7.2 Attribute Statements (``attribute``)
 ----------------------------------------
 
-To be written.
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/attributeStmt.jpg
+   
+   The syntax diagram for a ``attributeStmt``.
+
+``attributeStmt" statements are policy expressions used for policy attributes, a form of
+global accessible from inside of rules.
+
+For example, a policy could be written::
+
+	import logging
+	
+	first_sum = 0
+	second_sum = 0
+	
+	rule "set both first_sum and second_sum to 1":
+		agenda-group "test_d"
+		then:
+			attribute (first_sum, second_sum) = (1,1)
+			log("first_sum is {0}".format(first_sum), "example", logging.DEBUG)
+			log("second_sum is {0}".format(second_sum), "example", logging.DEBUG)
+	
+	rule "add 2":
+		agenda-group "test_d"
+		then:
+			attribute first_sum += 2
+			attribute second_sum += 2
+			log("first_sum is {0}".format(first_sum), "example", logging.DEBUG)
+			log("second_sum is {0}".format(second_sum), "example", logging.DEBUG)
+	
+	rule "add 3":
+		agenda-group "test_d"
+		then:
+			attribute first_sum += 3
+			attribute second_sum += 3
+			log("first_sum is {0}".format(first_sum), "example", logging.DEBUG)
+			log("second_sum is {0}".format(second_sum), "example", logging.DEBUG)
+	
+	rule "add 4":
+		agenda-group "test_d"
+		then:
+			attribute first_sum += 4
+			attribute second_sum += 4
+			log("first_sum is {0}".format(first_sum), "example", logging.DEBUG)
+			log("second_sum is {0}".format(second_sum), "example", logging.DEBUG)
+			halt
+	
+	rule "should never get here":
+		agenda-group "test_d"
+		then:
+			log("Then how did I get here?", "example", logging.DEBUG)
+
+Code to exercise this policy would look like so::
+
+	class MyIntellect(Intellect):
+		pass
+	
+	if __name__ == "__main__":
+	
+		# set up logging for the example
+		logger = logging.getLogger('example')
+		logger.setLevel(logging.DEBUG)
+	
+		consoleHandler = logging.StreamHandler(stream=sys.stdout)
+		consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
+		logger.addHandler(consoleHandler)
+	
+		myIntellect = MyIntellect()
+	
+		policy_d = myIntellect.learn("./rulesets/test_d.policy")
+	
+		myIntellect.reason(["test_d"])
+
+and it logging output would be::
+
+	2011-10-04 23:56:51,681 example      DEBUG   __main__.MyIntellect :: first_sum is 1
+	2011-10-04 23:56:51,682 example      DEBUG   __main__.MyIntellect :: second_sum is 1
+	2011-10-04 23:56:51,683 example      DEBUG   __main__.MyIntellect :: first_sum is 3
+	2011-10-04 23:56:51,683 example      DEBUG   __main__.MyIntellect :: second_sum is 3
+	2011-10-04 23:56:51,685 example      DEBUG   __main__.MyIntellect :: first_sum is 6
+	2011-10-04 23:56:51,685 example      DEBUG   __main__.MyIntellect :: second_sum is 6
+	2011-10-04 23:56:51,687 example      DEBUG   __main__.MyIntellect :: first_sum is 10
+	2011-10-04 23:56:51,687 example      DEBUG   __main__.MyIntellect :: second_sum is 10
+
+See: section 7.3.3.1.2 entitled ``attributeAction`` for another example.
 
 7.3 Rule Statements (``ruleStmt``)
 ----------------------------------
@@ -207,14 +290,27 @@ will be deleted in action of the rule.
 7.3.1 ``agenda-group`` rule property
 ------------------------------------
 
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/agendaGroup.jpg
+   
+   The syntax diagram for a ``agendaGroup``.
+
 Optionally, a rules may have an ``agenda-group`` property that allows it to be 
 grouped in to agenda groups, and fired on an agenda.
 
-*More to follow...*
+See: section 7.3.3.1.2 entitled ``attributeAction`` for example of the use of this
+property.
 
+7.3.2 When
+----------
 
-7.3.2 Rule Condition
---------------------
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/when.jpg
+   
+   The syntax diagram for a ``when``.
+
+If present in rule, it defines the condition on which the rule will be activated.
+
+7.3.2.1 Rule Condition
+----------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/condition.jpg
    
@@ -244,8 +340,8 @@ the action if ``exists`` prepends the a conditon's ``classContraint``.
 Currently, the DSL only supports only one rule ``condition``, but work is ongoing
 to support more than one.
 
-7.3.2.1 A Class Constraint
---------------------------
+7.3.2.1.1 A Class Constraint
+----------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/classConstraint.jpg
    
@@ -269,8 +365,8 @@ As in the case of the Rule Condition example::
 An ``OBJECTBINDING`` can be further used in the action of the rule, but not in the 
 case where the ``condition`` is pre-pended with ``exists`` as in this example.
 
-7.3.2.2 A Constraint
---------------------
+7.3.2.1.2 A Constraint
+----------------------
 
 A ``constraint`` follows the basic ``and``, ``or``, and ``not`` grammar that Python
 follows.
@@ -283,8 +379,8 @@ As in the case of the Rule Condition example::
 ``startwith`` ``apple``, and ``property2`` attributes greater than ``5``.  More on the
 rest of the consraint follows in the sections below.
 
-7.3.2.2.1 Using Regular Expressions
------------------------------------
+7.3.2.1.2.1 Using Regular Expressions
+-------------------------------------
 
 You can also use regular expressions in constraint by simply importing the
 regular expression library straight from Python and then using like so as
@@ -295,8 +391,8 @@ in the case of the Rule Condition example::
 The regular expression ``r"\bapple\b"`` search is performed on ``property1`` of
 objects of type ``ClassB`` in knowledge.
 
-7.3.2.2.2 Using Methods
------------------------
+7.3.2.1.2.2 Using Methods
+-------------------------
 
 To rewrite a complicated ``constraint``:
 ````````````````````````````````````````
@@ -322,8 +418,18 @@ can be messaged the instance's ``property2`` attribute and the function's return
 evaluated, and a call to the instance's ``aMethod`` method can be evaluated for 
 a return of ``"a"``.
 
-7.3.3 Rule Action (Suite of Actions)
-------------------------------------
+7.3.3 Then
+----------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/then.jpg
+   
+   The syntax diagram for a ``then``.
+
+Is used to define the suite of one-or-more ``action`` statements to be called
+firing the rule, when the rule is said to be activated.
+
+7.3.3.1 Rule Action (Suite of Actions)
+--------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/action.jpg
    
@@ -332,116 +438,8 @@ a return of ``"a"``.
 Rules may have a suite of one or more actions used in process of doing something, 
 typically  to achieve an aim.
 
-
-7.3.3.1 ``learn`` action
-------------------------
-
-.. figure:: https://github.com/nemonik/Intellect/raw/master/images/learnAction.jpg
-   :scale: 50 %
-   
-   The syntax diagram for a ``learnAction``.
-
-A rule entitled ``"Time to buy new sheep?"`` might look like the following::
-
-	rule "Time to buy new sheep?":
-		when:
-			$buyOrder := BuyOrder( )
-		then:
-			print( "Buying a new sheep." )
-			modify $buyOrder:
-				count = $buyOrder.count - 1
-			learn BlackSheep()
-
-
-The rule above illustrates the use of a ``learn`` action to learn/insert 
-a ``BlackSheep`` fact. The same rule can also be written as the following
-using ``insert``::
-
-	rule "Time to buy new sheep?":
-		when:
-			$buyOrder := BuyOrder( )
-		then:
-			print( "Buying a new sheep." )
-			modify $buyOrder:
-				count = $buyOrder.count - 1
-			insert BlackSheep()
-
-7.3.3.2 ``modify`` action
--------------------------
-
-.. figure:: https://github.com/nemonik/Intellect/raw/master/images/modifyAction.jpg
-   
-   The syntax diagram for a ``modifyAction``.
-
-
-The following rule::
-
-	rule "Time to buy new sheep?":
-		when:
-			$buyOrder := BuyOrder( )
-		then:
-			print( "Buying a new sheep." )
-			modify $buyOrder:
-				count = $buyOrder.count - 1
-			learn BlackSheep()
-
-
-illustrates the use of a ``modify`` action to modify each ``BuyOrder`` match 
-returned by the rule's condition. Cannot be used in conjunction with ``exists``
-rule conditions. The ``modify`` action can also be used to chain rules, what 
-you do is modify the fact (toggle a boolean property, set a property's value,
-et cetera)  and then use this property to evaluate in the proceeding rule.
-
-7.3.3.3 ``forget`` action
--------------------------
-
-.. figure:: https://github.com/nemonik/Intellect/raw/master/images/forgetAction.jpg
-   
-   The syntax diagram for a ``forgetAction``.
-
-
-A rule entitled ``"Remove empty buy orders"`` might look like the following::
-
-	rule "Remove empty buy orders":
-		when:
-			$buyOrder := BuyOrder( count == 0 )
-		then:
-			forget $buyOrder
-
-
-The rule above illustrates the use of a ``forget`` action to forget/delete 
-each match returned by the rule's condition. The same rule can also be written 
-as the following using ``delete``::
-
-	rule "Remove empty buy orders":
-		when:
-			$buyOrder := BuyOrder( count == 0 )
-		then:
-			delete $buyOrder
-
-
-Note: cannot be used in conjunction with ``exists``.
-
-7.3.3.4 ``halt`` action
------------------------
-
-.. figure:: https://github.com/nemonik/Intellect/raw/master/images/haltAction.jpg
-   
-   The syntax diagram for a ``haltAction``.
-
-
-The following rule::
-
-	rule "End policy":
-		then:
-			log("Finished reasoning over policy.", "example", logging.DEBUG)
-			halt
-
-illustrates the use of a ``halt`` action to tell the rules engine to halt 
-reasoning over the policy.
-
-7.3.3.5 Simple Statements (``simpleStmt``)
-------------------------------------------
+7.3.3.1.1 Simple Statements (``simpleStmt``)
+--------------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/simpleStmt.jpg
    
@@ -468,13 +466,198 @@ To keep the policy files from turning into just another Python script you
 will want to keep as little code out of the suite of actions and thus the  policy 
 file was possible...  You will want to focus on using ``modify``, ``delete``, 
 ``insert``, ``halt`` before heavily using large amounts of simple statements.  This
-is why ``action`` supports a limited Python grammar.  ``if``, ``for``, ``while`` et
-cetera are not supported, only Python's ``expressionStmt`` statements are supported.
+is why ``action`` supports a limited Python grammar.  ``if``, ``for``, ``while`` etc
+are not supported, only Python's ``expressionStmt`` statements are supported.
 
-7.3.3.6 ``attribute`` statements
---------------------------------
+7.3.3.1.2 ``attributeAction``
+-----------------------------
 
-To be written.
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/attributeStmt.jpg
+   
+   The syntax diagram for a ``attributeStmt``.
+   
+``attributeAction`` actions are used to create, delete, or modify a policy 
+attribute.
+
+For example::
+
+	i = 0
+	
+	rule rule_e:
+		agenda-group "1"
+		then:
+			attribute i = i + 1
+			print i
+	
+	rule rule_f:
+		agenda-group "2"
+		then:
+			attribute i = i + 1
+			print i
+	
+	rule rule_g:
+		agenda-group "3"
+		then:
+			attribute i = i + 1
+			print i
+	
+	rule rule_h:
+		agenda-group "4"
+		then:
+			# the 'i' variable is scoped to then portion of the rule
+			i = 0
+			print i
+	
+	rule rule_i:
+		agenda-group "5"
+		then:
+			attribute i += 1
+			print i
+			# the 'i' variable is scoped to then portion of the rule
+			i = 0
+	
+	rule rule_j:
+		agenda-group "6"
+		then:
+			attribute i += 1
+			print i
+
+If the rules engine is instructed to reason seeking to activate 
+rules on agenda  ``"1"``, ``"2"``,``"3"``,``"4"``, ``"5"``, and ``"6"`` 
+like so::
+
+	class MyIntellect(Intellect):
+		pass
+	
+	if __name__ == "__main__":
+	
+		myIntellect = MyIntellect()
+	
+		policy_c = myIntellect.learn("./rulesets/test_c.policy")
+	
+		myIntellect.reason(["1", "2", "3", "4", "5", "6"])
+
+The following output will result::
+
+	1
+	2
+	3
+	0
+	4
+	5
+
+When firing ``rule_e`` the policy attribute ``i`` will be incremented by a value 
+of ``1``, and print ``1``, same with ``rule_f`` and ``rule_g``, but ``rule_h`` 
+prints 0. The reason for this is the ``i`` variable is scoped to ``then`` portion 
+of the rule. ``Rule_i`` further illustrates scoping:  the policy attribute ``i``
+is further incremented by ``1`` and is printed, and then a variable ``i`` scoped to
+``then`` portion of the rule initialized to ``0``, but this has no impact on
+the policy attribute ``i`` for when ``rule_j`` action is executed firing the rule
+the value of ``6`` is printed.
+
+7.3.3.1.3 ``learn`` action
+--------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/learnAction.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``learnAction``.
+
+A rule entitled ``"Time to buy new sheep?"`` might look like the following::
+
+	rule "Time to buy new sheep?":
+		when:
+			$buyOrder := BuyOrder( )
+		then:
+			print( "Buying a new sheep." )
+			modify $buyOrder:
+				count = $buyOrder.count - 1
+			learn BlackSheep()
+
+The rule above illustrates the use of a ``learn`` action to learn/insert 
+a ``BlackSheep`` fact. The same rule can also be written as the following
+using ``insert``::
+
+	rule "Time to buy new sheep?":
+		when:
+			$buyOrder := BuyOrder( )
+		then:
+			print( "Buying a new sheep." )
+			modify $buyOrder:
+				count = $buyOrder.count - 1
+			insert BlackSheep()
+
+7.3.3.1.4 ``forget`` action
+---------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/forgetAction.jpg
+   
+   The syntax diagram for a ``forgetAction``.
+
+
+A rule entitled ``"Remove empty buy orders"`` might look like the following::
+
+	rule "Remove empty buy orders":
+		when:
+			$buyOrder := BuyOrder( count == 0 )
+		then:
+			forget $buyOrder
+
+
+The rule above illustrates the use of a ``forget`` action to forget/delete 
+each match returned by the rule's condition. The same rule can also be written 
+as the following using ``delete``::
+
+	rule "Remove empty buy orders":
+		when:
+			$buyOrder := BuyOrder( count == 0 )
+		then:
+			delete $buyOrder
+
+Note: cannot be used in conjunction with ``exists``.
+
+7.3.3.1.5 ``modify`` action
+---------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/modifyAction.jpg
+   
+   The syntax diagram for a ``modifyAction``.
+
+The following rule::
+
+	rule "Time to buy new sheep?":
+		when:
+			$buyOrder := BuyOrder( )
+		then:
+			print( "Buying a new sheep." )
+			modify $buyOrder:
+				count = $buyOrder.count - 1
+			learn BlackSheep()
+
+
+illustrates the use of a ``modify`` action to modify each ``BuyOrder`` match 
+returned by the rule's condition. Cannot be used in conjunction with ``exists``
+rule conditions. The ``modify`` action can also be used to chain rules, what 
+you do is modify the fact (toggle a boolean property, set a property's value,
+etc)  and then use this property to evaluate in the proceeding rule.
+
+
+7.3.3.1.6 ``halt`` action
+-------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/haltAction.jpg
+   
+   The syntax diagram for a ``haltAction``.
+
+The following rule::
+
+	rule "End policy":
+		then:
+			log("Finished reasoning over policy.", "example", logging.DEBUG)
+			halt
+
+illustrates the use of a ``halt`` action to tell the rules engine to halt 
+reasoning over the policy.
 
 8. Creating and using a Rules Engine with a single policy
 ---------------------------------------------------------
