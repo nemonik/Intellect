@@ -245,7 +245,7 @@ and the logging output from the execution of the above would be::
 	2011-10-04 23:56:51,687 example      DEBUG   __main__.MyIntellect :: first_sum is 10
 	2011-10-04 23:56:51,687 example      DEBUG   __main__.MyIntellect :: second_sum is 10
 
-See: section 7.3.3.1.2 entitled ``attributeAction`` for another example.
+See: section 7.3.3.1.2_ entitled ``attributeAction`` for another example.
 
 7.3 Rule Statements (``ruleStmt``)
 ----------------------------------
@@ -469,6 +469,7 @@ file was possible...  You will want to focus on using ``modify``, ``delete``,
 is why ``action`` supports a limited Python grammar.  ``if``, ``for``, ``while`` etc
 are not supported, only Python's ``expressionStmt`` statements are supported.
 
+.. _7.3.3.1.2:
 7.3.3.1.2 ``attributeAction``
 -----------------------------
 
