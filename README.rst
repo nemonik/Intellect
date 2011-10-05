@@ -234,7 +234,7 @@ Code to exercise this policy would look like so::
 	
 		myIntellect.reason(["test_d"])
 
-and it logging output would be::
+and the logging output from the execution of the above would be::
 
 	2011-10-04 23:56:51,681 example      DEBUG   __main__.MyIntellect :: first_sum is 1
 	2011-10-04 23:56:51,682 example      DEBUG   __main__.MyIntellect :: second_sum is 1
