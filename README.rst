@@ -170,7 +170,7 @@ To be written.
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
    :scale: 50 %
    
-   The syntax diagram for a rule statement.
+   The syntax diagram for a ``ruleStmt``.
 
 A rule statement at its simplest looks like so::
 
@@ -220,7 +220,7 @@ grouped in to agenda groups, and fired on an agenda.
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/condition.jpg
    :scale: 50 %
    
-   The syntax diagram for a condition.
+   The syntax diagram for a ``condition``.
    
 A rule may have an optional condition, a boolean evaluation, on the state of objects 
 in knowledge defined by a Class Constraint (``classConstraint``), and may be 
@@ -241,7 +241,7 @@ optionally prepended with ``exists`` as follows::
 
 and thus the action will be called once if there are any object in memory matching 
 the condition. The action statements ``modify`` and ``delete`` may not be used in 
-the action if ``exists`` pre-pends the a conditon's ``classContraint``.
+the action if ``exists`` prepends the a conditon's ``classContraint``.
 
 Currently, the DSL only supports only one rule ``condition``, but work is ongoing
 to support more than one.
@@ -252,11 +252,11 @@ to support more than one.
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/classConstraint.jpg
    :scale: 50 %
    
-   The syntax diagram for a classConsraint.
+   The syntax diagram for a ``classConsraint``.
 
 A class contraint defines how an objects in memory will be matched.  It defines an 
-``OBJECTBINDING``, the Python ``name`` of the object's class and the optional
-``contraint`` by which it will be matched for objects in knowledge.
+``OBJECTBINDING``, the Python name of the object's class and the optional
+``constraint`` by which it will be matched for objects in knowledge.
 
 The ``OBJECTBINDING`` is a token that must first begin with a dollar-sign (``$``)
 followed by a ``NAME`` following Python's naming convention.
@@ -302,8 +302,8 @@ objects of type ``ClassB`` in knowledge.
 7.3.2.2.2 Using Methods
 -----------------------
 
-To rewrite a complicated ``constraint``
-```````````````````````````````````````
+To rewrite a complicated ``constraint``:
+````````````````````````````````````````
 
 If you are writing a very complicated ``constraint`` consider moving the 
 evaluation necessary for the ``constraint`` into a method of fact being 
@@ -318,8 +318,8 @@ If you were to add the method to ClassB::
 	def property1ContainsTheStrApple()
 		return re.search(r"\bapple\b", property1) != None
 
-Using modules and class and instance methods
-````````````````````````````````````````````
+Of a class and/or instance:
+```````````````````````````
 
 This example, also demonstrates how the ``test`` module function ``greaterThanTen`` 
 can be messaged the instance's ``property2`` attribute and the function's return 
@@ -329,16 +329,22 @@ a return of ``"a"``.
 7.3.3 Rule Action (Suite of Actions)
 ------------------------------------
 
-Rules may have one or more actions used in process of doing something, typically 
-to achieve an aim.
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/action.jpg
+   :scale: 50 %
+   
+   The syntax diagram for an ``action``.
 
-To keep the policy files from turning into just another Python script you
-will want to keep as little code out of the suite of actions and thus the  policy 
-file was possible...  You want to focus on using ``modify``, ``delete``, ``insert``
-``halt`` before heavily using large amounts of simple statements.
+Rules may have a suite of one or more actions used in process of doing something, 
+typically  to achieve an aim.
+
 
 7.3.3.1 ``learn`` action
 ------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/learnAction.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``learnAction``.
 
 A rule entitled ``"Time to buy new sheep?"`` might look like the following::
 
@@ -368,6 +374,12 @@ using ``insert``::
 7.3.3.2 ``modify`` action
 -------------------------
 
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/modifyAction.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``modifyAction``.
+
+
 The following rule::
 
 	rule "Time to buy new sheep?":
@@ -388,6 +400,12 @@ et cetera)  and then use this property to evaluate in the proceeding rule.
 
 7.3.3.3 ``forget`` action
 -------------------------
+
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/forgetAction.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``forgetAction``.
+
 
 A rule entitled ``"Remove empty buy orders"`` might look like the following::
 
@@ -414,6 +432,12 @@ Note: cannot be used in conjunction with ``exists``.
 7.3.3.4 ``halt`` action
 -----------------------
 
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/haltAction.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``haltAction``.
+
+
 The following rule::
 
 	rule "End policy":
@@ -424,10 +448,15 @@ The following rule::
 illustrates the use of a ``halt`` action to tell the rules engine to halt 
 reasoning over the policy.
 
-7.3.3.5 Simple Statements (``SimpleStmt``)
+7.3.3.5 Simple Statements (``simpleStmt``)
 ------------------------------------------
 
-``SimpleStmts`` are supported actions of a rule, and so one can do the following::
+.. figure:: https://github.com/nemonik/Intellect/raw/master/images/simpleStmt.jpg
+   :scale: 50 %
+   
+   The syntax diagram for a ``simpleStmt``.
+
+``simpleStmts`` are supported actions of a rule, and so one can do the following::
 
 	rule rule_c:
 		when:
@@ -443,6 +472,13 @@ reasoning over the policy.
 
 The ``simpleStmt`` in the action will be executed if any facts in knowledge 
 exist matching the condition.
+
+To keep the policy files from turning into just another Python script you
+will want to keep as little code out of the suite of actions and thus the  policy 
+file was possible...  You will want to focus on using ``modify``, ``delete``, 
+``insert``, ``halt`` before heavily using large amounts of simple statements.  This
+is why ``action`` supports a limited Python grammar.  ``if``, ``for``, ``while`` et
+cetera are not supported, only Python's ``expressionStmt`` statements are supported.
 
 7.3.3.6 ``attribute`` statements
 --------------------------------
