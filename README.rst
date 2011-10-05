@@ -297,7 +297,7 @@ will be deleted in action of the rule.
 Optionally, a rules may have an ``agenda-group`` property that allows it to be 
 grouped in to agenda groups, and fired on an agenda.
 
-See: section 7.3.3.1.2 entitled ``attributeAction`` for example of the use of this
+See section 7.3.3.1.2_ ``attributeAction`` for another example of the use of this
 property.
 
 7.3.2 When
