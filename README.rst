@@ -331,6 +331,7 @@ a return of ``"a"``.
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/action.jpg
    :scale: 50 %
+   :figwidth: 50 %
    
    The syntax diagram for an ``action``.
 
@@ -376,6 +377,7 @@ using ``insert``::
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/modifyAction.jpg
    :scale: 50 %
+   :figwidth: 50 %
    
    The syntax diagram for a ``modifyAction``.
 
@@ -403,6 +405,7 @@ et cetera)  and then use this property to evaluate in the proceeding rule.
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/forgetAction.jpg
    :scale: 50 %
+   :figwidth: 50 %
    
    The syntax diagram for a ``forgetAction``.
 
@@ -434,6 +437,7 @@ Note: cannot be used in conjunction with ``exists``.
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/haltAction.jpg
    :scale: 50 %
+   :figwidth: 50 %
    
    The syntax diagram for a ``haltAction``.
 
@@ -453,6 +457,7 @@ reasoning over the policy.
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/simpleStmt.jpg
    :scale: 50 %
+   :figwidth: 50 %
    
    The syntax diagram for a ``simpleStmt``.
 
