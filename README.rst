@@ -270,7 +270,7 @@ An ``OBJECTBINDING`` can be further used in the action of the rule, but not in t
 case where the ``condition`` is pre-pended with ``exists`` as in this example.
 
 7.3.2.2 A Constraint
-------------------
+--------------------
 
 A ``constraint`` follows the basic ``and``, ``or``, and ``not`` grammar that Python
 follows.
@@ -287,9 +287,8 @@ rest of the consraint follows in the sections below.
 -----------------------------------
 
 You can also use regular expressions in constraint by simply importing the
-regular expression library straight from Python and then using like so::
-	
-As in the case of the Rule Condition example::
+regular expression library straight from Python and then using like so as
+in the case of the Rule Condition example::
 
 			$classB := ClassB( re.search(r"\bapple\b", property1)!=None and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
 
