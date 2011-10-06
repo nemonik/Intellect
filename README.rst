@@ -106,7 +106,7 @@ ANTLR3 Parse Generator and  Runtime for Python.
 
 The interpreter, the rules engine, and the remainder of the code such as 
 objects for conferring discrete network conditions, referred to as "facts",
-are also authored in Python. Python's approach to the object-orientated programming
+are also authored in Python. Python's approach to the object-oriented programming
 paradigm, where objects consist of data fields and methods, did not easily
 lend itself to describing "facts". Because the data fields of a Python object 
 referred to syntactically as "attributes" can and often are set on an 
@@ -159,6 +159,8 @@ and follow the Python 2.7.2 grammar. ``ImportStmt`` statements exist only at the
 level of ``ruleStmt`` statements as per the grammar, and are typically at the top of a
 policy file, but are not limited to. In fact, if you break up your policy across several 
 files the last imported as class or module wins as the one being named.
+
+:: _7.2:
 
 7.2 Attribute Statements (``attribute``)
 ----------------------------------------
@@ -214,6 +216,14 @@ For example, a policy could be written::
 		then:
 			log("Then how did I get here?", "example", logging.DEBUG)
 
+containing the two ``atributeStmt`` statements::
+
+	first_sum = 0
+	second_sum = 0 
+
+The following rules will increment these two attributes using ``attributeAction``
+statements.
+
 Code to exercise this policy would look like so::
 
 	class MyIntellect(Intellect):
@@ -261,13 +271,14 @@ A rule statement at its simplest looks like so::
 		then:
 			print("hello world!!!!")
 
-The rule ``print`` will always print ``hello world!!!!`` to the ``sys.stdout``.
+The rule ``"print"`` will always activate and output ``hello world!!!!`` to the 
+``sys.stdout``.
 
-A rule will have an ``id`` either a ``NAME`` or ``STRING`` token following Python's
-naming and string conventions.
+A rule will always have an identifier (``id``) in either a ``NAME`` or ``STRING``
+token form following Python's naming and ``String`` conventions.
 
-More generally, a rule will have both a ``when`` portion containing the condition 
-of the rule, as of now a single ``ruleCondition``, and an ``action`` described by the 
+Generally, a rule will have both a ``when`` portion containing the condition 
+of the rule, as of now a ``ruleCondition``, and an ``action`` described by the 
 ``then`` portion. The ``action`` can be thought of in Python-terms as having more 
 specifically a suite of one ore more actions.
 
@@ -295,11 +306,11 @@ will be deleted in action of the rule.
    
    The syntax diagram for a ``agendaGroup``.
 
-Optionally, a rules may have an ``agenda-group`` property that allows it to be 
+Optionally, a rule may have an ``agenda-group`` property that allows it to be 
 grouped in to agenda groups, and fired on an agenda.
 
-See section 7.3.3.1.2_ ``attributeAction`` for another example of the use of this
-property.
+See sections 7.2_ ``attribute`` and 7.3.3.1.2_ ``attributeAction`` for examples 
+of the use of this property.
 
 7.3.2 When
 ----------
@@ -310,8 +321,8 @@ property.
 
 If present in rule, it defines the condition on which the rule will be activated.
 
-7.3.2.1 Rule Condition
-----------------------
+7.3.2.1 Rule Condition (``condition``)
+--------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/condition.jpg
    
@@ -336,24 +347,24 @@ optionally prepended with ``exists`` as follows::
 
 and thus the action will be called once if there are any object in memory matching 
 the condition. The action statements ``modify`` and ``delete`` may not be used in 
-the action if ``exists`` prepends the a conditon's ``classContraint``.
+the action if ``exists`` prepends the ``classContraint``.
 
-Currently, the DSL only supports only one rule ``condition``, but work is ongoing
+Currently, the DSL only supports a single ``classConstraint`, but work is ongoing
 to support more than one.
 
-7.3.2.1.1 A Class Constraint
-----------------------------
+7.3.2.1.1 A Class Constraint (``classConstraint``)
+--------------------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/classConstraint.jpg
    
    The syntax diagram for a ``classConsraint``.
 
-A class contraint defines how an objects in memory will be matched.  It defines an 
-``OBJECTBINDING``, the Python name of the object's class and the optional
-``constraint`` by which it will be matched for objects in knowledge.
+A ``classContraint`` defines how an objects in knowledge will be matched.  It defines an 
+``OBJECTBINDING``, the Python name of the object's class and the optional ``constraint`` 
+by which objects will be matched in knowledge.
 
-The ``OBJECTBINDING`` is a token that must first begin with a dollar-sign (``$``)
-followed by a ``NAME`` following Python's naming convention.
+The ``OBJECTBINDING`` is a ``NAME`` token following Python's naming convention prepended
+with a dollar-sign (``$``).
 
 As in the case of the Rule Condition example::
 
@@ -364,21 +375,22 @@ As in the case of the Rule Condition example::
 ``ClassB`` in knowledge matching the ``constraint``.
 
 An ``OBJECTBINDING`` can be further used in the action of the rule, but not in the 
-case where the ``condition`` is pre-pended with ``exists`` as in this example.
+case where the ``condition`` is prepended with ``exists`` as in the example.
 
 7.3.2.1.2 A Constraint
 ----------------------
 
-A ``constraint`` follows the basic ``and``, ``or``, and ``not`` grammar that Python
+A ``constraint`` follows the same basic ``and``, ``or``, and ``not`` grammar that Python
 follows.
 
 As in the case of the Rule Condition example::
 
 			exists $classB := ClassB(property1.startswith("apple") and property2>5 and test.greaterThanTen(property2) and aMethod() == "a")
 
-``ClassB`` type facts are matched in knowledge that have ``property1`` attributes that
-``startwith`` ``apple``, and ``property2`` attributes greater than ``5``.  More on the
-rest of the consraint follows in the sections below.
+All ``ClassB`` type facts are matched in knowledge that have ``property1`` attributes
+that ``startwith`` ``apple``, and ``property2`` attributes greater than ``5`` before 
+evaluated in hand with ``exist`` statement.  More on the rest of the constraint follows
+in the sections below.
 
 7.3.2.1.2.1 Using Regular Expressions
 -------------------------------------
