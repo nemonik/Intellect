@@ -38,7 +38,7 @@ other domains.
 
 If you have `setuptools <http://peak.telecommunity.com/DevCenter/setuptools>`_
 you can use ``easy_install -U Intellect``, or download the source from
-`GitHub <http://github.com/nemonik/Intellect>`_ and run ``python setup.py install``.
+`GitHub <http://github.com/nemonik/Intellect/archives/master>`_ and run ``python setup.py install``.
 
 3. Dependencies
 ---------------
