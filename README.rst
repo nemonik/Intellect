@@ -349,7 +349,7 @@ and thus the action will be called once if there are any object in memory matchi
 the condition. The action statements ``modify`` and ``delete`` may not be used in 
 the action if ``exists`` prepends the ``classContraint``.
 
-Currently, the DSL only supports a single ``classConstraint`, but work is ongoing
+Currently, the DSL only supports a single ``classConstraint``, but work is ongoing
 to support more than one.
 
 7.3.2.1.1 A Class Constraint (``classConstraint``)
