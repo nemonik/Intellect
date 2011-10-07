@@ -160,7 +160,7 @@ level of ``ruleStmt`` statements as per the grammar, and are typically at the to
 policy file, but are not limited to. In fact, if you break up your policy across several 
 files the last imported as class or module wins as the one being named.
 
-:: _7.2:
+.. _7.2:
 
 7.2 Attribute Statements (``attribute``)
 ----------------------------------------
