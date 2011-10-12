@@ -70,7 +70,7 @@ if __name__ == '__main__':
     
     #print myIntellect.policy.str_tree("semantic model:")
 
-    max_buy_orders_to_start = input('Maximum number possible buy orders to start with? ')
+    max_buy_orders_to_start = input('Provide the maximum number possible buy orders to start with:  ')
     
     buy_order_to_start =random.randint(1, max_buy_orders_to_start)
 
