@@ -17,7 +17,7 @@ rule "Have you no bags full?":
 	when: 
 		$sheep := BlackSheep( len(bags_of_wool) == 0 )
 	then:
-		print( "{0}: No, sir, No, sir.".format( $sheep.name ) )
+		print( "Sheep {0}: No, sir, No, sir.".format( $sheep.name ) )
 
 rule "At least 1 bag full?":
 	when:
@@ -44,7 +44,7 @@ rule "Retire the sheep and insert a buy order":
 	when:
 		$sheep := BlackSheep( len(bags_of_wool) == 3 )
 	then:
-		print( "Retiring {0}.".format( $sheep.name ) )
+		print( "Retiring sheep {0}.".format( $sheep.name ) )
 		forget $sheep
 		insert BuyOrder(random.randint(1, 1))
 
@@ -52,7 +52,6 @@ rule "Time to buy new sheep?":
 	when:
 		$buyOrder := BuyOrder( )
 	then:
-		print( "Buying a new sheep." )
 		modify $buyOrder:
 			count = $buyOrder.count - 1
 		learn BlackSheep()

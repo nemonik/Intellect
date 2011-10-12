@@ -34,10 +34,9 @@ Created on Aug 17, 2011
 @author: Michael Joseph Walsh
 '''
 
-import sys, logging, time
+import sys, logging, time, random
 
 from intellect.Intellect import Intellect
-from intellect.Intellect import Callable
 
 from intellect.examples.rulesfest.BuyOrder import BuyOrder
 
@@ -63,21 +62,25 @@ if __name__ == '__main__':
     logger.addHandler(consoleHandler)
 
 
-    logging.getLogger("example").debug("creating reasoning engine")
+    logging.getLogger("example").debug("Creating reasoning engine.")
     myIntellect = MyIntellect()
 
-    logging.getLogger("example").debug("asking the engine to learn my policy")
+    logging.getLogger("example").debug("Asking the engine to learn my policy.")
     myIntellect.learn("./rulesets/example.policy")
     
     #print myIntellect.policy.str_tree("semantic model:")
 
-    logging.getLogger("example").debug("asking the engine to learn about BuyOrder")
-    myIntellect.learn(BuyOrder())
+    max_buy_orders_to_start = input('Maximum number buy orders to start? ')
+    
+    buy_order_to_start =random.randint(1, max_buy_orders_to_start)
+
+    logging.getLogger("example").debug("Asking the engine to learn a BuyOrder for {0} sheep.".format(buy_order_to_start))
+    myIntellect.learn(BuyOrder(buy_order_to_start))
 
     myIntellect.reason()
 
     while True:
         logging.getLogger("example").debug("{0} in knowledge.".format(myIntellect.knowledge))
         time.sleep(5)
-        logging.getLogger("example").debug("messaging reasoning engine to reason")
+        logging.getLogger("example").debug("Messaging reasoning engine to reason.")
         myIntellect.reason()

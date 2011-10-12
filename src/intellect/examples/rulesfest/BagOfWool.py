@@ -34,6 +34,7 @@ Created on Aug 29, 2011
 @author: Michael Joseph Walsh
 '''
 
+
 class BagOfWool(object):
     '''
         Used to signify a bag of wool

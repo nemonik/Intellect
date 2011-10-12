@@ -45,11 +45,11 @@ def grow_wool(sheep):
         
         time.sleep(random.randint(2, 5))
 
-        logging.getLogger("example").debug("{0}: adding some wool".format(sheep.name))
+        logging.getLogger("example").debug("{0}: Grew a bag of wool.".format(sheep.name))
         sheep.bags_of_wool.append(BagOfWool())
 
         if len(sheep.bags_of_wool) == 3:
-            logging.getLogger("example").debug("{0}: wait around for retirement".format(sheep.name))
+            logging.getLogger("example").debug("{0}: Waiting around for retirement.".format(sheep.name))
             break
 
 class BlackSheep():
@@ -65,7 +65,9 @@ class BlackSheep():
         '''
         self.bags_of_wool = []
         BlackSheep.number = BlackSheep.number + 1
-        self._name = "Sheep #{0}".format(BlackSheep.number)
+        self.name = "Sheep {0}".format(BlackSheep.number)
+
+        logging.getLogger("example").debug("Creating sheep #{0}.".format(self.name))
 
         self.lock = Lock()
         thread.start_new_thread(grow_wool, (self,))
@@ -74,11 +76,14 @@ class BlackSheep():
     @property
     def name(self):
         return self._name
+    
+    @name.setter
+    def name(self, value):
+        self._name = value
 
     @property
     def bags_of_wool(self):
-        value = self._bags_of_wool
-        return value
+        return self._bags_of_wool
 
     @bags_of_wool.setter
     def bags_of_wool(self, value):

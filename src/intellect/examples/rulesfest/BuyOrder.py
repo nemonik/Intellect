@@ -34,6 +34,8 @@ Created on Aug 18, 2011
 @author: Michael Joseph Walsh
 '''
 
+import logging
+
 class BuyOrder(object):
     '''
     Used to signify a buy order
@@ -43,6 +45,8 @@ class BuyOrder(object):
         '''
         BuyOrder Initializer
         '''
+        logging.getLogger("example").debug("Creating buy order for {0} sheep.".format(count))
+        
         self.count = count
 
     @property
