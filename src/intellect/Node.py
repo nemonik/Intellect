@@ -41,28 +41,12 @@ Initial Version:
 @author: Michael Joseph Walsh
 """
 
-import logging, types, collections, keyword, uuid, sys, StringIO, contextlib
+import logging, types, collections, keyword, uuid
 
 import intellect.reflection as reflection
 
 from intellect.Callable import Callable
-
-
-@contextlib.contextmanager
-def stdoutIO(stdout=None):
-    '''
-    Used to collect stdout in exec statements that would otherwise
-    swallow the output of prints and whatnot
-    '''
-    old = sys.stdout
-
-    if stdout is None:
-        stdout = StringIO.StringIO()
-
-    sys.stdout = stdout
-    yield stdout
-    sys.stdout = old
-
+import intellect.IO as IO
 
 
 class Node(object):
@@ -1319,7 +1303,7 @@ class Then(Node):
 
         try:
             # Execute the code, wrapped to collect stdout
-            with stdoutIO() as stdout:
+            with IO.capture_stdout() as stdout:
                 exec(str(code), policy.globals, localScope)
 
             print stdout.getvalue()

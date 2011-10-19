@@ -38,9 +38,9 @@ Initial Version: Oct 27, 2010
 @author: Michael Joseph Walsh
 """
 
-import logging, os
+import logging, os, re, traceback
 
-from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream
+from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, RecognitionException
 
 from intellect.grammar.PolicyParser import PolicyParser
 from intellect.PolicyLexer import PolicyLexer
@@ -49,12 +49,15 @@ from intellect.Node import File
 from intellect.PolicyTokenSource import PolicyTokenSource
 
 from intellect.Callable import Callable
+import intellect.IO as IO
 
 
 class Intellect(object):
     '''
     Rules engine.
     '''
+
+    filepath_regex = re.compile(r"^(.*?/|.*?\\)?([^\./|^\.\\]+)(?:\.([^\\]*)|)$")
 
     def __init__(self):
         '''
@@ -89,7 +92,7 @@ class Intellect(object):
             oneOrMoreObjects: Either a single facts or policy file or
                 a list of facts and/or policy files.
         """
-        
+
         try:
             self.knowledge
         except AttributeError:
@@ -146,7 +149,7 @@ class Intellect(object):
             Keep in mind a policy can be comprised of more than one policy file (a file containing
             valid policy DSL) or string containing policy DSL.  This way you break your rule set,
             imports, and policy attributes across any number of files.  See reason-method for more.
-            
+
 
         Returns:
             The resulting File Node.
@@ -161,37 +164,72 @@ class Intellect(object):
             if isinstance(identifier, basestring):
                 isFile = False
 
-                if os.path.exists(identifier):
-                    self.log("learning policy messaged as file path: {0}".format(identifier))
-                    stream = FileStream(identifier)
-                    isFile = True
-                else:
-                    self.log("learning policy messaged as string: {0}".format(identifier))
-                    stream = ANTLRStringStream(identifier)
+                try:
+                    '''
+                    Try treating 'identifier' as a String containing the text
+                    of a policy.
+                    '''
 
-                lexer = PolicyLexer(stream)
-                tokens= CommonTokenStream(lexer)
-                tokens.discardOffChannelTokens = True
-                indentedSource = PolicyTokenSource(tokens)
-                tokens = CommonTokenStream(indentedSource)
-                parser = PolicyParser(tokens)
-                file = parser.file()
+                    stream = ANTLRStringStream(identifier)
+                    lexer = PolicyLexer(stream)
+                    tokens= CommonTokenStream(lexer)
+                    tokens.discardOffChannelTokens = True
+                    indentedSource = PolicyTokenSource(tokens)
+                    tokens = CommonTokenStream(indentedSource)
+                    parser = PolicyParser(tokens)
+
+                    with IO.capture_stderr() as stderr:
+                        file_node = parser.file()
+
+                    if stderr.getvalue() != "":
+                        raise Exception, "Error in String-based policy: {0}".format(stderr.getvalue())
+
+                except Exception as e:
+                    '''
+                    Try treating 'identifier' as a file path
+                    '''
+                    if Intellect.filepath_regex.match(identifier):
+                        if os.path.exists(identifier):
+                            self.log("Learning policy from file path: {0}".format(identifier))
+                            stream = FileStream(identifier)
+                            isFile = True
+                        else:
+                            raise IOError, "Policy not found: {0}".format(identifier)
+                    else:
+                        '''
+                        assume the intention was to pass 'identifier' as a String containing the text
+                        of a policy, and raise the exception.
+                        '''
+                        raise e
+
+                    lexer = PolicyLexer(stream)
+                    tokens= CommonTokenStream(lexer)
+                    tokens.discardOffChannelTokens = True
+                    indentedSource = PolicyTokenSource(tokens)
+                    tokens = CommonTokenStream(indentedSource)
+                    parser = PolicyParser(tokens)
+
+                    with IO.capture_stderr() as stderr:
+                        file_node = parser.file()
+
+                    if stderr.getvalue() != "":
+                        raise Exception, "Error in file-based policy for path {0}: {1}".format(identifier, stderr.getvalue())
 
                 # set path attribute
-                file.path = identifier if isFile else None
+                file_node.path = identifier if isFile else None
 
                 # associate the path to all descendants
-                file.set_file_on_descendants(file, file)
+                file_node.set_file_on_descendants(file_node, file_node)
 
                 try:
                     # determine if the policy already exists in knowledge
-                    self.policy.files.index(file)
-                    raise ValueError, "policy: {0} already exists in knowledge".format(identifier)
+                    self.policy.files.index(file_node)
+                    raise ValueError, "Policy already exists in knowledge: {0}".format(identifier)
                 except:
                     pass
 
                 # store add the policy file to the policy
-                self.policy.append_child(file)
+                self.policy.append_child(file_node)
 
                 return file
 
@@ -335,11 +373,11 @@ class Intellect(object):
 
             Note, any cumulative changes that occur to policy attributes are
             passed onto individual agenda groups.
-            
-            Remember, whatever is loaded last wins in terms of imports.  At present rule 
-            names are not evaluated.  So, it doesn't matter to the interpreter if you have 
-            two or more rules named the same, each will be evaluated.  Attributes and import 
-            statement are evaluated top to bottom.  Imports are evaluated first, then 
+
+            Remember, whatever is loaded last wins in terms of imports.  At present rule
+            names are not evaluated.  So, it doesn't matter to the interpreter if you have
+            two or more rules named the same, each will be evaluated.  Attributes and import
+            statement are evaluated top to bottom.  Imports are evaluated first, then
             attributes, then rule statements.
 
         Raises:

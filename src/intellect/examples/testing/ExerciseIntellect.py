@@ -38,7 +38,7 @@ Initial Version: Feb 9, 2011
 @author: Michael Joseph Walsh
 """
 
-import sys, logging
+import sys, traceback, logging
 
 from intellect.Intellect import Intellect
 from intellect.Intellect import Callable
@@ -73,6 +73,12 @@ if __name__ == "__main__":
     print "*"*80
 
     myIntellect = MyIntellect()
+    
+    try:
+        policy_bogus = myIntellect.learn("./rulesets/doesnt_exist.policy")
+    except IOError as e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        traceback.print_exception(exc_type, exc_value, exc_traceback)
 
     policy_a = myIntellect.learn("./rulesets/test_a.policy")
     policy_d = myIntellect.learn("./rulesets/test_d.policy")
@@ -137,3 +143,11 @@ if __name__ == "__main__":
     policy_c = myIntellect.learn("./rulesets/test_c.policy")
 
     myIntellect.reason(["1", "2", "3", "4", "5", "6"])
+
+    myIntellect.forget_all()
+
+    try:
+        policy_bogus = myIntellect.learn("./rulesets/test_e.policy")
+    except IOError as e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        traceback.print_exception(exc_type, exc_value, exc_traceback)
