@@ -36,9 +36,12 @@ other domains.
 2. Installation
 ---------------
 
-If you have `setuptools <http://peak.telecommunity.com/DevCenter/setuptools>`_
-you can use ``easy_install -U Intellect``, or download the source from
-`GitHub <http://github.com/nemonik/Intellect/archives/master>`_ and run ``python setup.py install``.
+* To install via `setuptools <http://peak.telecommunity.com/DevCenter/setuptools>`_ use ``easy_install -U Intellect``
+* To install via `pip <http://www.pip-installer.org/en/latest/installing.html>`_ use ``pip install Intellect``
+* To install via `pypm <http://code.activestate.com/pypm/>`_ use ``pypm install intellect``
+* Or download the latest source from `Master <http://github.com/nemonik/Intellect/archives/master>`_ or the most 
+recent tagged release `Tagged Releases <https://github.com/nemonik/Intellect/tags>`_, unpack, and run ``python setup.py install`` 
+
 
 3. Dependencies
 ---------------
