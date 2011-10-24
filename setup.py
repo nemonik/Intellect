@@ -36,6 +36,8 @@ from setuptools import setup, find_packages
 DESCRIPTION = 'A Domain-specific language and Rules Engine for Python'
 
 readme_file = open(os.path.join(os.path.dirname(__file__), 'README.rst'))
+print readme_file
+
 LONG_DESCRIPTION = readme_file.read()
 readme_file.close()
 
@@ -72,6 +74,6 @@ setup(name="Intellect",
       license='BSD, 4-clause license',
       packages=find_packages('src'),
       package_dir = {'':'src'},
-      package_data = {'': ['*.g', '*.tokens']},
+      package_data = {'': ['*.g', '*.tokens', '*.rst']},
       include_package_data=True,
       install_requires=['antlr_python_runtime>=3.1.3'])
