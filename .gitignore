@@ -26,5 +26,5 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-/src/Intellect.egg-info
+/Intellect.egg-info
 /dist
