@@ -67,7 +67,7 @@ class BlackSheep():
         BlackSheep.number = BlackSheep.number + 1
         self.name = "Sheep {0}".format(BlackSheep.number)
 
-        logging.getLogger("example").debug("Creating sheep #{0}.".format(self.name))
+        logging.getLogger("example").debug("Creating #{0}.".format(self.name))
 
         self.lock = Lock()
         thread.start_new_thread(grow_wool, (self,))
