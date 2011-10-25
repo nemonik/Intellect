@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g 2011-10-19 15:30:22
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2011-10-24 15:29:54
 
 import sys
 from antlr3 import *
@@ -102,7 +102,7 @@ ALT_NOTEQUAL=54
 
 class PolicyLexer(Lexer):
 
-    grammarFileName = "/Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g"
+    grammarFileName = "/Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g"
     antlr_version = version_str_to_tuple("3.1.3 Mar 17, 2009 19:23:44")
     antlr_version_str = "3.1.3 Mar 17, 2009 19:23:44"
 
@@ -172,8 +172,8 @@ class PolicyLexer(Lexer):
             _type = LPAREN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:387:3: ( '(' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:387:5: '('
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:387:3: ( '(' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:387:5: '('
             pass 
             self.match(40)
             #action start
@@ -200,8 +200,8 @@ class PolicyLexer(Lexer):
             _type = RPAREN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:391:3: ( ')' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:391:5: ')'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:391:3: ( ')' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:391:5: ')'
             pass 
             self.match(41)
             #action start
@@ -228,8 +228,8 @@ class PolicyLexer(Lexer):
             _type = LBRACK
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:395:3: ( '[' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:395:5: '['
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:395:3: ( '[' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:395:5: '['
             pass 
             self.match(91)
             #action start
@@ -256,8 +256,8 @@ class PolicyLexer(Lexer):
             _type = RBRACK
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:399:3: ( ']' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:399:5: ']'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:399:3: ( ']' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:399:5: ']'
             pass 
             self.match(93)
             #action start
@@ -284,8 +284,8 @@ class PolicyLexer(Lexer):
             _type = LCURLY
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:403:3: ( '{' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:403:5: '{'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:403:3: ( '{' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:403:5: '{'
             pass 
             self.match(123)
             #action start
@@ -312,8 +312,8 @@ class PolicyLexer(Lexer):
             _type = RCURLY
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:407:3: ( '}' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:407:5: '}'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:407:3: ( '}' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:407:5: '}'
             pass 
             self.match(125)
             #action start
@@ -340,8 +340,8 @@ class PolicyLexer(Lexer):
             _type = COLON
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:411:3: ( ':' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:411:5: ':'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:411:3: ( ':' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:411:5: ':'
             pass 
             self.match(58)
 
@@ -365,8 +365,8 @@ class PolicyLexer(Lexer):
             _type = COMMA
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:415:3: ( ',' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:415:5: ','
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:415:3: ( ',' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:415:5: ','
             pass 
             self.match(44)
 
@@ -390,8 +390,8 @@ class PolicyLexer(Lexer):
             _type = DOT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:419:3: ( '.' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:419:5: '.'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:419:3: ( '.' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:419:5: '.'
             pass 
             self.match(46)
 
@@ -415,8 +415,8 @@ class PolicyLexer(Lexer):
             _type = SEMI
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:423:3: ( ';' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:423:5: ';'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:423:3: ( ';' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:423:5: ';'
             pass 
             self.match(59)
 
@@ -440,8 +440,8 @@ class PolicyLexer(Lexer):
             _type = PLUS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:427:3: ( '+' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:427:5: '+'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:427:3: ( '+' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:427:5: '+'
             pass 
             self.match(43)
 
@@ -465,8 +465,8 @@ class PolicyLexer(Lexer):
             _type = MINUS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:431:3: ( '-' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:431:5: '-'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:431:3: ( '-' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:431:5: '-'
             pass 
             self.match(45)
 
@@ -490,8 +490,8 @@ class PolicyLexer(Lexer):
             _type = STAR
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:435:3: ( '*' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:435:5: '*'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:435:3: ( '*' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:435:5: '*'
             pass 
             self.match(42)
 
@@ -515,8 +515,8 @@ class PolicyLexer(Lexer):
             _type = DOLLAR
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:439:3: ( '$' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:439:5: '$'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:439:3: ( '$' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:439:5: '$'
             pass 
             self.match(36)
 
@@ -540,8 +540,8 @@ class PolicyLexer(Lexer):
             _type = SLASH
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:443:3: ( '/' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:443:5: '/'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:443:3: ( '/' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:443:5: '/'
             pass 
             self.match(47)
 
@@ -565,8 +565,8 @@ class PolicyLexer(Lexer):
             _type = VBAR
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:447:3: ( '|' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:447:5: '|'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:447:3: ( '|' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:447:5: '|'
             pass 
             self.match(124)
 
@@ -590,8 +590,8 @@ class PolicyLexer(Lexer):
             _type = AMPER
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:451:3: ( '&' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:451:5: '&'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:451:3: ( '&' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:451:5: '&'
             pass 
             self.match(38)
 
@@ -615,8 +615,8 @@ class PolicyLexer(Lexer):
             _type = LESS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:455:3: ( '<' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:455:5: '<'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:455:3: ( '<' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:455:5: '<'
             pass 
             self.match(60)
 
@@ -640,8 +640,8 @@ class PolicyLexer(Lexer):
             _type = GREATER
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:459:3: ( '>' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:459:5: '>'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:459:3: ( '>' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:459:5: '>'
             pass 
             self.match(62)
 
@@ -665,8 +665,8 @@ class PolicyLexer(Lexer):
             _type = ASSIGN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:463:3: ( '=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:463:5: '='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:463:3: ( '=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:463:5: '='
             pass 
             self.match(61)
 
@@ -690,8 +690,8 @@ class PolicyLexer(Lexer):
             _type = PERCENT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:467:3: ( '%' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:467:5: '%'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:467:3: ( '%' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:467:5: '%'
             pass 
             self.match(37)
 
@@ -715,8 +715,8 @@ class PolicyLexer(Lexer):
             _type = BACKQUOTE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:471:3: ( '`' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:471:5: '`'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:471:3: ( '`' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:471:5: '`'
             pass 
             self.match(96)
 
@@ -740,8 +740,8 @@ class PolicyLexer(Lexer):
             _type = CIRCUMFLEX
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:475:3: ( '^' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:475:5: '^'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:475:3: ( '^' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:475:5: '^'
             pass 
             self.match(94)
 
@@ -765,8 +765,8 @@ class PolicyLexer(Lexer):
             _type = TILDE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:479:3: ( '~' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:479:5: '~'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:479:3: ( '~' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:479:5: '~'
             pass 
             self.match(126)
 
@@ -790,8 +790,8 @@ class PolicyLexer(Lexer):
             _type = EQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:483:3: ( '==' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:483:5: '=='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:483:3: ( '==' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:483:5: '=='
             pass 
             self.match("==")
 
@@ -815,8 +815,8 @@ class PolicyLexer(Lexer):
             _type = ASSIGNEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:487:3: ( ':=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:487:5: ':='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:487:3: ( ':=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:487:5: ':='
             pass 
             self.match(":=")
 
@@ -840,8 +840,8 @@ class PolicyLexer(Lexer):
             _type = NOTEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:491:3: ( '!=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:491:5: '!='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:491:3: ( '!=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:491:5: '!='
             pass 
             self.match("!=")
 
@@ -865,8 +865,8 @@ class PolicyLexer(Lexer):
             _type = ALT_NOTEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:495:3: ( '<>' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:495:5: '<>'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:495:3: ( '<>' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:495:5: '<>'
             pass 
             self.match("<>")
 
@@ -890,8 +890,8 @@ class PolicyLexer(Lexer):
             _type = LESSEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:499:3: ( '<=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:499:5: '<='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:499:3: ( '<=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:499:5: '<='
             pass 
             self.match("<=")
 
@@ -915,8 +915,8 @@ class PolicyLexer(Lexer):
             _type = LEFTSHIFT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:503:3: ( '<<' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:503:5: '<<'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:503:3: ( '<<' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:503:5: '<<'
             pass 
             self.match("<<")
 
@@ -940,8 +940,8 @@ class PolicyLexer(Lexer):
             _type = GREATEREQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:507:3: ( '>=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:507:5: '>='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:507:3: ( '>=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:507:5: '>='
             pass 
             self.match(">=")
 
@@ -965,8 +965,8 @@ class PolicyLexer(Lexer):
             _type = RIGHTSHIFT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:511:3: ( '>>' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:511:5: '>>'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:511:3: ( '>>' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:511:5: '>>'
             pass 
             self.match(">>")
 
@@ -990,8 +990,8 @@ class PolicyLexer(Lexer):
             _type = PLUSEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:515:3: ( '+=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:515:5: '+='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:515:3: ( '+=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:515:5: '+='
             pass 
             self.match("+=")
 
@@ -1015,8 +1015,8 @@ class PolicyLexer(Lexer):
             _type = MINUSEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:519:3: ( '-=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:519:5: '-='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:519:3: ( '-=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:519:5: '-='
             pass 
             self.match("-=")
 
@@ -1040,8 +1040,8 @@ class PolicyLexer(Lexer):
             _type = DOUBLESTAR
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:523:3: ( '**' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:523:5: '**'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:523:3: ( '**' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:523:5: '**'
             pass 
             self.match("**")
 
@@ -1065,8 +1065,8 @@ class PolicyLexer(Lexer):
             _type = STAREQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:527:3: ( '*=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:527:5: '*='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:527:3: ( '*=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:527:5: '*='
             pass 
             self.match("*=")
 
@@ -1090,8 +1090,8 @@ class PolicyLexer(Lexer):
             _type = DOUBLESLASH
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:531:3: ( '//' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:531:5: '//'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:531:3: ( '//' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:531:5: '//'
             pass 
             self.match("//")
 
@@ -1115,8 +1115,8 @@ class PolicyLexer(Lexer):
             _type = SLASHEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:535:3: ( '/=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:535:5: '/='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:535:3: ( '/=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:535:5: '/='
             pass 
             self.match("/=")
 
@@ -1140,8 +1140,8 @@ class PolicyLexer(Lexer):
             _type = VBAREQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:539:3: ( '|=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:539:5: '|='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:539:3: ( '|=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:539:5: '|='
             pass 
             self.match("|=")
 
@@ -1165,8 +1165,8 @@ class PolicyLexer(Lexer):
             _type = PERCENTEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:543:3: ( '%=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:543:5: '%='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:543:3: ( '%=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:543:5: '%='
             pass 
             self.match("%=")
 
@@ -1190,8 +1190,8 @@ class PolicyLexer(Lexer):
             _type = AMPEREQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:547:3: ( '&=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:547:5: '&='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:547:3: ( '&=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:547:5: '&='
             pass 
             self.match("&=")
 
@@ -1215,8 +1215,8 @@ class PolicyLexer(Lexer):
             _type = CIRCUMFLEXEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:551:3: ( '^=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:551:5: '^='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:551:3: ( '^=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:551:5: '^='
             pass 
             self.match("^=")
 
@@ -1240,8 +1240,8 @@ class PolicyLexer(Lexer):
             _type = LEFTSHIFTEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:555:3: ( '<<=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:555:5: '<<='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:555:3: ( '<<=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:555:5: '<<='
             pass 
             self.match("<<=")
 
@@ -1265,8 +1265,8 @@ class PolicyLexer(Lexer):
             _type = RIGHTSHIFTEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:559:3: ( '>>=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:559:5: '>>='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:559:3: ( '>>=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:559:5: '>>='
             pass 
             self.match(">>=")
 
@@ -1290,8 +1290,8 @@ class PolicyLexer(Lexer):
             _type = DOUBLESTAREQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:563:3: ( '**=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:563:5: '**='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:563:3: ( '**=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:563:5: '**='
             pass 
             self.match("**=")
 
@@ -1315,8 +1315,8 @@ class PolicyLexer(Lexer):
             _type = DOUBLESLASHEQUAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:567:3: ( '//=' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:567:5: '//='
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:567:3: ( '//=' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:567:5: '//='
             pass 
             self.match("//=")
 
@@ -1340,8 +1340,8 @@ class PolicyLexer(Lexer):
             _type = GLOBAL
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:571:3: ( 'global' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:571:5: 'global'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:571:3: ( 'global' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:571:5: 'global'
             pass 
             self.match("global")
 
@@ -1365,8 +1365,8 @@ class PolicyLexer(Lexer):
             _type = ATTRIBUTE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:575:3: ( 'attribute' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:575:5: 'attribute'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:575:3: ( 'attribute' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:575:5: 'attribute'
             pass 
             self.match("attribute")
 
@@ -1390,8 +1390,8 @@ class PolicyLexer(Lexer):
             _type = RULE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:579:3: ( 'rule' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:579:5: 'rule'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:579:3: ( 'rule' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:579:5: 'rule'
             pass 
             self.match("rule")
 
@@ -1415,8 +1415,8 @@ class PolicyLexer(Lexer):
             _type = AGENDAGROUP
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:583:3: ( 'agenda-group' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:583:5: 'agenda-group'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:583:3: ( 'agenda-group' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:583:5: 'agenda-group'
             pass 
             self.match("agenda-group")
 
@@ -1440,8 +1440,8 @@ class PolicyLexer(Lexer):
             _type = WHEN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:587:3: ( 'when' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:587:5: 'when'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:587:3: ( 'when' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:587:5: 'when'
             pass 
             self.match("when")
 
@@ -1465,8 +1465,8 @@ class PolicyLexer(Lexer):
             _type = EXISTS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:591:3: ( 'exists' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:591:5: 'exists'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:591:3: ( 'exists' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:591:5: 'exists'
             pass 
             self.match("exists")
 
@@ -1490,8 +1490,8 @@ class PolicyLexer(Lexer):
             _type = THEN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:595:3: ( 'then' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:595:5: 'then'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:595:3: ( 'then' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:595:5: 'then'
             pass 
             self.match("then")
 
@@ -1515,8 +1515,8 @@ class PolicyLexer(Lexer):
             _type = MODIFY
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:599:3: ( 'modify' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:599:5: 'modify'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:599:3: ( 'modify' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:599:5: 'modify'
             pass 
             self.match("modify")
 
@@ -1540,8 +1540,8 @@ class PolicyLexer(Lexer):
             _type = INSERT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:603:3: ( 'insert' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:603:5: 'insert'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:603:3: ( 'insert' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:603:5: 'insert'
             pass 
             self.match("insert")
 
@@ -1565,8 +1565,8 @@ class PolicyLexer(Lexer):
             _type = LEARN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:607:3: ( 'learn' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:607:5: 'learn'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:607:3: ( 'learn' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:607:5: 'learn'
             pass 
             self.match("learn")
 
@@ -1590,8 +1590,8 @@ class PolicyLexer(Lexer):
             _type = DELETE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:611:3: ( 'delete' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:611:5: 'delete'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:611:3: ( 'delete' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:611:5: 'delete'
             pass 
             self.match("delete")
 
@@ -1615,8 +1615,8 @@ class PolicyLexer(Lexer):
             _type = FORGET
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:615:3: ( 'forget' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:615:5: 'forget'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:615:3: ( 'forget' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:615:5: 'forget'
             pass 
             self.match("forget")
 
@@ -1640,8 +1640,8 @@ class PolicyLexer(Lexer):
             _type = HALT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:619:3: ( 'halt' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:619:5: 'halt'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:619:3: ( 'halt' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:619:5: 'halt'
             pass 
             self.match("halt")
 
@@ -1665,8 +1665,8 @@ class PolicyLexer(Lexer):
             _type = PRINT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:623:3: ( 'print' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:623:5: 'print'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:623:3: ( 'print' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:623:5: 'print'
             pass 
             self.match("print")
 
@@ -1690,8 +1690,8 @@ class PolicyLexer(Lexer):
             _type = IMPORT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:627:3: ( 'import' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:627:5: 'import'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:627:3: ( 'import' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:627:5: 'import'
             pass 
             self.match("import")
 
@@ -1715,8 +1715,8 @@ class PolicyLexer(Lexer):
             _type = FROM
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:631:3: ( 'from' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:631:5: 'from'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:631:3: ( 'from' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:631:5: 'from'
             pass 
             self.match("from")
 
@@ -1740,8 +1740,8 @@ class PolicyLexer(Lexer):
             _type = AND
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:635:3: ( 'and' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:635:5: 'and'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:635:3: ( 'and' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:635:5: 'and'
             pass 
             self.match("and")
 
@@ -1765,8 +1765,8 @@ class PolicyLexer(Lexer):
             _type = OR
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:639:3: ( 'or' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:639:5: 'or'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:639:3: ( 'or' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:639:5: 'or'
             pass 
             self.match("or")
 
@@ -1790,8 +1790,8 @@ class PolicyLexer(Lexer):
             _type = IN
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:643:3: ( 'in' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:643:5: 'in'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:643:3: ( 'in' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:643:5: 'in'
             pass 
             self.match("in")
 
@@ -1815,8 +1815,8 @@ class PolicyLexer(Lexer):
             _type = IS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:647:3: ( 'is' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:647:5: 'is'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:647:3: ( 'is' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:647:5: 'is'
             pass 
             self.match("is")
 
@@ -1840,8 +1840,8 @@ class PolicyLexer(Lexer):
             _type = AS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:651:3: ( 'as' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:651:5: 'as'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:651:3: ( 'as' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:651:5: 'as'
             pass 
             self.match("as")
 
@@ -1865,8 +1865,8 @@ class PolicyLexer(Lexer):
             _type = NOT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:655:3: ( 'not' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:655:5: 'not'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:655:3: ( 'not' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:655:5: 'not'
             pass 
             self.match("not")
 
@@ -1887,8 +1887,8 @@ class PolicyLexer(Lexer):
     def mLETTER(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:660:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:660:5: ( 'a' .. 'z' | 'A' .. 'Z' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:660:3: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:660:5: ( 'a' .. 'z' | 'A' .. 'Z' )
             pass 
             if (65 <= self.input.LA(1) <= 90) or (97 <= self.input.LA(1) <= 122):
                 self.input.consume()
@@ -1913,11 +1913,11 @@ class PolicyLexer(Lexer):
     def mDIGIT(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:665:3: ( ( '0' .. '9' ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:665:5: ( '0' .. '9' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:665:3: ( ( '0' .. '9' ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:665:5: ( '0' .. '9' )
             pass 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:665:5: ( '0' .. '9' )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:665:6: '0' .. '9'
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:665:5: ( '0' .. '9' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:665:6: '0' .. '9'
             pass 
             self.matchRange(48, 57)
 
@@ -1942,14 +1942,14 @@ class PolicyLexer(Lexer):
             _type = FLOAT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:3: ( '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ '.' EXPONENT | ( DIGIT )+ ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:3: ( '.' ( DIGIT )+ ( EXPONENT )? | ( DIGIT )+ '.' EXPONENT | ( DIGIT )+ ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT ) )
             alt9 = 3
             alt9 = self.dfa9.predict(self.input)
             if alt9 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:5: '.' ( DIGIT )+ ( EXPONENT )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:5: '.' ( DIGIT )+ ( EXPONENT )?
                 pass 
                 self.match(46)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:9: ( DIGIT )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:9: ( DIGIT )+
                 cnt1 = 0
                 while True: #loop1
                     alt1 = 2
@@ -1960,7 +1960,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt1 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:9: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:9: DIGIT
                         pass 
                         self.mDIGIT()
 
@@ -1973,14 +1973,14 @@ class PolicyLexer(Lexer):
                         raise eee
 
                     cnt1 += 1
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:16: ( EXPONENT )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:16: ( EXPONENT )?
                 alt2 = 2
                 LA2_0 = self.input.LA(1)
 
                 if (LA2_0 == 69 or LA2_0 == 101) :
                     alt2 = 1
                 if alt2 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:669:17: EXPONENT
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:669:17: EXPONENT
                     pass 
                     self.mEXPONENT()
 
@@ -1989,9 +1989,9 @@ class PolicyLexer(Lexer):
 
 
             elif alt9 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:670:5: ( DIGIT )+ '.' EXPONENT
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:670:5: ( DIGIT )+ '.' EXPONENT
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:670:5: ( DIGIT )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:670:5: ( DIGIT )+
                 cnt3 = 0
                 while True: #loop3
                     alt3 = 2
@@ -2002,7 +2002,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt3 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:670:5: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:670:5: DIGIT
                         pass 
                         self.mDIGIT()
 
@@ -2020,9 +2020,9 @@ class PolicyLexer(Lexer):
 
 
             elif alt9 == 3:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:5: ( DIGIT )+ ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:5: ( DIGIT )+ ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT )
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:5: ( DIGIT )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:5: ( DIGIT )+
                 cnt4 = 0
                 while True: #loop4
                     alt4 = 2
@@ -2033,7 +2033,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt4 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:5: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:5: DIGIT
                         pass 
                         self.mDIGIT()
 
@@ -2046,7 +2046,7 @@ class PolicyLexer(Lexer):
                         raise eee
 
                     cnt4 += 1
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:12: ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:12: ( '.' ( ( DIGIT )+ ( EXPONENT )? )? | EXPONENT )
                 alt8 = 2
                 LA8_0 = self.input.LA(1)
 
@@ -2060,19 +2060,19 @@ class PolicyLexer(Lexer):
                     raise nvae
 
                 if alt8 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:13: '.' ( ( DIGIT )+ ( EXPONENT )? )?
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:13: '.' ( ( DIGIT )+ ( EXPONENT )? )?
                     pass 
                     self.match(46)
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:17: ( ( DIGIT )+ ( EXPONENT )? )?
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:17: ( ( DIGIT )+ ( EXPONENT )? )?
                     alt7 = 2
                     LA7_0 = self.input.LA(1)
 
                     if ((48 <= LA7_0 <= 57)) :
                         alt7 = 1
                     if alt7 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:18: ( DIGIT )+ ( EXPONENT )?
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:18: ( DIGIT )+ ( EXPONENT )?
                         pass 
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:18: ( DIGIT )+
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:18: ( DIGIT )+
                         cnt5 = 0
                         while True: #loop5
                             alt5 = 2
@@ -2083,7 +2083,7 @@ class PolicyLexer(Lexer):
 
 
                             if alt5 == 1:
-                                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:18: DIGIT
+                                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:18: DIGIT
                                 pass 
                                 self.mDIGIT()
 
@@ -2096,14 +2096,14 @@ class PolicyLexer(Lexer):
                                 raise eee
 
                             cnt5 += 1
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:25: ( EXPONENT )?
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:25: ( EXPONENT )?
                         alt6 = 2
                         LA6_0 = self.input.LA(1)
 
                         if (LA6_0 == 69 or LA6_0 == 101) :
                             alt6 = 1
                         if alt6 == 1:
-                            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:26: EXPONENT
+                            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:26: EXPONENT
                             pass 
                             self.mEXPONENT()
 
@@ -2115,7 +2115,7 @@ class PolicyLexer(Lexer):
 
 
                 elif alt8 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:671:41: EXPONENT
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:671:41: EXPONENT
                     pass 
                     self.mEXPONENT()
 
@@ -2141,8 +2141,8 @@ class PolicyLexer(Lexer):
             _type = LONGINT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:675:3: ( INT ( 'l' | 'L' ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:675:5: INT ( 'l' | 'L' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:675:3: ( INT ( 'l' | 'L' ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:675:5: INT ( 'l' | 'L' )
             pass 
             self.mINT()
             if self.input.LA(1) == 76 or self.input.LA(1) == 108:
@@ -2170,8 +2170,8 @@ class PolicyLexer(Lexer):
     def mEXPONENT(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:680:3: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:680:5: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:680:3: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:680:5: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             pass 
             if self.input.LA(1) == 69 or self.input.LA(1) == 101:
                 self.input.consume()
@@ -2180,14 +2180,14 @@ class PolicyLexer(Lexer):
                 self.recover(mse)
                 raise mse
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:680:17: ( '+' | '-' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:680:17: ( '+' | '-' )?
             alt10 = 2
             LA10_0 = self.input.LA(1)
 
             if (LA10_0 == 43 or LA10_0 == 45) :
                 alt10 = 1
             if alt10 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:
                 pass 
                 if self.input.LA(1) == 43 or self.input.LA(1) == 45:
                     self.input.consume()
@@ -2199,7 +2199,7 @@ class PolicyLexer(Lexer):
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:680:32: ( DIGIT )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:680:32: ( DIGIT )+
             cnt11 = 0
             while True: #loop11
                 alt11 = 2
@@ -2210,7 +2210,7 @@ class PolicyLexer(Lexer):
 
 
                 if alt11 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:680:32: DIGIT
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:680:32: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -2242,7 +2242,7 @@ class PolicyLexer(Lexer):
             _type = INT
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:3: ( '0' ( 'x' | 'X' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+ | '0' ( DIGIT )* | '1' .. '9' ( DIGIT )* )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:3: ( '0' ( 'x' | 'X' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+ | '0' ( DIGIT )* | '1' .. '9' ( DIGIT )* )
             alt15 = 3
             LA15_0 = self.input.LA(1)
 
@@ -2261,7 +2261,7 @@ class PolicyLexer(Lexer):
                 raise nvae
 
             if alt15 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:5: '0' ( 'x' | 'X' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:5: '0' ( 'x' | 'X' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+
                 pass 
                 self.match(48)
                 if self.input.LA(1) == 88 or self.input.LA(1) == 120:
@@ -2271,7 +2271,7 @@ class PolicyLexer(Lexer):
                     self.recover(mse)
                     raise mse
 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:21: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:21: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )+
                 cnt12 = 0
                 while True: #loop12
                     alt12 = 4
@@ -2284,19 +2284,19 @@ class PolicyLexer(Lexer):
                         alt12 = 3
 
                     if alt12 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:23: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:23: DIGIT
                         pass 
                         self.mDIGIT()
 
 
                     elif alt12 == 2:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:31: 'a' .. 'f'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:31: 'a' .. 'f'
                         pass 
                         self.matchRange(97, 102)
 
 
                     elif alt12 == 3:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:684:44: 'A' .. 'F'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:684:44: 'A' .. 'F'
                         pass 
                         self.matchRange(65, 70)
 
@@ -2312,10 +2312,10 @@ class PolicyLexer(Lexer):
 
 
             elif alt15 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:685:5: '0' ( DIGIT )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:685:5: '0' ( DIGIT )*
                 pass 
                 self.match(48)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:685:9: ( DIGIT )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:685:9: ( DIGIT )*
                 while True: #loop13
                     alt13 = 2
                     LA13_0 = self.input.LA(1)
@@ -2325,7 +2325,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt13 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:685:9: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:685:9: DIGIT
                         pass 
                         self.mDIGIT()
 
@@ -2335,10 +2335,10 @@ class PolicyLexer(Lexer):
 
 
             elif alt15 == 3:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:686:5: '1' .. '9' ( DIGIT )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:686:5: '1' .. '9' ( DIGIT )*
                 pass 
                 self.matchRange(49, 57)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:686:14: ( DIGIT )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:686:14: ( DIGIT )*
                 while True: #loop14
                     alt14 = 2
                     LA14_0 = self.input.LA(1)
@@ -2348,7 +2348,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt14 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:686:14: DIGIT
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:686:14: DIGIT
                         pass 
                         self.mDIGIT()
 
@@ -2375,11 +2375,11 @@ class PolicyLexer(Lexer):
             _type = COMPLEX
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:690:3: ( INT ( 'j' | 'J' ) | FLOAT ( 'j' | 'J' ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:690:3: ( INT ( 'j' | 'J' ) | FLOAT ( 'j' | 'J' ) )
             alt16 = 2
             alt16 = self.dfa16.predict(self.input)
             if alt16 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:690:5: INT ( 'j' | 'J' )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:690:5: INT ( 'j' | 'J' )
                 pass 
                 self.mINT()
                 if self.input.LA(1) == 74 or self.input.LA(1) == 106:
@@ -2392,7 +2392,7 @@ class PolicyLexer(Lexer):
 
 
             elif alt16 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:691:5: FLOAT ( 'j' | 'J' )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:691:5: FLOAT ( 'j' | 'J' )
                 pass 
                 self.mFLOAT()
                 if self.input.LA(1) == 74 or self.input.LA(1) == 106:
@@ -2422,8 +2422,8 @@ class PolicyLexer(Lexer):
             _type = NAME
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:3: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:5: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:3: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:5: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
             pass 
             if (65 <= self.input.LA(1) <= 90) or self.input.LA(1) == 95 or (97 <= self.input.LA(1) <= 122):
                 self.input.consume()
@@ -2432,7 +2432,7 @@ class PolicyLexer(Lexer):
                 self.recover(mse)
                 raise mse
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:21: ( LETTER | '_' | DIGIT )*
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:21: ( LETTER | '_' | DIGIT )*
             while True: #loop17
                 alt17 = 4
                 LA17 = self.input.LA(1)
@@ -2444,19 +2444,19 @@ class PolicyLexer(Lexer):
                     alt17 = 3
 
                 if alt17 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:23: LETTER
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:23: LETTER
                     pass 
                     self.mLETTER()
 
 
                 elif alt17 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:32: '_'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:32: '_'
                     pass 
                     self.match(95)
 
 
                 elif alt17 == 3:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:695:38: DIGIT
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:695:38: DIGIT
                     pass 
                     self.mDIGIT()
 
@@ -2484,8 +2484,8 @@ class PolicyLexer(Lexer):
             _type = OBJECTBINDING
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:699:3: ( DOLLAR NAME )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:699:5: DOLLAR NAME
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:699:3: ( DOLLAR NAME )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:699:5: DOLLAR NAME
             pass 
             self.mDOLLAR()
             self.mNAME()
@@ -2510,10 +2510,10 @@ class PolicyLexer(Lexer):
             _type = STRING
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:3: ( ( 'r' | 'u' | 'ur' )? ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:5: ( 'r' | 'u' | 'ur' )? ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:3: ( ( 'r' | 'u' | 'ur' )? ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:5: ( 'r' | 'u' | 'ur' )? ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' )
             pass 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:5: ( 'r' | 'u' | 'ur' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:5: ( 'r' | 'u' | 'ur' )?
             alt18 = 4
             LA18_0 = self.input.LA(1)
 
@@ -2527,25 +2527,25 @@ class PolicyLexer(Lexer):
                 elif (LA18_2 == 34 or LA18_2 == 39) :
                     alt18 = 2
             if alt18 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:6: 'r'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:6: 'r'
                 pass 
                 self.match(114)
 
 
             elif alt18 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:10: 'u'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:10: 'u'
                 pass 
                 self.match(117)
 
 
             elif alt18 == 3:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:703:14: 'ur'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:703:14: 'ur'
                 pass 
                 self.match("ur")
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:704:5: ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:704:5: ( '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\'' | '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"' | '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"' | '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\'' )
             alt23 = 4
             LA23_0 = self.input.LA(1)
 
@@ -2589,10 +2589,10 @@ class PolicyLexer(Lexer):
                 raise nvae
 
             if alt23 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:704:9: '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\''
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:704:9: '\\'\\'\\'' ( options {greedy=false; } : TRIAPOS )* '\\'\\'\\''
                 pass 
                 self.match("'''")
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:704:18: ( options {greedy=false; } : TRIAPOS )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:704:18: ( options {greedy=false; } : TRIAPOS )*
                 while True: #loop19
                     alt19 = 2
                     LA19_0 = self.input.LA(1)
@@ -2618,7 +2618,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt19 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:704:43: TRIAPOS
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:704:43: TRIAPOS
                         pass 
                         self.mTRIAPOS()
 
@@ -2629,10 +2629,10 @@ class PolicyLexer(Lexer):
 
 
             elif alt23 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:705:9: '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:705:9: '\"\"\"' ( options {greedy=false; } : TRIQUOTE )* '\"\"\"'
                 pass 
                 self.match("\"\"\"")
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:705:15: ( options {greedy=false; } : TRIQUOTE )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:705:15: ( options {greedy=false; } : TRIQUOTE )*
                 while True: #loop20
                     alt20 = 2
                     LA20_0 = self.input.LA(1)
@@ -2658,7 +2658,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt20 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:705:40: TRIQUOTE
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:705:40: TRIQUOTE
                         pass 
                         self.mTRIQUOTE()
 
@@ -2669,10 +2669,10 @@ class PolicyLexer(Lexer):
 
 
             elif alt23 == 3:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:706:9: '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:706:9: '\"' ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )* '\"'
                 pass 
                 self.match(34)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:706:13: ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:706:13: ( ESC | ~ ( '\\\\' | '\\n' | '\"' ) )*
                 while True: #loop21
                     alt21 = 3
                     LA21_0 = self.input.LA(1)
@@ -2684,13 +2684,13 @@ class PolicyLexer(Lexer):
 
 
                     if alt21 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:706:14: ESC
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:706:14: ESC
                         pass 
                         self.mESC()
 
 
                     elif alt21 == 2:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:706:18: ~ ( '\\\\' | '\\n' | '\"' )
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:706:18: ~ ( '\\\\' | '\\n' | '\"' )
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 33) or (35 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -2707,10 +2707,10 @@ class PolicyLexer(Lexer):
 
 
             elif alt23 == 4:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:707:9: '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\''
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:707:9: '\\'' ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )* '\\''
                 pass 
                 self.match(39)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:707:14: ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:707:14: ( ESC | ~ ( '\\\\' | '\\n' | '\\'' ) )*
                 while True: #loop22
                     alt22 = 3
                     LA22_0 = self.input.LA(1)
@@ -2722,13 +2722,13 @@ class PolicyLexer(Lexer):
 
 
                     if alt22 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:707:15: ESC
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:707:15: ESC
                         pass 
                         self.mESC()
 
 
                     elif alt22 == 2:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:707:19: ~ ( '\\\\' | '\\n' | '\\'' )
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:707:19: ~ ( '\\\\' | '\\n' | '\\'' )
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 38) or (40 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -2763,36 +2763,36 @@ class PolicyLexer(Lexer):
     def mTRIQUOTE(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:2: ( ( '\"' )? ( '\"' )? ( ESC | ~ ( '\\\\' | '\"' ) )+ )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:4: ( '\"' )? ( '\"' )? ( ESC | ~ ( '\\\\' | '\"' ) )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:2: ( ( '\"' )? ( '\"' )? ( ESC | ~ ( '\\\\' | '\"' ) )+ )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:4: ( '\"' )? ( '\"' )? ( ESC | ~ ( '\\\\' | '\"' ) )+
             pass 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:4: ( '\"' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:4: ( '\"' )?
             alt24 = 2
             LA24_0 = self.input.LA(1)
 
             if (LA24_0 == 34) :
                 alt24 = 1
             if alt24 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:4: '\"'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:4: '\"'
                 pass 
                 self.match(34)
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:9: ( '\"' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:9: ( '\"' )?
             alt25 = 2
             LA25_0 = self.input.LA(1)
 
             if (LA25_0 == 34) :
                 alt25 = 1
             if alt25 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:9: '\"'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:9: '\"'
                 pass 
                 self.match(34)
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:14: ( ESC | ~ ( '\\\\' | '\"' ) )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:14: ( ESC | ~ ( '\\\\' | '\"' ) )+
             cnt26 = 0
             while True: #loop26
                 alt26 = 3
@@ -2805,13 +2805,13 @@ class PolicyLexer(Lexer):
 
 
                 if alt26 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:15: ESC
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:15: ESC
                     pass 
                     self.mESC()
 
 
                 elif alt26 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:713:19: ~ ( '\\\\' | '\"' )
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:713:19: ~ ( '\\\\' | '\"' )
                     pass 
                     if (0 <= self.input.LA(1) <= 33) or (35 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                         self.input.consume()
@@ -2846,36 +2846,36 @@ class PolicyLexer(Lexer):
     def mTRIAPOS(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:3: ( ( '\\'' )? ( '\\'' )? ( ESC | ~ ( '\\\\' | '\\'' ) )+ )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:5: ( '\\'' )? ( '\\'' )? ( ESC | ~ ( '\\\\' | '\\'' ) )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:3: ( ( '\\'' )? ( '\\'' )? ( ESC | ~ ( '\\\\' | '\\'' ) )+ )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:5: ( '\\'' )? ( '\\'' )? ( ESC | ~ ( '\\\\' | '\\'' ) )+
             pass 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:5: ( '\\'' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:5: ( '\\'' )?
             alt27 = 2
             LA27_0 = self.input.LA(1)
 
             if (LA27_0 == 39) :
                 alt27 = 1
             if alt27 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:5: '\\''
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:5: '\\''
                 pass 
                 self.match(39)
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:11: ( '\\'' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:11: ( '\\'' )?
             alt28 = 2
             LA28_0 = self.input.LA(1)
 
             if (LA28_0 == 39) :
                 alt28 = 1
             if alt28 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:11: '\\''
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:11: '\\''
                 pass 
                 self.match(39)
 
 
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:17: ( ESC | ~ ( '\\\\' | '\\'' ) )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:17: ( ESC | ~ ( '\\\\' | '\\'' ) )+
             cnt29 = 0
             while True: #loop29
                 alt29 = 3
@@ -2888,13 +2888,13 @@ class PolicyLexer(Lexer):
 
 
                 if alt29 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:18: ESC
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:18: ESC
                     pass 
                     self.mESC()
 
 
                 elif alt29 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:718:22: ~ ( '\\\\' | '\\'' )
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:718:22: ~ ( '\\\\' | '\\'' )
                     pass 
                     if (0 <= self.input.LA(1) <= 38) or (40 <= self.input.LA(1) <= 91) or (93 <= self.input.LA(1) <= 65535):
                         self.input.consume()
@@ -2929,8 +2929,8 @@ class PolicyLexer(Lexer):
     def mESC(self, ):
 
         try:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:723:5: ( '\\\\' . )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:723:10: '\\\\' .
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:723:5: ( '\\\\' . )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:723:10: '\\\\' .
             pass 
             self.match(92)
             self.matchAny()
@@ -2955,25 +2955,25 @@ class PolicyLexer(Lexer):
 
             newline = None
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:727:3: ( '\\\\' ( '\\r' )? '\\n' ( ' ' | '\\t' )* (newline= NEWLINE | ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:727:5: '\\\\' ( '\\r' )? '\\n' ( ' ' | '\\t' )* (newline= NEWLINE | )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:727:3: ( '\\\\' ( '\\r' )? '\\n' ( ' ' | '\\t' )* (newline= NEWLINE | ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:727:5: '\\\\' ( '\\r' )? '\\n' ( ' ' | '\\t' )* (newline= NEWLINE | )
             pass 
             self.match(92)
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:727:10: ( '\\r' )?
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:727:10: ( '\\r' )?
             alt30 = 2
             LA30_0 = self.input.LA(1)
 
             if (LA30_0 == 13) :
                 alt30 = 1
             if alt30 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:727:12: '\\r'
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:727:12: '\\r'
                 pass 
                 self.match(13)
 
 
 
             self.match(10)
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:727:25: ( ' ' | '\\t' )*
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:727:25: ( ' ' | '\\t' )*
             while True: #loop31
                 alt31 = 2
                 LA31_0 = self.input.LA(1)
@@ -2983,7 +2983,7 @@ class PolicyLexer(Lexer):
 
 
                 if alt31 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:
                     pass 
                     if self.input.LA(1) == 9 or self.input.LA(1) == 32:
                         self.input.consume()
@@ -2999,7 +2999,7 @@ class PolicyLexer(Lexer):
             #action start
             _channel=HIDDEN 
             #action end
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:728:7: (newline= NEWLINE | )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:728:7: (newline= NEWLINE | )
             alt32 = 2
             LA32_0 = self.input.LA(1)
 
@@ -3008,7 +3008,7 @@ class PolicyLexer(Lexer):
             else:
                 alt32 = 2
             if alt32 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:728:9: newline= NEWLINE
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:728:9: newline= NEWLINE
                 pass 
                 newlineStart1557 = self.getCharIndex()
                 self.mNEWLINE()
@@ -3025,7 +3025,7 @@ class PolicyLexer(Lexer):
 
 
             elif alt32 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:730:9: 
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:730:9: 
                 pass 
 
 
@@ -3050,10 +3050,10 @@ class PolicyLexer(Lexer):
             _type = NEWLINE
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:3: ( ( ( '\\u000C' )? ( '\\r' )? '\\n' )+ )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:5: ( ( '\\u000C' )? ( '\\r' )? '\\n' )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:3: ( ( ( '\\u000C' )? ( '\\r' )? '\\n' )+ )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:5: ( ( '\\u000C' )? ( '\\r' )? '\\n' )+
             pass 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:5: ( ( '\\u000C' )? ( '\\r' )? '\\n' )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:5: ( ( '\\u000C' )? ( '\\r' )? '\\n' )+
             cnt35 = 0
             while True: #loop35
                 alt35 = 2
@@ -3064,29 +3064,29 @@ class PolicyLexer(Lexer):
 
 
                 if alt35 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:7: ( '\\u000C' )? ( '\\r' )? '\\n'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:7: ( '\\u000C' )? ( '\\r' )? '\\n'
                     pass 
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:7: ( '\\u000C' )?
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:7: ( '\\u000C' )?
                     alt33 = 2
                     LA33_0 = self.input.LA(1)
 
                     if (LA33_0 == 12) :
                         alt33 = 1
                     if alt33 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:9: '\\u000C'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:9: '\\u000C'
                         pass 
                         self.match(12)
 
 
 
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:21: ( '\\r' )?
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:21: ( '\\r' )?
                     alt34 = 2
                     LA34_0 = self.input.LA(1)
 
                     if (LA34_0 == 13) :
                         alt34 = 1
                     if alt34 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:734:23: '\\r'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:734:23: '\\r'
                         pass 
                         self.match(13)
 
@@ -3130,13 +3130,13 @@ class PolicyLexer(Lexer):
             _type = WS
             _channel = DEFAULT_CHANNEL
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:741:3: ({...}? => ( ' ' | '\\t' )+ )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:741:5: {...}? => ( ' ' | '\\t' )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:741:3: ({...}? => ( ' ' | '\\t' )+ )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:741:5: {...}? => ( ' ' | '\\t' )+
             pass 
             if not ((self.startPosition > 0 )):
                 raise FailedPredicateException(self.input, "WS", " self.startPosition > 0 ")
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:741:36: ( ' ' | '\\t' )+
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:741:36: ( ' ' | '\\t' )+
             cnt36 = 0
             while True: #loop36
                 alt36 = 2
@@ -3147,7 +3147,7 @@ class PolicyLexer(Lexer):
 
 
                 if alt36 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:
                     pass 
                     if self.input.LA(1) == 9 or self.input.LA(1) == 32:
                         self.input.consume()
@@ -3191,13 +3191,13 @@ class PolicyLexer(Lexer):
             _channel = DEFAULT_CHANNEL
 
             spaces = 0 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:746:3: ({...}? => ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* ) )
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:746:5: {...}? => ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:746:3: ({...}? => ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* ) )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:746:5: {...}? => ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* )
             pass 
             if not ((self.startPosition == 0 )):
                 raise FailedPredicateException(self.input, "LEADING_WS", " self.startPosition == 0 ")
 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:747:7: ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:747:7: ({...}? ( ' ' | '\\t' )+ | ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )* )
             alt41 = 2
             LA41_0 = self.input.LA(1)
 
@@ -3231,12 +3231,12 @@ class PolicyLexer(Lexer):
                 raise nvae
 
             if alt41 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:747:9: {...}? ( ' ' | '\\t' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:747:9: {...}? ( ' ' | '\\t' )+
                 pass 
                 if not ((self.implicitLineJoiningLevel > 0)):
                     raise FailedPredicateException(self.input, "LEADING_WS", "self.implicitLineJoiningLevel > 0")
 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:747:46: ( ' ' | '\\t' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:747:46: ( ' ' | '\\t' )+
                 cnt37 = 0
                 while True: #loop37
                     alt37 = 2
@@ -3247,7 +3247,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt37 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:
                         pass 
                         if self.input.LA(1) == 9 or self.input.LA(1) == 32:
                             self.input.consume()
@@ -3272,9 +3272,9 @@ class PolicyLexer(Lexer):
 
 
             elif alt41 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:748:11: ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:748:11: ( ' ' | '\\t' )+ ( ( '\\r' )? '\\n' )*
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:748:11: ( ' ' | '\\t' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:748:11: ( ' ' | '\\t' )+
                 cnt38 = 0
                 while True: #loop38
                     alt38 = 3
@@ -3287,7 +3287,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt38 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:748:16: ' '
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:748:16: ' '
                         pass 
                         self.match(32)
                         #action start
@@ -3296,7 +3296,7 @@ class PolicyLexer(Lexer):
 
 
                     elif alt38 == 2:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:749:15: '\\t'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:749:15: '\\t'
                         pass 
                         self.match(9)
                         #action start
@@ -3318,7 +3318,7 @@ class PolicyLexer(Lexer):
                 #action start
                 self.emit(ClassicToken(LEADING_WS, ' '*spaces)) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:754:16: ( ( '\\r' )? '\\n' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:754:16: ( ( '\\r' )? '\\n' )*
                 while True: #loop40
                     alt40 = 2
                     LA40_0 = self.input.LA(1)
@@ -3328,16 +3328,16 @@ class PolicyLexer(Lexer):
 
 
                     if alt40 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:754:18: ( '\\r' )? '\\n'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:754:18: ( '\\r' )? '\\n'
                         pass 
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:754:18: ( '\\r' )?
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:754:18: ( '\\r' )?
                         alt39 = 2
                         LA39_0 = self.input.LA(1)
 
                         if (LA39_0 == 13) :
                             alt39 = 1
                         if alt39 == 1:
-                            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:754:19: '\\r'
+                            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:754:19: '\\r'
                             pass 
                             self.match(13)
 
@@ -3381,16 +3381,16 @@ class PolicyLexer(Lexer):
             _channel = DEFAULT_CHANNEL
 
             _channel=HIDDEN 
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:3: ({...}? => ( ' ' | '\\t' )* '#' (~ '\\n' )* ( '\\n' )+ | {...}? => '#' (~ '\\n' )* )
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:3: ({...}? => ( ' ' | '\\t' )* '#' (~ '\\n' )* ( '\\n' )+ | {...}? => '#' (~ '\\n' )* )
             alt46 = 2
             alt46 = self.dfa46.predict(self.input)
             if alt46 == 1:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:5: {...}? => ( ' ' | '\\t' )* '#' (~ '\\n' )* ( '\\n' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:5: {...}? => ( ' ' | '\\t' )* '#' (~ '\\n' )* ( '\\n' )+
                 pass 
                 if not ((self.startPosition == 0 )):
                     raise FailedPredicateException(self.input, "COMMENT", " self.startPosition == 0 ")
 
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:37: ( ' ' | '\\t' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:37: ( ' ' | '\\t' )*
                 while True: #loop42
                     alt42 = 2
                     LA42_0 = self.input.LA(1)
@@ -3400,7 +3400,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt42 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:
                         pass 
                         if self.input.LA(1) == 9 or self.input.LA(1) == 32:
                             self.input.consume()
@@ -3414,7 +3414,7 @@ class PolicyLexer(Lexer):
                     else:
                         break #loop42
                 self.match(35)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:53: (~ '\\n' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:53: (~ '\\n' )*
                 while True: #loop43
                     alt43 = 2
                     LA43_0 = self.input.LA(1)
@@ -3424,7 +3424,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt43 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:54: ~ '\\n'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:54: ~ '\\n'
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -3437,7 +3437,7 @@ class PolicyLexer(Lexer):
 
                     else:
                         break #loop43
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:62: ( '\\n' )+
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:62: ( '\\n' )+
                 cnt44 = 0
                 while True: #loop44
                     alt44 = 2
@@ -3448,7 +3448,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt44 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:766:62: '\\n'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:766:62: '\\n'
                         pass 
                         self.match(10)
 
@@ -3464,13 +3464,13 @@ class PolicyLexer(Lexer):
 
 
             elif alt46 == 2:
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:767:7: {...}? => '#' (~ '\\n' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:767:7: {...}? => '#' (~ '\\n' )*
                 pass 
                 if not ((self.startPosition > 0 )):
                     raise FailedPredicateException(self.input, "COMMENT", " self.startPosition > 0 ")
 
                 self.match(35)
-                # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:767:42: (~ '\\n' )*
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:767:42: (~ '\\n' )*
                 while True: #loop45
                     alt45 = 2
                     LA45_0 = self.input.LA(1)
@@ -3480,7 +3480,7 @@ class PolicyLexer(Lexer):
 
 
                     if alt45 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:767:43: ~ '\\n'
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:767:43: ~ '\\n'
                         pass 
                         if (0 <= self.input.LA(1) <= 9) or (11 <= self.input.LA(1) <= 65535):
                             self.input.consume()
@@ -3507,485 +3507,485 @@ class PolicyLexer(Lexer):
 
 
     def mTokens(self):
-        # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:8: ( LPAREN | RPAREN | LBRACK | RBRACK | LCURLY | RCURLY | COLON | COMMA | DOT | SEMI | PLUS | MINUS | STAR | DOLLAR | SLASH | VBAR | AMPER | LESS | GREATER | ASSIGN | PERCENT | BACKQUOTE | CIRCUMFLEX | TILDE | EQUAL | ASSIGNEQUAL | NOTEQUAL | ALT_NOTEQUAL | LESSEQUAL | LEFTSHIFT | GREATEREQUAL | RIGHTSHIFT | PLUSEQUAL | MINUSEQUAL | DOUBLESTAR | STAREQUAL | DOUBLESLASH | SLASHEQUAL | VBAREQUAL | PERCENTEQUAL | AMPEREQUAL | CIRCUMFLEXEQUAL | LEFTSHIFTEQUAL | RIGHTSHIFTEQUAL | DOUBLESTAREQUAL | DOUBLESLASHEQUAL | GLOBAL | ATTRIBUTE | RULE | AGENDAGROUP | WHEN | EXISTS | THEN | MODIFY | INSERT | LEARN | DELETE | FORGET | HALT | PRINT | IMPORT | FROM | AND | OR | IN | IS | AS | NOT | FLOAT | LONGINT | INT | COMPLEX | NAME | OBJECTBINDING | STRING | CONTINUED_LINE | NEWLINE | WS | LEADING_WS | COMMENT )
+        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:8: ( LPAREN | RPAREN | LBRACK | RBRACK | LCURLY | RCURLY | COLON | COMMA | DOT | SEMI | PLUS | MINUS | STAR | DOLLAR | SLASH | VBAR | AMPER | LESS | GREATER | ASSIGN | PERCENT | BACKQUOTE | CIRCUMFLEX | TILDE | EQUAL | ASSIGNEQUAL | NOTEQUAL | ALT_NOTEQUAL | LESSEQUAL | LEFTSHIFT | GREATEREQUAL | RIGHTSHIFT | PLUSEQUAL | MINUSEQUAL | DOUBLESTAR | STAREQUAL | DOUBLESLASH | SLASHEQUAL | VBAREQUAL | PERCENTEQUAL | AMPEREQUAL | CIRCUMFLEXEQUAL | LEFTSHIFTEQUAL | RIGHTSHIFTEQUAL | DOUBLESTAREQUAL | DOUBLESLASHEQUAL | GLOBAL | ATTRIBUTE | RULE | AGENDAGROUP | WHEN | EXISTS | THEN | MODIFY | INSERT | LEARN | DELETE | FORGET | HALT | PRINT | IMPORT | FROM | AND | OR | IN | IS | AS | NOT | FLOAT | LONGINT | INT | COMPLEX | NAME | OBJECTBINDING | STRING | CONTINUED_LINE | NEWLINE | WS | LEADING_WS | COMMENT )
         alt47 = 80
         alt47 = self.dfa47.predict(self.input)
         if alt47 == 1:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:10: LPAREN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:10: LPAREN
             pass 
             self.mLPAREN()
 
 
         elif alt47 == 2:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:17: RPAREN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:17: RPAREN
             pass 
             self.mRPAREN()
 
 
         elif alt47 == 3:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:24: LBRACK
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:24: LBRACK
             pass 
             self.mLBRACK()
 
 
         elif alt47 == 4:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:31: RBRACK
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:31: RBRACK
             pass 
             self.mRBRACK()
 
 
         elif alt47 == 5:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:38: LCURLY
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:38: LCURLY
             pass 
             self.mLCURLY()
 
 
         elif alt47 == 6:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:45: RCURLY
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:45: RCURLY
             pass 
             self.mRCURLY()
 
 
         elif alt47 == 7:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:52: COLON
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:52: COLON
             pass 
             self.mCOLON()
 
 
         elif alt47 == 8:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:58: COMMA
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:58: COMMA
             pass 
             self.mCOMMA()
 
 
         elif alt47 == 9:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:64: DOT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:64: DOT
             pass 
             self.mDOT()
 
 
         elif alt47 == 10:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:68: SEMI
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:68: SEMI
             pass 
             self.mSEMI()
 
 
         elif alt47 == 11:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:73: PLUS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:73: PLUS
             pass 
             self.mPLUS()
 
 
         elif alt47 == 12:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:78: MINUS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:78: MINUS
             pass 
             self.mMINUS()
 
 
         elif alt47 == 13:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:84: STAR
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:84: STAR
             pass 
             self.mSTAR()
 
 
         elif alt47 == 14:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:89: DOLLAR
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:89: DOLLAR
             pass 
             self.mDOLLAR()
 
 
         elif alt47 == 15:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:96: SLASH
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:96: SLASH
             pass 
             self.mSLASH()
 
 
         elif alt47 == 16:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:102: VBAR
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:102: VBAR
             pass 
             self.mVBAR()
 
 
         elif alt47 == 17:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:107: AMPER
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:107: AMPER
             pass 
             self.mAMPER()
 
 
         elif alt47 == 18:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:113: LESS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:113: LESS
             pass 
             self.mLESS()
 
 
         elif alt47 == 19:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:118: GREATER
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:118: GREATER
             pass 
             self.mGREATER()
 
 
         elif alt47 == 20:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:126: ASSIGN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:126: ASSIGN
             pass 
             self.mASSIGN()
 
 
         elif alt47 == 21:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:133: PERCENT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:133: PERCENT
             pass 
             self.mPERCENT()
 
 
         elif alt47 == 22:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:141: BACKQUOTE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:141: BACKQUOTE
             pass 
             self.mBACKQUOTE()
 
 
         elif alt47 == 23:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:151: CIRCUMFLEX
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:151: CIRCUMFLEX
             pass 
             self.mCIRCUMFLEX()
 
 
         elif alt47 == 24:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:162: TILDE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:162: TILDE
             pass 
             self.mTILDE()
 
 
         elif alt47 == 25:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:168: EQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:168: EQUAL
             pass 
             self.mEQUAL()
 
 
         elif alt47 == 26:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:174: ASSIGNEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:174: ASSIGNEQUAL
             pass 
             self.mASSIGNEQUAL()
 
 
         elif alt47 == 27:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:186: NOTEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:186: NOTEQUAL
             pass 
             self.mNOTEQUAL()
 
 
         elif alt47 == 28:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:195: ALT_NOTEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:195: ALT_NOTEQUAL
             pass 
             self.mALT_NOTEQUAL()
 
 
         elif alt47 == 29:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:208: LESSEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:208: LESSEQUAL
             pass 
             self.mLESSEQUAL()
 
 
         elif alt47 == 30:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:218: LEFTSHIFT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:218: LEFTSHIFT
             pass 
             self.mLEFTSHIFT()
 
 
         elif alt47 == 31:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:228: GREATEREQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:228: GREATEREQUAL
             pass 
             self.mGREATEREQUAL()
 
 
         elif alt47 == 32:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:241: RIGHTSHIFT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:241: RIGHTSHIFT
             pass 
             self.mRIGHTSHIFT()
 
 
         elif alt47 == 33:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:252: PLUSEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:252: PLUSEQUAL
             pass 
             self.mPLUSEQUAL()
 
 
         elif alt47 == 34:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:262: MINUSEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:262: MINUSEQUAL
             pass 
             self.mMINUSEQUAL()
 
 
         elif alt47 == 35:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:273: DOUBLESTAR
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:273: DOUBLESTAR
             pass 
             self.mDOUBLESTAR()
 
 
         elif alt47 == 36:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:284: STAREQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:284: STAREQUAL
             pass 
             self.mSTAREQUAL()
 
 
         elif alt47 == 37:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:294: DOUBLESLASH
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:294: DOUBLESLASH
             pass 
             self.mDOUBLESLASH()
 
 
         elif alt47 == 38:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:306: SLASHEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:306: SLASHEQUAL
             pass 
             self.mSLASHEQUAL()
 
 
         elif alt47 == 39:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:317: VBAREQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:317: VBAREQUAL
             pass 
             self.mVBAREQUAL()
 
 
         elif alt47 == 40:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:327: PERCENTEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:327: PERCENTEQUAL
             pass 
             self.mPERCENTEQUAL()
 
 
         elif alt47 == 41:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:340: AMPEREQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:340: AMPEREQUAL
             pass 
             self.mAMPEREQUAL()
 
 
         elif alt47 == 42:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:351: CIRCUMFLEXEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:351: CIRCUMFLEXEQUAL
             pass 
             self.mCIRCUMFLEXEQUAL()
 
 
         elif alt47 == 43:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:367: LEFTSHIFTEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:367: LEFTSHIFTEQUAL
             pass 
             self.mLEFTSHIFTEQUAL()
 
 
         elif alt47 == 44:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:382: RIGHTSHIFTEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:382: RIGHTSHIFTEQUAL
             pass 
             self.mRIGHTSHIFTEQUAL()
 
 
         elif alt47 == 45:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:398: DOUBLESTAREQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:398: DOUBLESTAREQUAL
             pass 
             self.mDOUBLESTAREQUAL()
 
 
         elif alt47 == 46:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:414: DOUBLESLASHEQUAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:414: DOUBLESLASHEQUAL
             pass 
             self.mDOUBLESLASHEQUAL()
 
 
         elif alt47 == 47:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:431: GLOBAL
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:431: GLOBAL
             pass 
             self.mGLOBAL()
 
 
         elif alt47 == 48:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:438: ATTRIBUTE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:438: ATTRIBUTE
             pass 
             self.mATTRIBUTE()
 
 
         elif alt47 == 49:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:448: RULE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:448: RULE
             pass 
             self.mRULE()
 
 
         elif alt47 == 50:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:453: AGENDAGROUP
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:453: AGENDAGROUP
             pass 
             self.mAGENDAGROUP()
 
 
         elif alt47 == 51:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:465: WHEN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:465: WHEN
             pass 
             self.mWHEN()
 
 
         elif alt47 == 52:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:470: EXISTS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:470: EXISTS
             pass 
             self.mEXISTS()
 
 
         elif alt47 == 53:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:477: THEN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:477: THEN
             pass 
             self.mTHEN()
 
 
         elif alt47 == 54:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:482: MODIFY
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:482: MODIFY
             pass 
             self.mMODIFY()
 
 
         elif alt47 == 55:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:489: INSERT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:489: INSERT
             pass 
             self.mINSERT()
 
 
         elif alt47 == 56:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:496: LEARN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:496: LEARN
             pass 
             self.mLEARN()
 
 
         elif alt47 == 57:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:502: DELETE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:502: DELETE
             pass 
             self.mDELETE()
 
 
         elif alt47 == 58:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:509: FORGET
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:509: FORGET
             pass 
             self.mFORGET()
 
 
         elif alt47 == 59:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:516: HALT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:516: HALT
             pass 
             self.mHALT()
 
 
         elif alt47 == 60:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:521: PRINT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:521: PRINT
             pass 
             self.mPRINT()
 
 
         elif alt47 == 61:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:527: IMPORT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:527: IMPORT
             pass 
             self.mIMPORT()
 
 
         elif alt47 == 62:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:534: FROM
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:534: FROM
             pass 
             self.mFROM()
 
 
         elif alt47 == 63:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:539: AND
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:539: AND
             pass 
             self.mAND()
 
 
         elif alt47 == 64:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:543: OR
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:543: OR
             pass 
             self.mOR()
 
 
         elif alt47 == 65:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:546: IN
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:546: IN
             pass 
             self.mIN()
 
 
         elif alt47 == 66:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:549: IS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:549: IS
             pass 
             self.mIS()
 
 
         elif alt47 == 67:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:552: AS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:552: AS
             pass 
             self.mAS()
 
 
         elif alt47 == 68:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:555: NOT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:555: NOT
             pass 
             self.mNOT()
 
 
         elif alt47 == 69:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:559: FLOAT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:559: FLOAT
             pass 
             self.mFLOAT()
 
 
         elif alt47 == 70:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:565: LONGINT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:565: LONGINT
             pass 
             self.mLONGINT()
 
 
         elif alt47 == 71:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:573: INT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:573: INT
             pass 
             self.mINT()
 
 
         elif alt47 == 72:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:577: COMPLEX
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:577: COMPLEX
             pass 
             self.mCOMPLEX()
 
 
         elif alt47 == 73:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:585: NAME
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:585: NAME
             pass 
             self.mNAME()
 
 
         elif alt47 == 74:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:590: OBJECTBINDING
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:590: OBJECTBINDING
             pass 
             self.mOBJECTBINDING()
 
 
         elif alt47 == 75:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:604: STRING
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:604: STRING
             pass 
             self.mSTRING()
 
 
         elif alt47 == 76:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:611: CONTINUED_LINE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:611: CONTINUED_LINE
             pass 
             self.mCONTINUED_LINE()
 
 
         elif alt47 == 77:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:626: NEWLINE
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:626: NEWLINE
             pass 
             self.mNEWLINE()
 
 
         elif alt47 == 78:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:634: WS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:634: WS
             pass 
             self.mWS()
 
 
         elif alt47 == 79:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:637: LEADING_WS
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:637: LEADING_WS
             pass 
             self.mLEADING_WS()
 
 
         elif alt47 == 80:
-            # /Users/walsh/Development/workspace/Intellect/src/intellect/grammar/Policy.g:1:648: COMMENT
+            # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:1:648: COMMENT
             pass 
             self.mCOMMENT()
 
