@@ -537,6 +537,17 @@ class Policy(Node):
 
 
     @property
+    def file_paths(self):
+        '''
+        Convienance method to return the policy file paths
+        as a list.
+
+        None is returned for file nodes learned from strings.
+        '''
+        return [file_node.path for file_node in self.files]
+
+
+    @property
     def importStmts(self):
         '''
         Returns either an empty list or a list containing

@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # set up logging for the example
     logger = logging.getLogger('example')
     logger.setLevel(logging.DEBUG)
-    
+
     consoleHandler = logging.StreamHandler(stream=sys.stdout)
     consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
     logger.addHandler(consoleHandler)
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     print "*"*80
 
     myIntellect = MyIntellect()
-    
+
     try:
         policy_bogus = myIntellect.learn("./rulesets/doesnt_exist.policy")
     except IOError as e:
@@ -97,11 +97,78 @@ if __name__ == "__main__":
     b = ClassB( property1="pear", property2 = 11)
     myIntellect.learn(b)
 
-    # learn policy at '../rulesets/test_a.policy'
-    policy_a = myIntellect.learn("./rulesets/test_a.policy")
-    policy_a = myIntellect.learn("./rulesets/test_b.policy")
+    # learn policy as a string
+    policy_a = myIntellect.learn("""
+from intellect.examples.testing.subModule.ClassB import ClassB
+import intellect.examples.testing.Test as Test
+import logging
+
+fruits_of_interest = ["apple", "grape", "mellon", "pear"]
+count = 5
+
+rule rule_a:
+    agenda-group test_a
+    when:
+        $classB := ClassB( property1 in fruits_of_interest and property2>count )
+    then:
+        # mark the 'ClassB' matches in memory as modified
+        modify $classB:
+            property1 = $classB.property1 + " pie"
+            modified = True
+            # increment the matche's 'property2' value by 1000
+            property2 = $classB.property2 + 1000
+        attribute count = $classB.property2
+        print "count = {0}".format( count )
+        # call MyIntellect's bar method as it is decorated as callable
+        bar()
+        log("rule_a fired")
+
+rule rule_b:
+    agenda-group test_a
+    then:
+        print "count = {0}".format( count )
+        insert ClassB("water melon")
+        # call MyIntellect's bar method as it is decorated as callable
+        bar()
+        log("rule_b fired")
+
+rule rule_c:
+    # on the MAIN agenda-group
+    then:
+        log("rule_c fired")
+
+rule rule_d:
+    agenda-group test_a
+    then:
+        attribute foo = "foo bar"
+""")
+
+    policy_b = myIntellect.learn("./rulesets/test_b.policy")
     #print policy.str_tree()
     #print str(policy_a)
+
+    for policy_file_paths in myIntellect.policy.file_paths:
+        print "----------------- path:  {0}".format(policy_file_paths)
+
+    myIntellect.forget(policy_b)
+
+    for policy_file_paths in myIntellect.policy.file_paths:
+        print "----------------- path:  {0}".format(policy_file_paths)
+
+    policy_b = myIntellect.learn("./rulesets/test_b.policy")
+
+    for policy_file_paths in myIntellect.policy.file_paths:
+        print "----------------- path:  {0}".format(policy_file_paths)
+
+    myIntellect.forget("./rulesets/test_b.policy")
+
+    for policy_file_paths in myIntellect.policy.file_paths:
+        print "----------------- path:  {0}".format(policy_file_paths)
+
+    policy_b = myIntellect.learn("./rulesets/test_b.policy")
+
+    for policy_file_paths in myIntellect.policy.file_paths:
+        print "----------------- path:  {0}".format(policy_file_paths)
 
     print "*"*80
     print "message MyIntellect to reason over the facts in knowledge"

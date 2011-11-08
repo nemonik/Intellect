@@ -231,7 +231,7 @@ class Intellect(object):
                 # store add the policy file to the policy
                 self.policy.append_child(file_node)
 
-                return file
+                return file_node
 
             else:
                 raise TypeError, "parameter 'identifier' must be a string, either a file path to a policy or the text of the policy itself"
@@ -330,7 +330,7 @@ class Intellect(object):
                 object.
             Also, see forget-method 'raises'.
         '''
-        if isinstance(identifier, (basestring, Policy)):
+        if isinstance(identifier, (basestring, File)):
             self.forget(identifier)
         else:
             raise TypeError, "parameter 'identifier': {0} was neither a path to the policy to forget, or a Policy object.".format(identifier)
