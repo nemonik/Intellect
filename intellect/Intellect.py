@@ -260,7 +260,6 @@ class Intellect(object):
                 self.policy.append_child(file_node)
 
                 self.log("learned a policy file")
-                print file_node.str_tree()
 
                 return file_node
 
