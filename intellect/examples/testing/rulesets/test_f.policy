@@ -1,0 +1,7 @@
+from intellect.examples.testing.ClassA import ClassA
+
+rule rule_a:
+	when:
+		$classA := ClassA( property1 == "apple" )
+	then:
+		log("rule_a fired")

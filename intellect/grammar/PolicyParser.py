@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2011-10-26 11:04:25
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2011-12-29 17:03:16
 
 import sys
 from antlr3 import *
@@ -1435,16 +1435,16 @@ class PolicyParser(Parser):
                 NAME45=self.match(self.input, NAME, self.FOLLOW_NAME_in_classConstraint851)
                 LPAREN46=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_classConstraint853)
                 #action start
-                object.append_children( [NAME45.text, LPAREN46.text] ); object.line = NAME45.getLine() 
+                object.append_children( [NAME45.text, LPAREN46.text] ); 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:163:109: ( constraint )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:163:78: ( constraint )?
                 alt20 = 2
                 LA20_0 = self.input.LA(1)
 
                 if (LA20_0 == LPAREN or LA20_0 == NAME or LA20_0 == STRING or LA20_0 == NOT or LA20_0 == OBJECTBINDING or (PLUS <= LA20_0 <= MINUS) or LA20_0 == TILDE or LA20_0 == LBRACK or LA20_0 == LCURLY or (INT <= LA20_0 <= COMPLEX)) :
                     alt20 = 1
                 if alt20 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:163:111: constraint
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:163:80: constraint
                     pass 
                     self._state.following.append(self.FOLLOW_constraint_in_classConstraint859)
                     constraint47 = self.constraint()

@@ -38,7 +38,7 @@ Initial Version: Oct 27, 2010
 @author: Michael Joseph Walsh
 """
 
-import logging, os, re, traceback
+import logging, os, re, traceback, sys
 
 from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, RecognitionException
 
@@ -47,7 +47,6 @@ from intellect.PolicyLexer import PolicyLexer
 from intellect.Node import Policy
 from intellect.Node import File
 from intellect.PolicyTokenSource import PolicyTokenSource
-
 from intellect.Callable import Callable
 import intellect.IO as IO
 
@@ -160,11 +159,12 @@ class Intellect(object):
                 either a file path to a policy or the text of the policy itself.
         '''
 
+        isFile = False
+        
         if identifier:
             if isinstance(identifier, basestring):
-                isFile = False
 
-                try:
+                if not os.path.isfile(identifier):
                     '''
                     Try treating 'identifier' as a String containing the text
                     of a policy.
@@ -179,12 +179,26 @@ class Intellect(object):
                     parser = PolicyParser(tokens)
 
                     with IO.capture_stderr() as stderr:
-                        file_node = parser.file()
+                        try:
+                            # ANTL3 may raise an exception, and doing so the stderror 
+                            # will not be printed hiding the underlying problem.  GRRR!!!!
+                            file_node = parser.file()
+                        except Exception as e:
+                            if stderr.getvalue().rstrip() != "":
+                                trace = sys.exc_info()[2]
+                                raise Exception(stderr.getvalue().rstrip()), None, trace
+                            else:
+                                raise e
 
-                    if stderr.getvalue() != "":
-                        raise Exception, "Error in String-based policy: {0}".format(stderr.getvalue())
+                    # Some times the previous parser.file() will print to stderr,
+                    # but not throw an exception.  In this case, the parser may
+                    # attempt to correct and continue onward, but we should
+                    # print the msg to stderr for the benefit of the policy 
+                    # author
+                    if stderr.getvalue().rstrip() != "":
+                        print >> sys.stderr, stderr.getvalue().rstrip()
 
-                except Exception as e:
+                else:
                     '''
                     Try treating 'identifier' as a file path
                     '''
@@ -210,10 +224,24 @@ class Intellect(object):
                     parser = PolicyParser(tokens)
 
                     with IO.capture_stderr() as stderr:
-                        file_node = parser.file()
+                        try:
+                            # ANTL3 may raise an exception, and doing so the stderror 
+                            # will not be printed hiding the underlying problem.  GRRR!!!!
+                            file_node = parser.file()
+                        except Exception as e:
+                            if stderr.getvalue().rstrip() != "":
+                                trace = sys.exc_info()[2]
+                                raise Exception(stderr.getvalue().rstrip()), None, trace
+                            else:
+                                raise e
 
-                    if stderr.getvalue() != "":
-                        raise Exception, "Error in file-based policy for path {0}: {1}".format(identifier, stderr.getvalue())
+                    # Some times the previous parser.file() will print to stderr,
+                    # but not throw an exception.  In this case, the parser may
+                    # attempt to correct and continue onward, but we should
+                    # print the msg to stderr for the benefit of the policy 
+                    # author
+                    if stderr.getvalue().rstrip() != "":
+                        print >> sys.stderr, stderr.getvalue().rstrip()
 
                 # set path attribute
                 file_node.path = identifier if isFile else None
@@ -230,6 +258,9 @@ class Intellect(object):
 
                 # store add the policy file to the policy
                 self.policy.append_child(file_node)
+
+                self.log("learned a policy file")
+                print file_node.str_tree()
 
                 return file_node
 

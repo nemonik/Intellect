@@ -28,6 +28,52 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-__author__ = "Michael Josephh Walsh"
+"""
+ExerciseIntellect
 
-VERSION = (1, 4, 4)
+Description: Exercises the Intellect grammar
+
+Initial Version: Dec 29, 2011
+
+@author: Michael Joseph Walsh
+"""
+import sys, traceback, logging
+
+from intellect.Intellect import Intellect
+from intellect.examples.testing.ClassA import ClassA
+
+if __name__ == "__main__":
+
+    # tune down logging inside Intellect
+    logger = logging.getLogger('intellect')
+    logger.setLevel(logging.DEBUG) # change this to ERROR for less output
+    consoleHandler = logging.StreamHandler(stream=sys.stdout)
+    consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
+    logger.addHandler(consoleHandler)
+
+    # set up logging for the example
+    logger = logging.getLogger('example')
+    logger.setLevel(logging.DEBUG)
+
+    consoleHandler = logging.StreamHandler(stream=sys.stdout)
+    consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
+    logger.addHandler(consoleHandler)
+
+    print "*"*80
+    print """create an instance of MyIntellect extending Intellect, create some facts, and exercise the grammar"""
+    print "*"*80
+
+    try:
+        myIntellect = Intellect()
+
+        policy_a = myIntellect.learn("./rulesets/test_f.policy")
+
+        myIntellect.learn(ClassA( property1="apple"))
+        #myIntellect.learn(ClassA( property1="pear"))
+        #myIntellect.learn(ClassA( property1="grape"))
+        
+        #logger.debug("reasoning over policy w/ objects in memory")
+
+        myIntellect.reason()
+    except Exception as e:
+        traceback.print_exc(limit=sys.getrecursionlimit(), file=sys.stdout)

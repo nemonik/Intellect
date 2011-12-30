@@ -1,6 +1,19 @@
-#Thu Aug 04 12:34:26 EDT 2011
+#Thu Dec 29 16:18:04 EST 2011
+antlr_core_builder_Xconversiontimeout=1000
+antlr_core_builder_Xdfaverbose=false
+antlr_core_builder_Xm=4
+antlr_core_builder_Xmaxdfaedges=65534
+antlr_core_builder_Xnocollapse=false
+antlr_core_builder_Xnomergestopstates=false
+antlr_core_builder_Xnoprune=false
+antlr_core_builder_dfa=false
+antlr_core_builder_include_stacktrace_on_internal_errors=false
+antlr_core_builder_max_number_of_problems_reported_per_grammar=25
+antlr_core_builder_nfa=false
+antlr_core_builder_report=false
+antlr_core_builder_runtime=3.1.3
 antlr_core_code_generator_XdbgST=false
-antlr_core_code_generator_append_java_package_to_out_folder=true
+antlr_core_code_generator_append_java_package_to_out_folder=false
 antlr_core_code_generator_debug=false
 antlr_core_code_generator_max_memory=0
 antlr_core_code_generator_out_folder=antlr-generated

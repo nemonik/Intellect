@@ -160,7 +160,7 @@ condition returns [object] // returns a Condition object
 classConstraint returns [object] // returns ClassConstraint object
   @init{ $object = ClassConstraint() }
   : ( OBJECTBINDING ASSIGNEQUAL { $object.append_children( [ $OBJECTBINDING.text, $ASSIGNEQUAL.text] ) } )?
-      NAME LPAREN { $object.append_children( [$NAME.text, $LPAREN.text] ); $object.line = $NAME.getLine() } ( constraint { $object.append_child( $constraint.object ) } )? RPAREN { $object.append_child( $RPAREN.text ) }
+      NAME LPAREN { $object.append_children( [$NAME.text, $LPAREN.text] ); } ( constraint { $object.append_child( $constraint.object ) } )? RPAREN { $object.append_child( $RPAREN.text ) }
   ;
 
 action returns [object] // returns an Action object
