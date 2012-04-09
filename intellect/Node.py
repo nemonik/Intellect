@@ -616,9 +616,6 @@ class Policy(Node):
 
         # put the policy attributes into the policy's global namespace
         for attributeStmt in self.attributeStmts:
-
-            print "attributeStmt = {0}".format(attributeStmt)
-
             # check for issues
             for atom in [atom for atom in Node.filter_to_list(Atom, attributeStmt.expressionStmt.children[0]) if len(atom.children) is 1]:
                 if atom.first_child() in keyword.kwlist:

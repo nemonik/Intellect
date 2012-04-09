@@ -266,10 +266,10 @@ comparisonOperation returns [object] // returns a ComparisonOperation object
     | LESSEQUAL     { $object = ComparisonOperation( $LESSEQUAL.text ) }
     | ALT_NOTEQUAL  { $object = ComparisonOperation( $ALT_NOTEQUAL.text ) }
     | NOTEQUAL      { $object = ComparisonOperation( $NOTEQUAL.text ) }
-    | 'in'          { $object = ComparisonOperation( "in" ) }
-    | 'not' 'in'    { $object = ComparisonOperation( "not in" ) }
-    | 'is'          { $object = ComparisonOperation( "is" ) }
-    | 'is' 'not'    { $object = ComparisonOperation( "is not" ) } )
+    | IN            { $object = ComparisonOperation( "in" ) }
+    | NOT IN        { $object = ComparisonOperation( "not in" ) }
+    | IS            { $object = ComparisonOperation( "is" ) }
+    | IS NOT        { $object = ComparisonOperation( "is not" ) } )
   ;
 
 expression returns [object] // returns Exrpession object

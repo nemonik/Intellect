@@ -3,6 +3,10 @@ from intellect.examples.rulesfest.BuyOrder import BuyOrder
 import logging
 import random
 
+'''
+Ruleset based on the nursery rhyme...
+'''
+
 rule "Start policy":
 	then:
 		log("Policy is being reasoned over.", "example", logging.DEBUG)
