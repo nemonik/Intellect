@@ -1,4 +1,3 @@
-#Thu Dec 29 16:18:04 EST 2011
 antlr_core_builder_Xconversiontimeout=1000
 antlr_core_builder_Xdfaverbose=false
 antlr_core_builder_Xm=4
@@ -22,4 +21,5 @@ antlr_core_code_generator_profile=false
 antlr_core_code_generator_trace=false
 antlr_core_code_generator_x_max_switch_case_labels=300
 antlr_core_code_generator_x_min_switch_alts=3
+antlr_core_mark_generated_resources_as_derived=true
 eclipse.preferences.version=1

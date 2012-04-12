@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2011-12-29 17:03:16
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2012-04-10 15:14:34
 
 import sys
 from antlr3 import *
@@ -13,21 +13,21 @@ HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
 SLASHEQUAL=38
-BACKQUOTE=78
+BACKQUOTE=80
 EXPONENT=84
-STAR=62
+STAR=64
 CIRCUMFLEXEQUAL=42
 LETTER=82
 TRIAPOS=85
 GREATEREQUAL=52
-COMPLEX=75
+COMPLEX=77
 ASSIGNEQUAL=24
 NOT=21
 EOF=-1
 NOTEQUAL=55
 LEADING_WS=90
 MINUSEQUAL=36
-VBAR=56
+VBAR=58
 RPAREN=10
 IMPORT=7
 NAME=12
@@ -36,33 +36,33 @@ INSERT=31
 DOUBLESTAREQUAL=45
 LESS=49
 COMMENT=91
-RBRACK=69
+RBRACK=71
 RULE=15
-LCURLY=70
-INT=72
+LCURLY=72
+INT=74
 DELETE=29
 RIGHTSHIFT=27
 DOUBLESLASHEQUAL=46
 WS=89
 VBAREQUAL=41
 OR=47
-LONGINT=73
+LONGINT=75
 FORGET=28
 FROM=8
 PERCENTEQUAL=39
 LESSEQUAL=53
-DOLLAR=77
+DOLLAR=79
 MODIFY=32
-DOUBLESLASH=65
-LBRACK=68
+DOUBLESLASH=67
+LBRACK=70
 CONTINUED_LINE=88
 OBJECTBINDING=23
-DOUBLESTAR=67
+DOUBLESTAR=69
 HALT=33
 ESC=87
 ATTRIBUTE=25
 DEDENT=5
-FLOAT=74
+FLOAT=76
 RIGHTSHIFTEQUAL=44
 AND=48
 LEARN=30
@@ -70,35 +70,35 @@ INDENT=4
 LPAREN=9
 PLUSEQUAL=35
 AS=13
-SLASH=63
+SLASH=65
 THEN=20
-IN=80
+IN=56
 COMMA=11
-IS=81
-AMPER=58
+IS=57
+AMPER=60
 EQUAL=51
-TILDE=66
+TILDE=68
 LEFTSHIFTEQUAL=43
-LEFTSHIFT=59
-PLUS=60
+LEFTSHIFT=61
+PLUS=62
 EXISTS=22
 DIGIT=83
 DOT=14
 AGENDAGROUP=18
-PERCENT=64
-MINUS=61
-SEMI=76
+PERCENT=66
+MINUS=63
+SEMI=78
 PRINT=26
 COLON=16
 TRIQUOTE=86
 AMPEREQUAL=40
 NEWLINE=6
 WHEN=19
-RCURLY=71
+RCURLY=73
 ASSIGN=34
-GLOBAL=79
+GLOBAL=81
 STAREQUAL=37
-CIRCUMFLEX=57
+CIRCUMFLEX=59
 STRING=17
 ALT_NOTEQUAL=54
 
@@ -113,12 +113,12 @@ tokenNames = [
     "PERCENTEQUAL", "AMPEREQUAL", "VBAREQUAL", "CIRCUMFLEXEQUAL", "LEFTSHIFTEQUAL", 
     "RIGHTSHIFTEQUAL", "DOUBLESTAREQUAL", "DOUBLESLASHEQUAL", "OR", "AND", 
     "LESS", "GREATER", "EQUAL", "GREATEREQUAL", "LESSEQUAL", "ALT_NOTEQUAL", 
-    "NOTEQUAL", "VBAR", "CIRCUMFLEX", "AMPER", "LEFTSHIFT", "PLUS", "MINUS", 
-    "STAR", "SLASH", "PERCENT", "DOUBLESLASH", "TILDE", "DOUBLESTAR", "LBRACK", 
-    "RBRACK", "LCURLY", "RCURLY", "INT", "LONGINT", "FLOAT", "COMPLEX", 
-    "SEMI", "DOLLAR", "BACKQUOTE", "GLOBAL", "IN", "IS", "LETTER", "DIGIT", 
-    "EXPONENT", "TRIAPOS", "TRIQUOTE", "ESC", "CONTINUED_LINE", "WS", "LEADING_WS", 
-    "COMMENT"
+    "NOTEQUAL", "IN", "IS", "VBAR", "CIRCUMFLEX", "AMPER", "LEFTSHIFT", 
+    "PLUS", "MINUS", "STAR", "SLASH", "PERCENT", "DOUBLESLASH", "TILDE", 
+    "DOUBLESTAR", "LBRACK", "RBRACK", "LCURLY", "RCURLY", "INT", "LONGINT", 
+    "FLOAT", "COMPLEX", "SEMI", "DOLLAR", "BACKQUOTE", "GLOBAL", "LETTER", 
+    "DIGIT", "EXPONENT", "TRIAPOS", "TRIQUOTE", "ESC", "CONTINUED_LINE", 
+    "WS", "LEADING_WS", "COMMENT"
 ]
 
 
@@ -2582,7 +2582,7 @@ class PolicyParser(Parser):
                     alt33 = 2
                     LA33_0 = self.input.LA(1)
 
-                    if (LA33_0 == NOT or (LESS <= LA33_0 <= NOTEQUAL) or (IN <= LA33_0 <= IS)) :
+                    if (LA33_0 == NOT or (LESS <= LA33_0 <= IS)) :
                         alt33 = 1
 
 
@@ -2620,7 +2620,7 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "comparisonOperation"
-    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:261:1: comparisonOperation returns [object] : ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | 'in' | 'not' 'in' | 'is' | 'is' 'not' ) ;
+    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:261:1: comparisonOperation returns [object] : ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | IN | NOT IN | IS | IS NOT ) ;
     def comparisonOperation(self, ):
 
         object = None
@@ -2635,10 +2635,10 @@ class PolicyParser(Parser):
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:3: ( ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | 'in' | 'not' 'in' | 'is' | 'is' 'not' ) )
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:5: ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | 'in' | 'not' 'in' | 'is' | 'is' 'not' )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:3: ( ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | IN | NOT IN | IS | IS NOT ) )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:5: ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | IN | NOT IN | IS | IS NOT )
                 pass 
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:5: ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | 'in' | 'not' 'in' | 'is' | 'is' 'not' )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:262:5: ( LESS | GREATER | EQUAL | GREATEREQUAL | LESSEQUAL | ALT_NOTEQUAL | NOTEQUAL | IN | NOT IN | IS | IS NOT )
                 alt34 = 11
                 alt34 = self.dfa34.predict(self.input)
                 if alt34 == 1:
@@ -2705,7 +2705,7 @@ class PolicyParser(Parser):
 
 
                 elif alt34 == 8:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:269:7: 'in'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:269:7: IN
                     pass 
                     self.match(self.input, IN, self.FOLLOW_IN_in_comparisonOperation1821)
                     #action start
@@ -2714,29 +2714,29 @@ class PolicyParser(Parser):
 
 
                 elif alt34 == 9:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:270:7: 'not' 'in'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:270:7: NOT IN
                     pass 
-                    self.match(self.input, NOT, self.FOLLOW_NOT_in_comparisonOperation1840)
-                    self.match(self.input, IN, self.FOLLOW_IN_in_comparisonOperation1842)
+                    self.match(self.input, NOT, self.FOLLOW_NOT_in_comparisonOperation1842)
+                    self.match(self.input, IN, self.FOLLOW_IN_in_comparisonOperation1844)
                     #action start
                     object = ComparisonOperation( "not in" ) 
                     #action end
 
 
                 elif alt34 == 10:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:271:7: 'is'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:271:7: IS
                     pass 
-                    self.match(self.input, IS, self.FOLLOW_IS_in_comparisonOperation1855)
+                    self.match(self.input, IS, self.FOLLOW_IS_in_comparisonOperation1861)
                     #action start
                     object = ComparisonOperation( "is" ) 
                     #action end
 
 
                 elif alt34 == 11:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:272:7: 'is' 'not'
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:272:7: IS NOT
                     pass 
-                    self.match(self.input, IS, self.FOLLOW_IS_in_comparisonOperation1874)
-                    self.match(self.input, NOT, self.FOLLOW_NOT_in_comparisonOperation1876)
+                    self.match(self.input, IS, self.FOLLOW_IS_in_comparisonOperation1882)
+                    self.match(self.input, NOT, self.FOLLOW_NOT_in_comparisonOperation1884)
                     #action start
                     object = ComparisonOperation( "is not" ) 
                     #action end
@@ -2772,7 +2772,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:276:3: ( bitwiseOrExpr )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:276:5: bitwiseOrExpr
                 pass 
-                self._state.following.append(self.FOLLOW_bitwiseOrExpr_in_expression1901)
+                self._state.following.append(self.FOLLOW_bitwiseOrExpr_in_expression1913)
                 bitwiseOrExpr105 = self.bitwiseOrExpr()
 
                 self._state.following.pop()
@@ -2811,7 +2811,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:280:3: (expr1= bitwiseXorExpr ( VBAR expr2= bitwiseXorExpr )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:280:5: expr1= bitwiseXorExpr ( VBAR expr2= bitwiseXorExpr )*
                 pass 
-                self._state.following.append(self.FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1923)
+                self._state.following.append(self.FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1935)
                 expr1 = self.bitwiseXorExpr()
 
                 self._state.following.pop()
@@ -2830,8 +2830,8 @@ class PolicyParser(Parser):
                     if alt35 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:281:9: VBAR expr2= bitwiseXorExpr
                         pass 
-                        VBAR106=self.match(self.input, VBAR, self.FOLLOW_VBAR_in_bitwiseOrExpr1935)
-                        self._state.following.append(self.FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1939)
+                        VBAR106=self.match(self.input, VBAR, self.FOLLOW_VBAR_in_bitwiseOrExpr1947)
+                        self._state.following.append(self.FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1951)
                         expr2 = self.bitwiseXorExpr()
 
                         self._state.following.pop()
@@ -2874,7 +2874,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:285:3: (expr1= bitwiseAndExpr ( CIRCUMFLEX expr2= bitwiseAndExpr )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:285:5: expr1= bitwiseAndExpr ( CIRCUMFLEX expr2= bitwiseAndExpr )*
                 pass 
-                self._state.following.append(self.FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1964)
+                self._state.following.append(self.FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1976)
                 expr1 = self.bitwiseAndExpr()
 
                 self._state.following.pop()
@@ -2893,8 +2893,8 @@ class PolicyParser(Parser):
                     if alt36 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:286:9: CIRCUMFLEX expr2= bitwiseAndExpr
                         pass 
-                        CIRCUMFLEX107=self.match(self.input, CIRCUMFLEX, self.FOLLOW_CIRCUMFLEX_in_bitwiseXorExpr1976)
-                        self._state.following.append(self.FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1980)
+                        CIRCUMFLEX107=self.match(self.input, CIRCUMFLEX, self.FOLLOW_CIRCUMFLEX_in_bitwiseXorExpr1988)
+                        self._state.following.append(self.FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1992)
                         expr2 = self.bitwiseAndExpr()
 
                         self._state.following.pop()
@@ -2937,7 +2937,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:290:3: (expr1= shiftExpr ( AMPER expr2= shiftExpr )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:290:5: expr1= shiftExpr ( AMPER expr2= shiftExpr )*
                 pass 
-                self._state.following.append(self.FOLLOW_shiftExpr_in_bitwiseAndExpr2005)
+                self._state.following.append(self.FOLLOW_shiftExpr_in_bitwiseAndExpr2017)
                 expr1 = self.shiftExpr()
 
                 self._state.following.pop()
@@ -2956,8 +2956,8 @@ class PolicyParser(Parser):
                     if alt37 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:291:9: AMPER expr2= shiftExpr
                         pass 
-                        AMPER108=self.match(self.input, AMPER, self.FOLLOW_AMPER_in_bitwiseAndExpr2017)
-                        self._state.following.append(self.FOLLOW_shiftExpr_in_bitwiseAndExpr2021)
+                        AMPER108=self.match(self.input, AMPER, self.FOLLOW_AMPER_in_bitwiseAndExpr2029)
+                        self._state.following.append(self.FOLLOW_shiftExpr_in_bitwiseAndExpr2033)
                         expr2 = self.shiftExpr()
 
                         self._state.following.pop()
@@ -3001,7 +3001,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:295:3: (expr1= arithExpr ( ( LEFTSHIFT | RIGHTSHIFT ) expr2= arithExpr )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:295:5: expr1= arithExpr ( ( LEFTSHIFT | RIGHTSHIFT ) expr2= arithExpr )*
                 pass 
-                self._state.following.append(self.FOLLOW_arithExpr_in_shiftExpr2046)
+                self._state.following.append(self.FOLLOW_arithExpr_in_shiftExpr2058)
                 expr1 = self.arithExpr()
 
                 self._state.following.pop()
@@ -3036,7 +3036,7 @@ class PolicyParser(Parser):
                         if alt38 == 1:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:296:11: LEFTSHIFT
                             pass 
-                            LEFTSHIFT109=self.match(self.input, LEFTSHIFT, self.FOLLOW_LEFTSHIFT_in_shiftExpr2060)
+                            LEFTSHIFT109=self.match(self.input, LEFTSHIFT, self.FOLLOW_LEFTSHIFT_in_shiftExpr2072)
                             #action start
                             object.append_child( LEFTSHIFT109.text ) 
                             #action end
@@ -3045,14 +3045,14 @@ class PolicyParser(Parser):
                         elif alt38 == 2:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:296:67: RIGHTSHIFT
                             pass 
-                            RIGHTSHIFT110=self.match(self.input, RIGHTSHIFT, self.FOLLOW_RIGHTSHIFT_in_shiftExpr2066)
+                            RIGHTSHIFT110=self.match(self.input, RIGHTSHIFT, self.FOLLOW_RIGHTSHIFT_in_shiftExpr2078)
                             #action start
                             object.append_child( RIGHTSHIFT110.text ) 
                             #action end
 
 
 
-                        self._state.following.append(self.FOLLOW_arithExpr_in_shiftExpr2084)
+                        self._state.following.append(self.FOLLOW_arithExpr_in_shiftExpr2096)
                         expr2 = self.arithExpr()
 
                         self._state.following.pop()
@@ -3096,7 +3096,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:301:3: (term1= term ( ( PLUS | MINUS ) term2= term )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:301:5: term1= term ( ( PLUS | MINUS ) term2= term )*
                 pass 
-                self._state.following.append(self.FOLLOW_term_in_arithExpr2109)
+                self._state.following.append(self.FOLLOW_term_in_arithExpr2121)
                 term1 = self.term()
 
                 self._state.following.pop()
@@ -3131,7 +3131,7 @@ class PolicyParser(Parser):
                         if alt40 == 1:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:302:11: PLUS
                             pass 
-                            PLUS111=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_arithExpr2123)
+                            PLUS111=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_arithExpr2135)
                             #action start
                             object.append_child( PLUS111.text ) 
                             #action end
@@ -3140,14 +3140,14 @@ class PolicyParser(Parser):
                         elif alt40 == 2:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:302:57: MINUS
                             pass 
-                            MINUS112=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_arithExpr2129)
+                            MINUS112=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_arithExpr2141)
                             #action start
                             object.append_child( MINUS112.text ) 
                             #action end
 
 
 
-                        self._state.following.append(self.FOLLOW_term_in_arithExpr2147)
+                        self._state.following.append(self.FOLLOW_term_in_arithExpr2159)
                         term2 = self.term()
 
                         self._state.following.pop()
@@ -3193,7 +3193,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:307:3: (factor1= factor ( ( STAR | SLASH | PERCENT | DOUBLESLASH ) factor2= factor )* )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:307:5: factor1= factor ( ( STAR | SLASH | PERCENT | DOUBLESLASH ) factor2= factor )*
                 pass 
-                self._state.following.append(self.FOLLOW_factor_in_term2172)
+                self._state.following.append(self.FOLLOW_factor_in_term2184)
                 factor1 = self.factor()
 
                 self._state.following.pop()
@@ -3231,7 +3231,7 @@ class PolicyParser(Parser):
                         if alt42 == 1:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:308:10: STAR
                             pass 
-                            STAR113=self.match(self.input, STAR, self.FOLLOW_STAR_in_term2185)
+                            STAR113=self.match(self.input, STAR, self.FOLLOW_STAR_in_term2197)
                             #action start
                             object.append_child( STAR113.text ) 
                             #action end
@@ -3240,7 +3240,7 @@ class PolicyParser(Parser):
                         elif alt42 == 2:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:308:56: SLASH
                             pass 
-                            SLASH114=self.match(self.input, SLASH, self.FOLLOW_SLASH_in_term2191)
+                            SLASH114=self.match(self.input, SLASH, self.FOLLOW_SLASH_in_term2203)
                             #action start
                             object.append_child( SLASH114.text ) 
                             #action end
@@ -3249,7 +3249,7 @@ class PolicyParser(Parser):
                         elif alt42 == 3:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:309:13: PERCENT
                             pass 
-                            PERCENT115=self.match(self.input, PERCENT, self.FOLLOW_PERCENT_in_term2207)
+                            PERCENT115=self.match(self.input, PERCENT, self.FOLLOW_PERCENT_in_term2219)
                             #action start
                             object.append_child( PERCENT115.text ) 
                             #action end
@@ -3258,14 +3258,14 @@ class PolicyParser(Parser):
                         elif alt42 == 4:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:309:65: DOUBLESLASH
                             pass 
-                            DOUBLESLASH116=self.match(self.input, DOUBLESLASH, self.FOLLOW_DOUBLESLASH_in_term2213)
+                            DOUBLESLASH116=self.match(self.input, DOUBLESLASH, self.FOLLOW_DOUBLESLASH_in_term2225)
                             #action start
                             object.append_child( DOUBLESLASH116.text ) 
                             #action end
 
 
 
-                        self._state.following.append(self.FOLLOW_factor_in_term2235)
+                        self._state.following.append(self.FOLLOW_factor_in_term2247)
                         factor2 = self.factor()
 
                         self._state.following.pop()
@@ -3330,8 +3330,8 @@ class PolicyParser(Parser):
                 if alt44 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:314:5: PLUS factor1= factor
                     pass 
-                    PLUS117=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_factor2258)
-                    self._state.following.append(self.FOLLOW_factor_in_factor2263)
+                    PLUS117=self.match(self.input, PLUS, self.FOLLOW_PLUS_in_factor2270)
+                    self._state.following.append(self.FOLLOW_factor_in_factor2275)
                     factor1 = self.factor()
 
                     self._state.following.pop()
@@ -3343,8 +3343,8 @@ class PolicyParser(Parser):
                 elif alt44 == 2:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:315:5: MINUS factor2= factor
                     pass 
-                    MINUS118=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_factor2271)
-                    self._state.following.append(self.FOLLOW_factor_in_factor2275)
+                    MINUS118=self.match(self.input, MINUS, self.FOLLOW_MINUS_in_factor2283)
+                    self._state.following.append(self.FOLLOW_factor_in_factor2287)
                     factor2 = self.factor()
 
                     self._state.following.pop()
@@ -3356,8 +3356,8 @@ class PolicyParser(Parser):
                 elif alt44 == 3:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:316:5: TILDE factor3= factor
                     pass 
-                    TILDE119=self.match(self.input, TILDE, self.FOLLOW_TILDE_in_factor2283)
-                    self._state.following.append(self.FOLLOW_factor_in_factor2287)
+                    TILDE119=self.match(self.input, TILDE, self.FOLLOW_TILDE_in_factor2295)
+                    self._state.following.append(self.FOLLOW_factor_in_factor2299)
                     factor3 = self.factor()
 
                     self._state.following.pop()
@@ -3369,7 +3369,7 @@ class PolicyParser(Parser):
                 elif alt44 == 4:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:317:5: power
                     pass 
-                    self._state.following.append(self.FOLLOW_power_in_factor2295)
+                    self._state.following.append(self.FOLLOW_power_in_factor2307)
                     power120 = self.power()
 
                     self._state.following.pop()
@@ -3409,7 +3409,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:321:3: ( atom ( trailer )* ( options {greedy=true; } : DOUBLESTAR factor )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:321:5: atom ( trailer )* ( options {greedy=true; } : DOUBLESTAR factor )?
                 pass 
-                self._state.following.append(self.FOLLOW_atom_in_power2315)
+                self._state.following.append(self.FOLLOW_atom_in_power2327)
                 atom121 = self.atom()
 
                 self._state.following.pop()
@@ -3428,7 +3428,7 @@ class PolicyParser(Parser):
                     if alt45 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:322:9: trailer
                         pass 
-                        self._state.following.append(self.FOLLOW_trailer_in_power2327)
+                        self._state.following.append(self.FOLLOW_trailer_in_power2339)
                         trailer122 = self.trailer()
 
                         self._state.following.pop()
@@ -3448,8 +3448,8 @@ class PolicyParser(Parser):
                 if alt46 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:323:31: DOUBLESTAR factor
                     pass 
-                    DOUBLESTAR123=self.match(self.input, DOUBLESTAR, self.FOLLOW_DOUBLESTAR_in_power2348)
-                    self._state.following.append(self.FOLLOW_factor_in_power2350)
+                    DOUBLESTAR123=self.match(self.input, DOUBLESTAR, self.FOLLOW_DOUBLESTAR_in_power2360)
+                    self._state.following.append(self.FOLLOW_factor_in_power2362)
                     factor124 = self.factor()
 
                     self._state.following.pop()
@@ -3533,7 +3533,7 @@ class PolicyParser(Parser):
                 if alt51 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:327:5: LPAREN (comparisonList1= comparisonList )? RPAREN
                     pass 
-                    LPAREN125=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_atom2373)
+                    LPAREN125=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_atom2385)
                     #action start
                     object = Atom( LPAREN125.text ) 
                     #action end
@@ -3546,7 +3546,7 @@ class PolicyParser(Parser):
                     if alt47 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:328:25: comparisonList1= comparisonList
                         pass 
-                        self._state.following.append(self.FOLLOW_comparisonList_in_atom2412)
+                        self._state.following.append(self.FOLLOW_comparisonList_in_atom2424)
                         comparisonList1 = self.comparisonList()
 
                         self._state.following.pop()
@@ -3556,7 +3556,7 @@ class PolicyParser(Parser):
 
 
 
-                    RPAREN126=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_atom2441)
+                    RPAREN126=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_atom2453)
                     #action start
                     object.append_child( RPAREN126.text ) 
                     #action end
@@ -3565,7 +3565,7 @@ class PolicyParser(Parser):
                 elif alt51 == 2:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:330:5: LBRACK ( listmaker )? RBRACK
                     pass 
-                    LBRACK127=self.match(self.input, LBRACK, self.FOLLOW_LBRACK_in_atom2449)
+                    LBRACK127=self.match(self.input, LBRACK, self.FOLLOW_LBRACK_in_atom2461)
                     #action start
                     object = Atom( LBRACK127.text ) 
                     #action end
@@ -3578,7 +3578,7 @@ class PolicyParser(Parser):
                     if alt48 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:331:25: listmaker
                         pass 
-                        self._state.following.append(self.FOLLOW_listmaker_in_atom2486)
+                        self._state.following.append(self.FOLLOW_listmaker_in_atom2498)
                         listmaker128 = self.listmaker()
 
                         self._state.following.pop()
@@ -3588,7 +3588,7 @@ class PolicyParser(Parser):
 
 
 
-                    RBRACK129=self.match(self.input, RBRACK, self.FOLLOW_RBRACK_in_atom2515)
+                    RBRACK129=self.match(self.input, RBRACK, self.FOLLOW_RBRACK_in_atom2527)
                     #action start
                     object.append_child( RBRACK129.text ) 
                     #action end
@@ -3597,7 +3597,7 @@ class PolicyParser(Parser):
                 elif alt51 == 3:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:333:5: LCURLY ( dictmaker )? RCURLY
                     pass 
-                    LCURLY130=self.match(self.input, LCURLY, self.FOLLOW_LCURLY_in_atom2523)
+                    LCURLY130=self.match(self.input, LCURLY, self.FOLLOW_LCURLY_in_atom2535)
                     #action start
                     object = Atom( LCURLY130.text ) 
                     #action end
@@ -3610,7 +3610,7 @@ class PolicyParser(Parser):
                     if alt49 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:334:25: dictmaker
                         pass 
-                        self._state.following.append(self.FOLLOW_dictmaker_in_atom2560)
+                        self._state.following.append(self.FOLLOW_dictmaker_in_atom2572)
                         dictmaker131 = self.dictmaker()
 
                         self._state.following.pop()
@@ -3620,7 +3620,7 @@ class PolicyParser(Parser):
 
 
 
-                    RCURLY132=self.match(self.input, RCURLY, self.FOLLOW_RCURLY_in_atom2589)
+                    RCURLY132=self.match(self.input, RCURLY, self.FOLLOW_RCURLY_in_atom2601)
                     #action start
                     object.append_child( RCURLY132.text ) 
                     #action end
@@ -3629,7 +3629,7 @@ class PolicyParser(Parser):
                 elif alt51 == 4:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:337:5: NAME
                     pass 
-                    NAME133=self.match(self.input, NAME, self.FOLLOW_NAME_in_atom2598)
+                    NAME133=self.match(self.input, NAME, self.FOLLOW_NAME_in_atom2610)
                     #action start
                     object = Atom( NAME133.text ) 
                     #action end
@@ -3638,7 +3638,7 @@ class PolicyParser(Parser):
                 elif alt51 == 5:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:338:5: OBJECTBINDING
                     pass 
-                    OBJECTBINDING134=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_atom2617)
+                    OBJECTBINDING134=self.match(self.input, OBJECTBINDING, self.FOLLOW_OBJECTBINDING_in_atom2629)
                     #action start
                     object = Atom( OBJECTBINDING134.text ) 
                     #action end
@@ -3647,7 +3647,7 @@ class PolicyParser(Parser):
                 elif alt51 == 6:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:339:5: INT
                     pass 
-                    INT135=self.match(self.input, INT, self.FOLLOW_INT_in_atom2627)
+                    INT135=self.match(self.input, INT, self.FOLLOW_INT_in_atom2639)
                     #action start
                     object = Atom( INT135.text ) 
                     #action end
@@ -3656,7 +3656,7 @@ class PolicyParser(Parser):
                 elif alt51 == 7:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:340:5: LONGINT
                     pass 
-                    LONGINT136=self.match(self.input, LONGINT, self.FOLLOW_LONGINT_in_atom2647)
+                    LONGINT136=self.match(self.input, LONGINT, self.FOLLOW_LONGINT_in_atom2659)
                     #action start
                     object = Atom( LONGINT136.text ) 
                     #action end
@@ -3665,7 +3665,7 @@ class PolicyParser(Parser):
                 elif alt51 == 8:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:341:5: FLOAT
                     pass 
-                    FLOAT137=self.match(self.input, FLOAT, self.FOLLOW_FLOAT_in_atom2663)
+                    FLOAT137=self.match(self.input, FLOAT, self.FOLLOW_FLOAT_in_atom2675)
                     #action start
                     object = Atom( FLOAT137.text ) 
                     #action end
@@ -3674,7 +3674,7 @@ class PolicyParser(Parser):
                 elif alt51 == 9:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:342:5: COMPLEX
                     pass 
-                    COMPLEX138=self.match(self.input, COMPLEX, self.FOLLOW_COMPLEX_in_atom2681)
+                    COMPLEX138=self.match(self.input, COMPLEX, self.FOLLOW_COMPLEX_in_atom2693)
                     #action start
                     object = Atom( COMPLEX138.text ) 
                     #action end
@@ -3699,7 +3699,7 @@ class PolicyParser(Parser):
                         if alt50 == 1:
                             # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:343:27: STRING
                             pass 
-                            STRING139=self.match(self.input, STRING, self.FOLLOW_STRING_in_atom2701)
+                            STRING139=self.match(self.input, STRING, self.FOLLOW_STRING_in_atom2713)
                             #action start
                             object.append_child( STRING139.text ) 
                             #action end
@@ -3743,7 +3743,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:347:3: (constraint1= constraint ( options {greedy=true; } : COMMA constraint2= constraint )* ( COMMA )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:347:5: constraint1= constraint ( options {greedy=true; } : COMMA constraint2= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_listmaker2726)
+                self._state.following.append(self.FOLLOW_constraint_in_listmaker2738)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
@@ -3767,8 +3767,8 @@ class PolicyParser(Parser):
                     if alt52 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:348:31: COMMA constraint2= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_listmaker2744)
-                        self._state.following.append(self.FOLLOW_constraint_in_listmaker2748)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_listmaker2756)
+                        self._state.following.append(self.FOLLOW_constraint_in_listmaker2760)
                         constraint2 = self.constraint()
 
                         self._state.following.pop()
@@ -3788,7 +3788,7 @@ class PolicyParser(Parser):
                 if alt53 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:349:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_listmaker2763)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_listmaker2775)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -3826,7 +3826,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:353:3: (constraint1= constraint ( options {k=2; } : COMMA constraint2= constraint )* ( COMMA )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:353:5: constraint1= constraint ( options {k=2; } : COMMA constraint2= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_comparisonList2788)
+                self._state.following.append(self.FOLLOW_constraint_in_comparisonList2800)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
@@ -3840,8 +3840,8 @@ class PolicyParser(Parser):
                     if alt54 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:354:23: COMMA constraint2= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_comparisonList2806)
-                        self._state.following.append(self.FOLLOW_constraint_in_comparisonList2810)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_comparisonList2818)
+                        self._state.following.append(self.FOLLOW_constraint_in_comparisonList2822)
                         constraint2 = self.constraint()
 
                         self._state.following.pop()
@@ -3861,7 +3861,7 @@ class PolicyParser(Parser):
                 if alt55 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:355:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_comparisonList2825)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_comparisonList2837)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -3914,7 +3914,7 @@ class PolicyParser(Parser):
                 if alt57 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:359:5: LPAREN ( argumentList )? RPAREN
                     pass 
-                    LPAREN140=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_trailer2848)
+                    LPAREN140=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_trailer2860)
                     #action start
                     object = Trailer( LPAREN140.text ) 
                     #action end
@@ -3927,7 +3927,7 @@ class PolicyParser(Parser):
                     if alt56 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:359:50: argumentList
                         pass 
-                        self._state.following.append(self.FOLLOW_argumentList_in_trailer2853)
+                        self._state.following.append(self.FOLLOW_argumentList_in_trailer2865)
                         argumentList141 = self.argumentList()
 
                         self._state.following.pop()
@@ -3937,7 +3937,7 @@ class PolicyParser(Parser):
 
 
 
-                    RPAREN142=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_trailer2860)
+                    RPAREN142=self.match(self.input, RPAREN, self.FOLLOW_RPAREN_in_trailer2872)
                     #action start
                     object.append_child( RPAREN142.text ) 
                     #action end
@@ -3946,8 +3946,8 @@ class PolicyParser(Parser):
                 elif alt57 == 2:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:360:5: DOT NAME
                     pass 
-                    DOT143=self.match(self.input, DOT, self.FOLLOW_DOT_in_trailer2868)
-                    NAME144=self.match(self.input, NAME, self.FOLLOW_NAME_in_trailer2870)
+                    DOT143=self.match(self.input, DOT, self.FOLLOW_DOT_in_trailer2880)
+                    NAME144=self.match(self.input, NAME, self.FOLLOW_NAME_in_trailer2882)
                     #action start
                     object = Trailer( [DOT143.text, NAME144.text] ) 
                     #action end
@@ -3981,7 +3981,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:364:3: (expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:364:5: expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_expression_in_expressionList2893)
+                self._state.following.append(self.FOLLOW_expression_in_expressionList2905)
                 expression1 = self.expression()
 
                 self._state.following.pop()
@@ -3995,8 +3995,8 @@ class PolicyParser(Parser):
                     if alt58 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:365:25: COMMA expression2= expression
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2913)
-                        self._state.following.append(self.FOLLOW_expression_in_expressionList2917)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2925)
+                        self._state.following.append(self.FOLLOW_expression_in_expressionList2929)
                         expression2 = self.expression()
 
                         self._state.following.pop()
@@ -4016,7 +4016,7 @@ class PolicyParser(Parser):
                 if alt59 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:366:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2932)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2944)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4058,15 +4058,15 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:370:3: (constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:370:5: constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2957)
+                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2969)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
                 #action start
                 object = DictMaker( constraint1 ) 
                 #action end
-                self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker2967)
-                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2971)
+                self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker2979)
+                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2983)
                 constraint2 = self.constraint()
 
                 self._state.following.pop()
@@ -4080,13 +4080,13 @@ class PolicyParser(Parser):
                     if alt60 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:372:26: COMMA constraint3= constraint COLON constraint4= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker2992)
-                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker2996)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3004)
+                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3008)
                         constraint3 = self.constraint()
 
                         self._state.following.pop()
-                        self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker2998)
-                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3002)
+                        self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker3010)
+                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3014)
                         constraint4 = self.constraint()
 
                         self._state.following.pop()
@@ -4106,7 +4106,7 @@ class PolicyParser(Parser):
                 if alt61 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:373:11: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3019)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3031)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4144,7 +4144,7 @@ class PolicyParser(Parser):
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:377:3: (constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )? )
                 # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:377:5: constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_argumentList3044)
+                self._state.following.append(self.FOLLOW_constraint_in_argumentList3056)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
@@ -4168,8 +4168,8 @@ class PolicyParser(Parser):
                     if alt62 == 1:
                         # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:378:9: COMMA constraint2= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3056)
-                        self._state.following.append(self.FOLLOW_constraint_in_argumentList3060)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3068)
+                        self._state.following.append(self.FOLLOW_constraint_in_argumentList3072)
                         constraint2 = self.constraint()
 
                         self._state.following.pop()
@@ -4189,7 +4189,7 @@ class PolicyParser(Parser):
                 if alt63 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:379:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3075)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3087)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4229,7 +4229,7 @@ class PolicyParser(Parser):
         )
 
     DFA34_max = DFA.unpack(
-        u"\1\121\11\uffff\1\113\2\uffff"
+        u"\1\71\11\uffff\1\115\2\uffff"
         )
 
     DFA34_accept = DFA.unpack(
@@ -4242,8 +4242,7 @@ class PolicyParser(Parser):
 
             
     DFA34_transition = [
-        DFA.unpack(u"\1\11\33\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\30\uffff"
-        u"\1\10\1\12"),
+        DFA.unpack(u"\1\11\33\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\12"),
         DFA.unpack(u""),
         DFA.unpack(u""),
         DFA.unpack(u""),
@@ -4254,7 +4253,7 @@ class PolicyParser(Parser):
         DFA.unpack(u""),
         DFA.unpack(u""),
         DFA.unpack(u"\1\14\2\uffff\1\14\4\uffff\1\14\3\uffff\1\13\1\uffff"
-        u"\1\14\44\uffff\2\14\4\uffff\1\14\1\uffff\1\14\1\uffff\1\14\1\uffff"
+        u"\1\14\46\uffff\2\14\4\uffff\1\14\1\uffff\1\14\1\uffff\1\14\1\uffff"
         u"\4\14"),
         DFA.unpack(u""),
         DFA.unpack(u"")
@@ -4281,7 +4280,7 @@ class PolicyParser(Parser):
         )
 
     DFA54_max = DFA.unpack(
-        u"\1\56\1\113\54\uffff"
+        u"\1\56\1\115\54\uffff"
         )
 
     DFA54_accept = DFA.unpack(
@@ -4296,7 +4295,7 @@ class PolicyParser(Parser):
     DFA54_transition = [
         DFA.unpack(u"\1\2\3\uffff\1\2\1\1\26\uffff\15\2"),
         DFA.unpack(u"\1\2\2\uffff\1\21\1\2\1\uffff\1\21\4\uffff\1\21\3\uffff"
-        u"\1\21\1\uffff\1\21\12\uffff\15\2\15\uffff\2\21\4\uffff\1\21\1\uffff"
+        u"\1\21\1\uffff\1\21\12\uffff\15\2\17\uffff\2\21\4\uffff\1\21\1\uffff"
         u"\1\21\1\uffff\1\21\1\uffff\4\21"),
         DFA.unpack(u""),
         DFA.unpack(u""),
@@ -4365,7 +4364,7 @@ class PolicyParser(Parser):
         )
 
     DFA58_max = DFA.unpack(
-        u"\1\13\1\113\17\uffff"
+        u"\1\13\1\115\17\uffff"
         )
 
     DFA58_accept = DFA.unpack(
@@ -4379,7 +4378,7 @@ class PolicyParser(Parser):
             
     DFA58_transition = [
         DFA.unpack(u"\1\1"),
-        DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\4\5\uffff\1\4\44\uffff\2"
+        DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\4\5\uffff\1\4\46\uffff\2"
         u"\4\4\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\uffff\4\4"),
         DFA.unpack(u""),
         DFA.unpack(u""),
@@ -4419,7 +4418,7 @@ class PolicyParser(Parser):
         )
 
     DFA60_max = DFA.unpack(
-        u"\1\107\1\113\20\uffff"
+        u"\1\111\1\115\20\uffff"
         )
 
     DFA60_accept = DFA.unpack(
@@ -4432,9 +4431,9 @@ class PolicyParser(Parser):
 
             
     DFA60_transition = [
-        DFA.unpack(u"\1\1\73\uffff\1\2"),
+        DFA.unpack(u"\1\1\75\uffff\1\2"),
         DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\4\3\uffff\1\4\1\uffff\1"
-        u"\4\44\uffff\2\4\4\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\2\4\4"),
+        u"\4\46\uffff\2\4\4\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\2\4\4"),
         DFA.unpack(u""),
         DFA.unpack(u""),
         DFA.unpack(u""),
@@ -4461,8 +4460,8 @@ class PolicyParser(Parser):
 
  
 
-    FOLLOW_NEWLINE_in_file78 = frozenset([1, 6, 7, 8, 9, 12, 15, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_statement_in_file82 = frozenset([1, 6, 7, 8, 9, 12, 15, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_NEWLINE_in_file78 = frozenset([1, 6, 7, 8, 9, 12, 15, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_statement_in_file82 = frozenset([1, 6, 7, 8, 9, 12, 15, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_EOF_in_file93 = frozenset([1])
     FOLLOW_importStmt_in_statement111 = frozenset([1])
     FOLLOW_attributeStmt_in_statement120 = frozenset([1])
@@ -4521,8 +4520,8 @@ class PolicyParser(Parser):
     FOLLOW_THEN_in_then693 = frozenset([16])
     FOLLOW_COLON_in_then695 = frozenset([6])
     FOLLOW_NEWLINE_in_then697 = frozenset([4])
-    FOLLOW_INDENT_in_then707 = frozenset([9, 12, 17, 21, 23, 25, 26, 28, 29, 30, 31, 32, 33, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_action_in_then711 = frozenset([5, 9, 12, 17, 21, 23, 25, 26, 28, 29, 30, 31, 32, 33, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_INDENT_in_then707 = frozenset([9, 12, 17, 21, 23, 25, 26, 28, 29, 30, 31, 32, 33, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_action_in_then711 = frozenset([5, 9, 12, 17, 21, 23, 25, 26, 28, 29, 30, 31, 32, 33, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_DEDENT_in_then718 = frozenset([1])
     FOLLOW_notCondition_in_ruleCondition736 = frozenset([6])
     FOLLOW_NEWLINE_in_ruleCondition738 = frozenset([1])
@@ -4533,7 +4532,7 @@ class PolicyParser(Parser):
     FOLLOW_OBJECTBINDING_in_classConstraint836 = frozenset([24])
     FOLLOW_ASSIGNEQUAL_in_classConstraint838 = frozenset([12])
     FOLLOW_NAME_in_classConstraint851 = frozenset([9])
-    FOLLOW_LPAREN_in_classConstraint853 = frozenset([9, 10, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_LPAREN_in_classConstraint853 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_constraint_in_classConstraint859 = frozenset([10])
     FOLLOW_RPAREN_in_classConstraint866 = frozenset([1])
     FOLLOW_simpleStmt_in_action886 = frozenset([1])
@@ -4544,11 +4543,11 @@ class PolicyParser(Parser):
     FOLLOW_haltAction_in_action945 = frozenset([1])
     FOLLOW_expressionStmt_in_simpleStmt971 = frozenset([1])
     FOLLOW_printStmt_in_simpleStmt985 = frozenset([1])
-    FOLLOW_ATTRIBUTE_in_attributeAction1016 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_ATTRIBUTE_in_attributeAction1016 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_expressionStmt_in_attributeAction1018 = frozenset([1])
-    FOLLOW_PRINT_in_printStmt1038 = frozenset([6, 9, 12, 17, 21, 23, 27, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_PRINT_in_printStmt1038 = frozenset([6, 9, 12, 17, 21, 23, 27, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_comparisonList_in_printStmt1052 = frozenset([6])
-    FOLLOW_RIGHTSHIFT_in_printStmt1064 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_RIGHTSHIFT_in_printStmt1064 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_comparisonList_in_printStmt1068 = frozenset([6])
     FOLLOW_NEWLINE_in_printStmt1075 = frozenset([1])
     FOLLOW_FORGET_in_forgetAction1095 = frozenset([23])
@@ -4558,7 +4557,7 @@ class PolicyParser(Parser):
     FOLLOW_LEARN_in_learnAction1144 = frozenset([12])
     FOLLOW_INSERT_in_learnAction1156 = frozenset([12])
     FOLLOW_NAME_in_learnAction1171 = frozenset([9])
-    FOLLOW_LPAREN_in_learnAction1173 = frozenset([9, 10, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_LPAREN_in_learnAction1173 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_argumentList_in_learnAction1187 = frozenset([10])
     FOLLOW_RPAREN_in_learnAction1194 = frozenset([6])
     FOLLOW_NEWLINE_in_learnAction1198 = frozenset([1])
@@ -4572,11 +4571,11 @@ class PolicyParser(Parser):
     FOLLOW_HALT_in_haltAction1261 = frozenset([6])
     FOLLOW_NEWLINE_in_haltAction1265 = frozenset([1])
     FOLLOW_NAME_in_propertyAssignment1283 = frozenset([34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46])
-    FOLLOW_assignment_in_propertyAssignment1285 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_assignment_in_propertyAssignment1285 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_constraint_in_propertyAssignment1287 = frozenset([6])
     FOLLOW_NEWLINE_in_propertyAssignment1291 = frozenset([1])
     FOLLOW_comparisonList_in_expressionStmt1311 = frozenset([6, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46])
-    FOLLOW_assignment_in_expressionStmt1323 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_assignment_in_expressionStmt1323 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_comparisonList_in_expressionStmt1327 = frozenset([6])
     FOLLOW_NEWLINE_in_expressionStmt1334 = frozenset([1])
     FOLLOW_ASSIGN_in_assignment1352 = frozenset([1])
@@ -4594,16 +4593,16 @@ class PolicyParser(Parser):
     FOLLOW_DOUBLESLASHEQUAL_in_assignment1518 = frozenset([1])
     FOLLOW_orConstraint_in_constraint1539 = frozenset([1])
     FOLLOW_andConstraint_in_orConstraint1561 = frozenset([1, 47])
-    FOLLOW_OR_in_orConstraint1573 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_OR_in_orConstraint1573 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_andConstraint_in_orConstraint1577 = frozenset([1, 47])
     FOLLOW_notConstraint_in_andConstraint1602 = frozenset([1, 48])
-    FOLLOW_AND_in_andConstraint1614 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_AND_in_andConstraint1614 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_notConstraint_in_andConstraint1618 = frozenset([1, 48])
-    FOLLOW_NOT_in_notConstraint1649 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_NOT_in_notConstraint1649 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_comparison_in_notConstraint1656 = frozenset([1])
-    FOLLOW_expression_in_comparison1678 = frozenset([1, 21, 49, 50, 51, 52, 53, 54, 55, 80, 81])
-    FOLLOW_comparisonOperation_in_comparison1688 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_expression_in_comparison1692 = frozenset([1, 21, 49, 50, 51, 52, 53, 54, 55, 80, 81])
+    FOLLOW_expression_in_comparison1678 = frozenset([1, 21, 49, 50, 51, 52, 53, 54, 55, 56, 57])
+    FOLLOW_comparisonOperation_in_comparison1688 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_expression_in_comparison1692 = frozenset([1, 21, 49, 50, 51, 52, 53, 54, 55, 56, 57])
     FOLLOW_LESS_in_comparisonOperation1717 = frozenset([1])
     FOLLOW_GREATER_in_comparisonOperation1736 = frozenset([1])
     FOLLOW_EQUAL_in_comparisonOperation1752 = frozenset([1])
@@ -4612,91 +4611,91 @@ class PolicyParser(Parser):
     FOLLOW_ALT_NOTEQUAL_in_comparisonOperation1795 = frozenset([1])
     FOLLOW_NOTEQUAL_in_comparisonOperation1806 = frozenset([1])
     FOLLOW_IN_in_comparisonOperation1821 = frozenset([1])
-    FOLLOW_NOT_in_comparisonOperation1840 = frozenset([80])
-    FOLLOW_IN_in_comparisonOperation1842 = frozenset([1])
-    FOLLOW_IS_in_comparisonOperation1855 = frozenset([1])
-    FOLLOW_IS_in_comparisonOperation1874 = frozenset([21])
-    FOLLOW_NOT_in_comparisonOperation1876 = frozenset([1])
-    FOLLOW_bitwiseOrExpr_in_expression1901 = frozenset([1])
-    FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1923 = frozenset([1, 56])
-    FOLLOW_VBAR_in_bitwiseOrExpr1935 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1939 = frozenset([1, 56])
-    FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1964 = frozenset([1, 57])
-    FOLLOW_CIRCUMFLEX_in_bitwiseXorExpr1976 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1980 = frozenset([1, 57])
-    FOLLOW_shiftExpr_in_bitwiseAndExpr2005 = frozenset([1, 58])
-    FOLLOW_AMPER_in_bitwiseAndExpr2017 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_shiftExpr_in_bitwiseAndExpr2021 = frozenset([1, 58])
-    FOLLOW_arithExpr_in_shiftExpr2046 = frozenset([1, 27, 59])
-    FOLLOW_LEFTSHIFT_in_shiftExpr2060 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_RIGHTSHIFT_in_shiftExpr2066 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_arithExpr_in_shiftExpr2084 = frozenset([1, 27, 59])
-    FOLLOW_term_in_arithExpr2109 = frozenset([1, 60, 61])
-    FOLLOW_PLUS_in_arithExpr2123 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_MINUS_in_arithExpr2129 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_term_in_arithExpr2147 = frozenset([1, 60, 61])
-    FOLLOW_factor_in_term2172 = frozenset([1, 62, 63, 64, 65])
-    FOLLOW_STAR_in_term2185 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_SLASH_in_term2191 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_PERCENT_in_term2207 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_DOUBLESLASH_in_term2213 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_factor_in_term2235 = frozenset([1, 62, 63, 64, 65])
-    FOLLOW_PLUS_in_factor2258 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_factor_in_factor2263 = frozenset([1])
-    FOLLOW_MINUS_in_factor2271 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_NOT_in_comparisonOperation1842 = frozenset([56])
+    FOLLOW_IN_in_comparisonOperation1844 = frozenset([1])
+    FOLLOW_IS_in_comparisonOperation1861 = frozenset([1])
+    FOLLOW_IS_in_comparisonOperation1882 = frozenset([21])
+    FOLLOW_NOT_in_comparisonOperation1884 = frozenset([1])
+    FOLLOW_bitwiseOrExpr_in_expression1913 = frozenset([1])
+    FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1935 = frozenset([1, 58])
+    FOLLOW_VBAR_in_bitwiseOrExpr1947 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_bitwiseXorExpr_in_bitwiseOrExpr1951 = frozenset([1, 58])
+    FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1976 = frozenset([1, 59])
+    FOLLOW_CIRCUMFLEX_in_bitwiseXorExpr1988 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_bitwiseAndExpr_in_bitwiseXorExpr1992 = frozenset([1, 59])
+    FOLLOW_shiftExpr_in_bitwiseAndExpr2017 = frozenset([1, 60])
+    FOLLOW_AMPER_in_bitwiseAndExpr2029 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_shiftExpr_in_bitwiseAndExpr2033 = frozenset([1, 60])
+    FOLLOW_arithExpr_in_shiftExpr2058 = frozenset([1, 27, 61])
+    FOLLOW_LEFTSHIFT_in_shiftExpr2072 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_RIGHTSHIFT_in_shiftExpr2078 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_arithExpr_in_shiftExpr2096 = frozenset([1, 27, 61])
+    FOLLOW_term_in_arithExpr2121 = frozenset([1, 62, 63])
+    FOLLOW_PLUS_in_arithExpr2135 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_MINUS_in_arithExpr2141 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_term_in_arithExpr2159 = frozenset([1, 62, 63])
+    FOLLOW_factor_in_term2184 = frozenset([1, 64, 65, 66, 67])
+    FOLLOW_STAR_in_term2197 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_SLASH_in_term2203 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_PERCENT_in_term2219 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_DOUBLESLASH_in_term2225 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_factor_in_term2247 = frozenset([1, 64, 65, 66, 67])
+    FOLLOW_PLUS_in_factor2270 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_factor_in_factor2275 = frozenset([1])
-    FOLLOW_TILDE_in_factor2283 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
+    FOLLOW_MINUS_in_factor2283 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_factor_in_factor2287 = frozenset([1])
-    FOLLOW_power_in_factor2295 = frozenset([1])
-    FOLLOW_atom_in_power2315 = frozenset([1, 9, 14, 67])
-    FOLLOW_trailer_in_power2327 = frozenset([1, 9, 14, 67])
-    FOLLOW_DOUBLESTAR_in_power2348 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_factor_in_power2350 = frozenset([1])
-    FOLLOW_LPAREN_in_atom2373 = frozenset([9, 10, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_comparisonList_in_atom2412 = frozenset([10])
-    FOLLOW_RPAREN_in_atom2441 = frozenset([1])
-    FOLLOW_LBRACK_in_atom2449 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 69, 70, 72, 73, 74, 75])
-    FOLLOW_listmaker_in_atom2486 = frozenset([69])
-    FOLLOW_RBRACK_in_atom2515 = frozenset([1])
-    FOLLOW_LCURLY_in_atom2523 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 71, 72, 73, 74, 75])
-    FOLLOW_dictmaker_in_atom2560 = frozenset([71])
-    FOLLOW_RCURLY_in_atom2589 = frozenset([1])
-    FOLLOW_NAME_in_atom2598 = frozenset([1])
-    FOLLOW_OBJECTBINDING_in_atom2617 = frozenset([1])
-    FOLLOW_INT_in_atom2627 = frozenset([1])
-    FOLLOW_LONGINT_in_atom2647 = frozenset([1])
-    FOLLOW_FLOAT_in_atom2663 = frozenset([1])
-    FOLLOW_COMPLEX_in_atom2681 = frozenset([1])
-    FOLLOW_STRING_in_atom2701 = frozenset([1, 17])
-    FOLLOW_constraint_in_listmaker2726 = frozenset([1, 11])
-    FOLLOW_COMMA_in_listmaker2744 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_listmaker2748 = frozenset([1, 11])
-    FOLLOW_COMMA_in_listmaker2763 = frozenset([1])
-    FOLLOW_constraint_in_comparisonList2788 = frozenset([1, 11])
-    FOLLOW_COMMA_in_comparisonList2806 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_comparisonList2810 = frozenset([1, 11])
-    FOLLOW_COMMA_in_comparisonList2825 = frozenset([1])
-    FOLLOW_LPAREN_in_trailer2848 = frozenset([9, 10, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_argumentList_in_trailer2853 = frozenset([10])
-    FOLLOW_RPAREN_in_trailer2860 = frozenset([1])
-    FOLLOW_DOT_in_trailer2868 = frozenset([12])
-    FOLLOW_NAME_in_trailer2870 = frozenset([1])
-    FOLLOW_expression_in_expressionList2893 = frozenset([1, 11])
-    FOLLOW_COMMA_in_expressionList2913 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_expression_in_expressionList2917 = frozenset([1, 11])
-    FOLLOW_COMMA_in_expressionList2932 = frozenset([1])
-    FOLLOW_constraint_in_dictmaker2957 = frozenset([16])
-    FOLLOW_COLON_in_dictmaker2967 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_dictmaker2971 = frozenset([1, 11])
-    FOLLOW_COMMA_in_dictmaker2992 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_dictmaker2996 = frozenset([16])
-    FOLLOW_COLON_in_dictmaker2998 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_dictmaker3002 = frozenset([1, 11])
-    FOLLOW_COMMA_in_dictmaker3019 = frozenset([1])
-    FOLLOW_constraint_in_argumentList3044 = frozenset([1, 11])
-    FOLLOW_COMMA_in_argumentList3056 = frozenset([9, 12, 17, 21, 23, 60, 61, 66, 68, 70, 72, 73, 74, 75])
-    FOLLOW_constraint_in_argumentList3060 = frozenset([1, 11])
-    FOLLOW_COMMA_in_argumentList3075 = frozenset([1])
+    FOLLOW_TILDE_in_factor2295 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_factor_in_factor2299 = frozenset([1])
+    FOLLOW_power_in_factor2307 = frozenset([1])
+    FOLLOW_atom_in_power2327 = frozenset([1, 9, 14, 69])
+    FOLLOW_trailer_in_power2339 = frozenset([1, 9, 14, 69])
+    FOLLOW_DOUBLESTAR_in_power2360 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_factor_in_power2362 = frozenset([1])
+    FOLLOW_LPAREN_in_atom2385 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_comparisonList_in_atom2424 = frozenset([10])
+    FOLLOW_RPAREN_in_atom2453 = frozenset([1])
+    FOLLOW_LBRACK_in_atom2461 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 71, 72, 74, 75, 76, 77])
+    FOLLOW_listmaker_in_atom2498 = frozenset([71])
+    FOLLOW_RBRACK_in_atom2527 = frozenset([1])
+    FOLLOW_LCURLY_in_atom2535 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 73, 74, 75, 76, 77])
+    FOLLOW_dictmaker_in_atom2572 = frozenset([73])
+    FOLLOW_RCURLY_in_atom2601 = frozenset([1])
+    FOLLOW_NAME_in_atom2610 = frozenset([1])
+    FOLLOW_OBJECTBINDING_in_atom2629 = frozenset([1])
+    FOLLOW_INT_in_atom2639 = frozenset([1])
+    FOLLOW_LONGINT_in_atom2659 = frozenset([1])
+    FOLLOW_FLOAT_in_atom2675 = frozenset([1])
+    FOLLOW_COMPLEX_in_atom2693 = frozenset([1])
+    FOLLOW_STRING_in_atom2713 = frozenset([1, 17])
+    FOLLOW_constraint_in_listmaker2738 = frozenset([1, 11])
+    FOLLOW_COMMA_in_listmaker2756 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_listmaker2760 = frozenset([1, 11])
+    FOLLOW_COMMA_in_listmaker2775 = frozenset([1])
+    FOLLOW_constraint_in_comparisonList2800 = frozenset([1, 11])
+    FOLLOW_COMMA_in_comparisonList2818 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_comparisonList2822 = frozenset([1, 11])
+    FOLLOW_COMMA_in_comparisonList2837 = frozenset([1])
+    FOLLOW_LPAREN_in_trailer2860 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_argumentList_in_trailer2865 = frozenset([10])
+    FOLLOW_RPAREN_in_trailer2872 = frozenset([1])
+    FOLLOW_DOT_in_trailer2880 = frozenset([12])
+    FOLLOW_NAME_in_trailer2882 = frozenset([1])
+    FOLLOW_expression_in_expressionList2905 = frozenset([1, 11])
+    FOLLOW_COMMA_in_expressionList2925 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_expression_in_expressionList2929 = frozenset([1, 11])
+    FOLLOW_COMMA_in_expressionList2944 = frozenset([1])
+    FOLLOW_constraint_in_dictmaker2969 = frozenset([16])
+    FOLLOW_COLON_in_dictmaker2979 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker2983 = frozenset([1, 11])
+    FOLLOW_COMMA_in_dictmaker3004 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker3008 = frozenset([16])
+    FOLLOW_COLON_in_dictmaker3010 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker3014 = frozenset([1, 11])
+    FOLLOW_COMMA_in_dictmaker3031 = frozenset([1])
+    FOLLOW_constraint_in_argumentList3056 = frozenset([1, 11])
+    FOLLOW_COMMA_in_argumentList3068 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_argumentList3072 = frozenset([1, 11])
+    FOLLOW_COMMA_in_argumentList3087 = frozenset([1])
 
 
 

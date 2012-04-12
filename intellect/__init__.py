@@ -30,4 +30,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __author__ = "Michael Josephh Walsh"
 
-VERSION = (1, 4, 6)
+VERSION = (1, 4, 7)
