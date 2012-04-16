@@ -985,10 +985,12 @@ class When(Node):
                 # not having a ClassConstraint.constraint
                 if not self.ruleCondition.notCondition.is_negated():
                     # match all the learned objects of ClassConstraint.name'ed class-type
-                    matches = [fact for fact in policy.intellect.knowledge if isinstance(fact, klazz)]
+                    self.log("match all the learned objects of ClassConstraint.name'ed class-type")
+                    matches = [fact for fact in policy.intellect.knowledge if reflection.is_instance(fact, klazz)]
                 else:
                     # match all the learned objects that are not the ClassConstraint.name'ed class-type
-                    matches = [fact for fact in policy.intellect.knowledge if not isinstance(fact, klazz)]
+                    self.log("match all the learned objects that are not the ClassConstraint.name'ed class-type")
+                    matches = [fact for fact in policy.intellect.knowledge if not reflection.is_instance(fact, klazz)]
 
                 self.log("The matches found in memory: {0}".format(matches))
 

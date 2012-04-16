@@ -38,7 +38,7 @@ Initial Version: Feb 1, 2011
 @author: Michael Joseph Walsh
 """
 
-import inspect, types, logging
+import inspect, os, sys, types, logging
 
 FUNCTION = "function"
 BUILTIN_FUNCTION = "built-in function"
@@ -414,12 +414,58 @@ def module_from_string(moduleName, policy):
 
 def class_from_str(name):
     '''
-        Returns a Class object from dottedName.identifier str such as
-        'intellect.Intellect.Intellect'.
+    Returns a Class object from dottedName.identifier str such as
+    'intellect.Intellect.Intellect'.
     '''
+    
+    
+    
     dottedName, identifier = name.rsplit('.', 1)
     module = __import__(str(dottedName), globals(), locals(), [identifier])
     klazz = getattr(module, identifier)
 
     log("returning {0} for {1}".format(klazz, name))
     return klazz
+
+def is_instance(instance, klazz):
+    '''
+    Objects could of been learned in __main__ (otherwise anonymous) scope in 
+    which the interpreter's main program executes
+    
+    So, more work is need to determine if the instance is of type klazz
+    
+    Returns True or False
+    
+    Args:
+        instance: An object instance to introspect
+        klazz: a class object.
+    '''
+
+    value = isinstance(instance, klazz)
+
+    if (not value):
+        path = sys.modules[instance.__module__].__file__.split(".")[0]
+        pathComponents = path.split(os.sep)
+
+        moduleName = pathComponents[len(pathComponents)-1]
+        
+        del pathComponents[len(pathComponents)-1:]
+        
+        path = "".join(path.rsplit(moduleName, 1)).rstrip(os.sep)
+
+        while True:
+            if os.path.exists(path + os.sep + "__init__.py"):
+                moduleComponent = pathComponents[len(pathComponents)-1]
+                moduleName = moduleComponent + "." + moduleName
+                path = "".join(path.rsplit(moduleComponent, 1)).rstrip(os.sep)
+                del pathComponents[len(pathComponents)-1:]
+            else: 
+                break
+
+        value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__)) 
+
+    return value
+
+def __rreplace(s, old, new, occurrence):
+    li = s.rsplit(old, occurrence)
+    return new.join(li)
