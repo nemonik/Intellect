@@ -28,6 +28,6 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-__author__ = "Michael Josephh Walsh"
+__author__ = "Michael Joseph Walsh"
 
-VERSION = (1, 4, 8)
+VERSION = (1, 4, 8, 1)

@@ -38,7 +38,7 @@ Initial Version: Oct 27, 2010
 @author: Michael Joseph Walsh
 """
 
-import logging, os, re, traceback, sys, inspect
+import logging, os, re, traceback, sys
 
 from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, RecognitionException
 

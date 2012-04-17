@@ -417,9 +417,7 @@ def class_from_str(name):
     Returns a Class object from dottedName.identifier str such as
     'intellect.Intellect.Intellect'.
     '''
-    
-    
-    
+        
     dottedName, identifier = name.rsplit('.', 1)
     module = __import__(str(dottedName), globals(), locals(), [identifier])
     klazz = getattr(module, identifier)
@@ -429,8 +427,10 @@ def class_from_str(name):
 
 def is_instance(instance, klazz):
     '''
-    Objects could of been learned in __main__ (otherwise anonymous) scope in 
-    which the interpreter's main program executes
+    If the python interpreter is running a module as the main program, 
+    instance of the classes define in the same module will be instances 
+    of the scope (__main__) in which the interpreter’s main program executes
+    in.
     
     So, more work is need to determine if the instance is of type klazz
     
@@ -465,7 +465,3 @@ def is_instance(instance, klazz):
         value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__)) 
 
     return value
-
-def __rreplace(s, old, new, occurrence):
-    li = s.rsplit(old, occurrence)
-    return new.join(li)
