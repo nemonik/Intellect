@@ -1313,7 +1313,7 @@ class Then(Node):
 
         try:
             # Execute the code, wrapped to collect stdout
-            with IO.capture_stdout() as stdout:
+            with IO.RedirectStdOut() as stdout:
                 exec(str(code), policy.globals, localScope)
 
             print stdout.getvalue()

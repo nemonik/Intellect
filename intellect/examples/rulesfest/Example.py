@@ -66,8 +66,8 @@ if __name__ == '__main__':
     myIntellect = MyIntellect()
 
     logging.getLogger("example").debug("Asking the engine to learn my policy.")
-    myIntellect.learn("./rulesets/example.policy")
-    
+    policy = myIntellect.learn("./rulesets/example.policy")
+
     #print myIntellect.policy.str_tree("semantic model:")
 
     max_buy_orders_to_start = input('Provide the maximum number possible buy orders to start with:  ')

@@ -42,33 +42,37 @@ Initial Version:
 @author: Michael Joseph Walsh
 """
 
-import sys, StringIO, contextlib
+import os
+import sys
+import StringIO
 
-@contextlib.contextmanager
-def capture_stdout(stdout=None):
-    '''
-    Used to collect stdout
-    '''
-    old = sys.stdout
+class RedirectStdError(object):
+    def __init__(self):
+        self._stderr = StringIO.StringIO()
 
-    if stdout is None:
-        stdout = StringIO.StringIO()
+    def __enter__(self):
+        self.save_stderr = sys.stderr
+        self.save_stderr.flush()
+        sys.stderr = self._stderr
 
-    sys.stdout = stdout
-    yield stdout
-    sys.stdout = old
+        return sys.stderr
 
-@contextlib.contextmanager
-def capture_stderr(stderr=None):
-    '''
-    Used to collect stderror
-    '''
-    old = sys.stderr
+    def __exit__(self, exc_type, exc_value, traceback):
+        self._stderr.flush()
+        sys.stderr = self.save_stderr
 
-    if stderr is None:
-        stderr = StringIO.StringIO()
 
-    sys.stderr = stderr
-    yield stderr
-    sys.stderr = old
+class RedirectStdOut(object):
+    def __init__(self):
+        self._stdout = StringIO.StringIO()
 
+    def __enter__(self):
+        self.save_stdout = sys.stdout
+        self.save_stdout.flush()
+        sys.stdout = self._stdout
+
+        return sys.stdout
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self._stdout.flush();
+        sys.stdout = self.save_stdout

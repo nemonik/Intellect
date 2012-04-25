@@ -43,12 +43,12 @@ import inspect, os, sys, types, logging
 FUNCTION = "function"
 BUILTIN_FUNCTION = "built-in function"
 INSTANCE_METHOD = "instance method"
-CLASS_METHOD= classmethod
+CLASS_METHOD = classmethod
 STATIC_METHOD = staticmethod
 PROPERTY = property
 DATA = "data"
 
-def log(msg, name = "intellect", level = logging.DEBUG):
+def log(msg, name="intellect", level=logging.DEBUG):
     '''
     Logs at the 'level' for the messaged 'msg'
 
@@ -417,7 +417,7 @@ def class_from_str(name):
     Returns a Class object from dottedName.identifier str such as
     'intellect.Intellect.Intellect'.
     '''
-        
+
     dottedName, identifier = name.rsplit('.', 1)
     module = __import__(str(dottedName), globals(), locals(), [identifier])
     klazz = getattr(module, identifier)
@@ -427,12 +427,12 @@ def class_from_str(name):
 
 def is_instance(instance, klazz):
     '''
-    If the python interpreter is running a module as the main program, 
-    instance of the classes define in the same module will be instances 
-    of the scope (__main__) in which the interpreter’s main program executes
+    If the python interpreter is running a module as the main program,
+    instance of the classes define in the same module will be instances
+    of the scope (__main__) in which the interpreter, main program executes
     in.
     
-    So, more work is need to determine if the instance is of type klazz
+    So, more work is needed to determine if the instance is of type klazz
     
     Returns True or False
     
@@ -447,21 +447,21 @@ def is_instance(instance, klazz):
         path = sys.modules[instance.__module__].__file__.split(".")[0]
         pathComponents = path.split(os.sep)
 
-        moduleName = pathComponents[len(pathComponents)-1]
-        
-        del pathComponents[len(pathComponents)-1:]
-        
+        moduleName = pathComponents[len(pathComponents) - 1]
+
+        del pathComponents[len(pathComponents) - 1:]
+
         path = "".join(path.rsplit(moduleName, 1)).rstrip(os.sep)
 
         while True:
             if os.path.exists(path + os.sep + "__init__.py"):
-                moduleComponent = pathComponents[len(pathComponents)-1]
+                moduleComponent = pathComponents[len(pathComponents) - 1]
                 moduleName = moduleComponent + "." + moduleName
                 path = "".join(path.rsplit(moduleComponent, 1)).rstrip(os.sep)
-                del pathComponents[len(pathComponents)-1:]
-            else: 
+                del pathComponents[len(pathComponents) - 1:]
+            else:
                 break
 
-        value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__)) 
+        value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__))
 
     return value

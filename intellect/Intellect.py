@@ -48,7 +48,8 @@ from intellect.Node import Policy
 from intellect.Node import File
 from intellect.PolicyTokenSource import PolicyTokenSource
 from intellect.Callable import Callable
-import intellect.IO as IO
+from intellect.IO import RedirectStdError
+
 
 
 class Intellect(object):
@@ -160,7 +161,7 @@ class Intellect(object):
         '''
 
         isFile = False
-        
+
         if identifier:
             if isinstance(identifier, basestring):
 
@@ -172,13 +173,13 @@ class Intellect(object):
 
                     stream = ANTLRStringStream(identifier)
                     lexer = PolicyLexer(stream)
-                    tokens= CommonTokenStream(lexer)
+                    tokens = CommonTokenStream(lexer)
                     tokens.discardOffChannelTokens = True
                     indentedSource = PolicyTokenSource(tokens)
                     tokens = CommonTokenStream(indentedSource)
                     parser = PolicyParser(tokens)
 
-                    with IO.capture_stderr() as stderr:
+                    with RedirectStdError() as stderr:
                         try:
                             # ANTL3 may raise an exception, and doing so the stderror 
                             # will not be printed hiding the underlying problem.  GRRR!!!!
@@ -193,7 +194,7 @@ class Intellect(object):
                     # Some times the previous parser.file() will print to stderr,
                     # but not throw an exception.  In this case, the parser may
                     # attempt to correct and continue onward, but we should
-                    # print the msg to stderr for the benefit of the policy 
+                    # print the msg to stderr for the benefit of the policy
                     # author
                     if stderr.getvalue().rstrip() != "":
                         print >> sys.stderr, stderr.getvalue().rstrip()
@@ -217,17 +218,18 @@ class Intellect(object):
                         raise e
 
                     lexer = PolicyLexer(stream)
-                    tokens= CommonTokenStream(lexer)
+                    tokens = CommonTokenStream(lexer)
                     tokens.discardOffChannelTokens = True
                     indentedSource = PolicyTokenSource(tokens)
                     tokens = CommonTokenStream(indentedSource)
                     parser = PolicyParser(tokens)
 
-                    with IO.capture_stderr() as stderr:
+                    with RedirectStdError() as stderr:
                         try:
                             # ANTL3 may raise an exception, and doing so the stderror 
                             # will not be printed hiding the underlying problem.  GRRR!!!!
                             file_node = parser.file()
+
                         except Exception as e:
                             if stderr.getvalue().rstrip() != "":
                                 trace = sys.exc_info()[2]
@@ -238,7 +240,7 @@ class Intellect(object):
                     # Some times the previous parser.file() will print to stderr,
                     # but not throw an exception.  In this case, the parser may
                     # attempt to correct and continue onward, but we should
-                    # print the msg to stderr for the benefit of the policy 
+                    # print the msg to stderr for the benefit of the policy
                     # author
                     if stderr.getvalue().rstrip() != "":
                         print >> sys.stderr, stderr.getvalue().rstrip()
@@ -376,7 +378,7 @@ class Intellect(object):
         self.log("forgot all")
 
 
-    def reason(self, agenda = None):
+    def reason(self, agenda=None):
         '''
         Reasons across the facts in knowledge applying the policy.
 
@@ -423,7 +425,7 @@ class Intellect(object):
 
 
     @Callable
-    def log(self, msg, name = "intellect", level = logging.DEBUG):
+    def log(self, msg, name="intellect", level=logging.DEBUG):
         '''
         Logs at the 'level' for the messaged 'msg'
 
