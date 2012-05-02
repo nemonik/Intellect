@@ -411,6 +411,15 @@ def module_from_string(moduleName, policy):
 
             return module
 
+def module_from_str(name):
+    '''
+    Returns a Module object from dottedName.identifier str such as
+    'intellect.reflection'.
+    '''
+    module = sys.modules[name]
+
+    log("returning {0} for {1}".format(module, name))
+    return module
 
 def class_from_str(name):
     '''

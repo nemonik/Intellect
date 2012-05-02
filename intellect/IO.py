@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 """
 Copyright (c) 2011, The MITRE Corporation.
@@ -29,24 +31,13 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-
-"""
-StdOut
-
-Description:
-    Contains all utulity method for capturing stdout.
-
-Initial Version:
-    Oct 19, 2011
-
-@author: Michael Joseph Walsh
-"""
-
 import os
 import sys
 import StringIO
 
+
 class RedirectStdError(object):
+
     def __init__(self):
         self._stderr = StringIO.StringIO()
 
@@ -57,12 +48,18 @@ class RedirectStdError(object):
 
         return sys.stderr
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(
+        self,
+        exc_type,
+        exc_value,
+        traceback,
+        ):
         self._stderr.flush()
         sys.stderr = self.save_stderr
 
 
 class RedirectStdOut(object):
+
     def __init__(self):
         self._stdout = StringIO.StringIO()
 
@@ -73,6 +70,11 @@ class RedirectStdOut(object):
 
         return sys.stdout
 
-    def __exit__(self, exc_type, exc_value, traceback):
-        self._stdout.flush();
+    def __exit__(
+        self,
+        exc_type,
+        exc_value,
+        traceback,
+        ):
+        self._stdout.flush()
         sys.stdout = self.save_stdout

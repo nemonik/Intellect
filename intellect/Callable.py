@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 '''
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -28,13 +31,9 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 
-'''
-Created on May 20, 2011
-
-@author: Michael Joseph Walsh
-'''
 
 class Callable(object):
+
     '''
     A decorator used to confer to Policy object what
     methods are callable.
@@ -44,15 +43,15 @@ class Callable(object):
         '''
         Callable Initializer
         '''
-        self.__method = method
 
+        self.__method = method
 
     def __call__(self, *args):
         '''
         Wrapper to the callable method
         '''
-        return self.__method(*args)
 
+        return self.__method(*args)
 
     def __get__(self, obj, obj_type):
         """

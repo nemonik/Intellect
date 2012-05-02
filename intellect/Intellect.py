@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -28,19 +31,14 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-"""
-Intellect
+import logging
+import os
+import re
+import traceback
+import sys
 
-Description: A rules engine
-
-Initial Version: Oct 27, 2010
-
-@author: Michael Joseph Walsh
-"""
-
-import logging, os, re, traceback, sys
-
-from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, RecognitionException
+from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, \
+    RecognitionException
 
 from intellect.grammar.PolicyParser import PolicyParser
 from intellect.PolicyLexer import PolicyLexer

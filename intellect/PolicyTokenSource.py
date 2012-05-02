@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 """
 Copyright (c) 2004 Terence Parr and Loring Craymer
 All rights reserved.
@@ -25,26 +28,15 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-"""
-PoicyTokenSource
-
-Description: Used to further process tokens
-
-Initial Version: Feb 24, 2011
-
-@author: Michael Joseph Walsh
-
-The code is a slightly modified form of the PythonTokenSource.py
-found at http://www.antlr.org/depot/examples-v3/Python/python/PythonTokenSource.py
-"""
-
 from antlr3.tokens import ClassicToken, EOF
 from antlr3.recognizers import TokenSource
 
 from intellect.grammar.PolicyParser import INDENT, DEDENT
 from intellect.grammar.PolicyLexer import NEWLINE, LEADING_WS
 
+
 class PolicyTokenSource(TokenSource):
+
     """
     Python does not explicitly provide begin and end nesting signals.
     Rather, the indentation level indicates when you begin and end.
@@ -86,21 +78,25 @@ class PolicyTokenSource(TokenSource):
     Terence Parr and Loring Craymer
     February 2004
     """
+
     FIRST_CHAR_POSITION = 0
 
     def __init__(self, stream):
+
         # The stack of indent levels (column numbers)
         # "state" of indent level is FIRST_CHAR_POSITION
+
         self.indentStack = [self.FIRST_CHAR_POSITION]
-        
+
         # The queue of tokens
+
         self.tokens = []
 
         # We pull real tokens from this lexer
-        self.stream = stream
-        
-        self.lastTokenAddedIndex = -1
 
+        self.stream = stream
+
+        self.lastTokenAddedIndex = -1
 
     def nextToken(self):
         """
@@ -126,25 +122,28 @@ class PolicyTokenSource(TokenSource):
             EOF to have char pos 0 even though with UNIX it's hard to get EOF
             at a non left edge.
         """
-    
+
         # if something in queue, just remove and return it
+
         if len(self.tokens) > 0:
             t = self.tokens.pop(0)
             return t
-        
-        self.insertImaginaryIndentDedentTokens();
+
+        self.insertImaginaryIndentDedentTokens()
 
         return self.nextToken()
-
 
     def insertImaginaryIndentDedentTokens(self):
         t = self.stream.LT(1)
         self.stream.consume()
 
         # if not a NEWLINE, doesn't signal indent/dedent work; just enqueue
+
         if t.getType() != NEWLINE:
-            hiddenTokens = self.stream.getTokens(self.lastTokenAddedIndex + 1, t.getTokenIndex() - 1)
-            
+            hiddenTokens = \
+                self.stream.getTokens(self.lastTokenAddedIndex + 1,
+                    t.getTokenIndex() - 1)
+
             if hiddenTokens is not None:
                 self.tokens.extend(hiddenTokens)
 
@@ -153,9 +152,11 @@ class PolicyTokenSource(TokenSource):
             return
 
         # save NEWLINE in the queue
-        #print "found newline: "+str(t)+" stack is "+self.stackString()
-        hiddenTokens = self.stream.getTokens(self.lastTokenAddedIndex + 1, t.getTokenIndex() - 1)
-        
+        # print "found newline: "+str(t)+" stack is "+self.stackString()
+
+        hiddenTokens = self.stream.getTokens(self.lastTokenAddedIndex
+                + 1, t.getTokenIndex() - 1)
+
         if hiddenTokens is not None:
             self.tokens.extend(hiddenTokens)
 
@@ -163,58 +164,70 @@ class PolicyTokenSource(TokenSource):
         self.tokens.append(t)
 
         # grab first token of next line
-        t = self.stream.LT(1);
-        self.stream.consume();
+
+        t = self.stream.LT(1)
+        self.stream.consume()
 
         # handle hidden tokens
-        hiddenTokens = self.stream.getTokens(self.lastTokenAddedIndex + 1, t.getTokenIndex() - 1)
-        
+
+        hiddenTokens = self.stream.getTokens(self.lastTokenAddedIndex
+                + 1, t.getTokenIndex() - 1)
+
         if hiddenTokens is not None:
             self.tokens.extend(hiddenTokens)
 
         self.lastTokenAddedIndex = t.getTokenIndex()
 
         # compute cpos as the char pos of next non-WS token in line
-        cpos = t.getCharPositionInLine() # column dictates indent/dedent
-        
+
+        cpos = t.getCharPositionInLine()  # column dictates indent/dedent
+
         if t.getType() == EOF:
-            cpos = -1 # pretend EOF always happens at left edge
+            cpos = -1  # pretend EOF always happens at left edge
         elif t.getType() == LEADING_WS:
             cpos = len(t.getText())
 
-        #print "next token is: "+str(t)
+        # print "next token is: "+str(t)
 
         # compare to last indent level
+
         lastIndent = self.indentStack[-1]
-        #print "cpos, lastIndent = "+str(cpos)+", "+str(lastIndent)
-        if cpos > lastIndent: # they indented; track and gen INDENT
-            self.indentStack.append(cpos);
-            #print self.indentStack
-            #print "push("+str(cpos)+"): "+self.stackString()
-            indent = ClassicToken(INDENT, "")
+
+        # print "cpos, lastIndent = "+str(cpos)+", "+str(lastIndent)
+
+        if cpos > lastIndent:  # they indented; track and gen INDENT
+            self.indentStack.append(cpos)
+
+            # print self.indentStack
+            # print "push("+str(cpos)+"): "+self.stackString()
+
+            indent = ClassicToken(INDENT, '')
             indent.setCharPositionInLine(t.getCharPositionInLine())
             indent.setLine(t.getLine())
             self.tokens.append(indent)
+        elif cpos < lastIndent:
 
-        elif cpos < lastIndent: # they dedented
+                                # they dedented
             # how far back did we dedent?
-            prevIndex = self.findPreviousIndent(cpos);
 
-            #print "dedented; prevIndex of cpos="+str(cpos)+" is "+str(prevIndex)
+            prevIndex = self.findPreviousIndent(cpos)
+
+            # print "dedented; prevIndex of cpos="+str(cpos)+" is "+str(prevIndex)
 
             # generate DEDENTs for each indent level we backed up over
+
             while len(self.indentStack) > prevIndex + 1:
-                dedent = ClassicToken(DEDENT, "")
+                dedent = ClassicToken(DEDENT, '')
                 dedent.setCharPositionInLine(t.getCharPositionInLine())
                 dedent.setLine(t.getLine())
                 self.tokens.append(dedent)
 
-                self.indentStack.pop(-1) # pop those off indent level
-                #print self.indentStack
+                self.indentStack.pop(-1)  # pop those off indent level
 
-        if t.getType() != LEADING_WS: # discard WS
+                # print self.indentStack
+
+        if t.getType() != LEADING_WS:  # discard WS
             self.tokens.append(t)
-
 
     #  T O K E N  S T A C K  M E T H O D S
 
@@ -222,12 +235,12 @@ class PolicyTokenSource(TokenSource):
         '''
         Return the index on stack of previous indent level == i else -1
         '''
-        for j, pos in reversed(list(enumerate(self.indentStack))):
+
+        for (j, pos) in reversed(list(enumerate(self.indentStack))):
             if pos == i:
                 return j
 
         return self.FIRST_CHAR_POSITION
-
 
     def stackString(self):
         return ' '.join([str(i) for i in reversed(self.indentStack)])
