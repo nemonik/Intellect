@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -41,7 +44,11 @@ Initial Version:
 @author: Michael Joseph Walsh
 """
 
-import logging, types, collections, keyword, uuid
+import logging
+import types
+import collections
+import keyword
+import uuid
 
 import intellect.reflection as reflection
 
@@ -54,7 +61,7 @@ class Node(object):
     All Policy Domain Specific Language (DSL) Nodes extend this node.
     '''
 
-    def __init__(self, children = None, line = None, column = None):
+    def __init__(self, children=None, line=None, column=None):
         '''
         Node Initializer
         '''
@@ -87,7 +94,7 @@ class Node(object):
         return value
 
 
-    def str_tree(self, text = "", indentCount = 0):
+    def str_tree(self, text="", indentCount=0):
         '''
         Returns a textual tree representation of the Node and its
         children nodes.  Used for debugging purposes.
@@ -333,7 +340,7 @@ class Node(object):
         self.globals[object_reference] = value
 
 
-    def log(self, msg, name = "intellect", level = logging.DEBUG):
+    def log(self, msg, name="intellect", level=logging.DEBUG):
         '''
         Logs at the 'level' for the messaged 'msg'
 
@@ -352,7 +359,7 @@ class Node(object):
 
 
     @staticmethod
-    def filter_to_list(type, node, list = None):
+    def filter_to_list(type, node, list=None):
         '''
         Returns a list of nodes of 'type' parameter found
         in the tree who's parent node is the 'node' parameter.
@@ -445,9 +452,9 @@ class Policy(Node):
         return value
 
 
-    def __init__(self, children = None,  line = None, column = None):
+    def __init__(self, children=None, line=None, column=None):
 
-        super(Policy,self).__init__(children, line, column)
+        super(Policy, self).__init__(children, line, column)
 
         self._intellect = None
         self._globals = {}
@@ -656,9 +663,9 @@ class File(Node):
     RuleStmt nodes.
     '''
 
-    def __init__(self, children = None,  line = None, column = None):
+    def __init__(self, children=None, line=None, column=None):
 
-        super(File,self).__init__(children, line, column)
+        super(File, self).__init__(children, line, column)
 
         self._path = None
 
@@ -711,7 +718,7 @@ class File(Node):
 
 
     @staticmethod
-    def set_file_on_descendants(node = None, file_node = None):
+    def set_file_on_descendants(node=None, file_node=None):
         '''
         Sets this node's file property and all its descendants'
         file property to file_node.
@@ -846,7 +853,7 @@ class RuleStmt(Statement):
             # portion exists.
             Result = collections.namedtuple('Result', 'fireThen, matches, objectBinding')
 
-            whenResults = Result(fireThen = True, matches = [], objectBinding = None)
+            whenResults = Result(fireThen=True, matches=[], objectBinding=None)
 
         self.log("When results for '{0}':  {1}".format(self.id, whenResults))
 
@@ -948,6 +955,9 @@ class When(Node):
                 localScope["policy"] = policy
                 localScope["klazz"] = klazz
 
+                # This is needed because for the reasons documented in reflection.is_instance
+                localScope["reflection"] = reflection.module_from_str("intellect.reflection")
+
                 # Rewrite the ClassConstraint.constraint
                 rewrittenConstraint = When.rewrite(classConstraint.constraint, Constraint(), klazz)
 
@@ -957,7 +967,7 @@ class When(Node):
 
                 # Restrict the list comprehension to just the
                 # ClassConstraint.name'ed class-type
-                code += "isinstance(fact, klazz) and "
+                code += "reflection.is_instance(fact, klazz) and "
 
                 # Append 'not' prior to the Constraint, if the negated
                 code += "not (" if self.ruleCondition.notCondition.is_negated() else ""
@@ -988,7 +998,7 @@ class When(Node):
                     self.log("match all the learned objects of ClassConstraint.name'ed class-type")
                     matches = [fact for fact in policy.intellect.knowledge if reflection.is_instance(fact, klazz)]
                 else:
-                    # match all the learned objects that are not the ClassConstraint.name'ed class-type
+                    # match all the learned objects that are not the ClassConstraint.name'ed class -type
                     self.log("match all the learned objects that are not the ClassConstraint.name'ed class-type")
                     matches = [fact for fact in policy.intellect.knowledge if not reflection.is_instance(fact, klazz)]
 
@@ -1016,7 +1026,7 @@ class When(Node):
                 # The Condition does not hold an Exists token
                 if not matches:
                     fireThen = False
-                    objectBinding= None
+                    objectBinding = None
                 else:
                     fireThen = True
         else:
@@ -1027,7 +1037,7 @@ class When(Node):
         # Create a new named tuple to hold the results
         Result = collections.namedtuple('Result', 'fireThen, matches, objectBinding')
 
-        return Result(fireThen = fireThen, matches = matches, objectBinding = objectBinding)
+        return Result(fireThen=fireThen, matches=matches, objectBinding=objectBinding)
 
 
     @staticmethod
@@ -1057,8 +1067,8 @@ class When(Node):
                         #
                         # TODO: need a better string then "fact" as this may
                         # may already be used in the constraint
-                        power = Power( [Atom( "fact" ), Trailer( [".", child.first_child().first_child()] )] )
-                        rewritten.append_child( power )
+                        power = Power([Atom("fact"), Trailer([".", child.first_child().first_child()])])
+                        rewritten.append_child(power)
 
                         if (len(child.children) > 1):
                             for c in child.children[1:]:
@@ -1148,7 +1158,7 @@ class Then(Node):
                         #
                         # TODO: use of the identifier "newFact" may
                         # be a  problem down the road...
-                        code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
+                        code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") + ")"
 
                         self.log("Code to be run for learnAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
@@ -1255,7 +1265,7 @@ class Then(Node):
 
                     # create a newObject with the arguments, if provided,
                     # and append it to learned objects in memory
-                    code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") +")"
+                    code = "new_fact" + " = " + actualAction.name + "(" + (str(actualAction.argList) if actualAction.argList != None else "") + ")"
 
                     self.log("Code to be run for learnAction in rule: '{0}' at line: {1} in the policy file: '{2}':\n{3}".format(ruleStmt.id, actualAction.line, self.file.path, code))
 
@@ -1349,7 +1359,7 @@ class Then(Node):
                         #
                         # TODO: need a better string then "match" as this may
                         # may already be used in the constraint
-                        rewritten.append_child( Atom("match") )
+                        rewritten.append_child(Atom("match"))
                     else:
                         # nothing matched to rewrite; so, clone
                         twin = type(child)()
