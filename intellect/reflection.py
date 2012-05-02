@@ -437,9 +437,8 @@ def class_from_str(name):
 def is_instance(instance, klazz):
     '''
     If the python interpreter is running a module as the main program,
-    instance of the classes define in the same module will be instances
-    of the scope (__main__) in which the interpreter, main program executes
-    in.
+    instances of the classes define in the same module will be instances
+    of the scope (__main__) instead of what is expected.
     
     So, more work is needed to determine if the instance is of type klazz
     
