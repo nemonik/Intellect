@@ -49,6 +49,7 @@ import types
 import collections
 import keyword
 import uuid
+import sys
 
 import intellect.reflection as reflection
 
@@ -619,7 +620,8 @@ class Policy(Node):
                 self.log("Evaluating: {0}".format(importStmt))
                 exec(str(importStmt), self.globals)
             except ImportError as error:
-                raise ImportError, error.message + " at line: {0} from policy file: '{1}'".format(importStmt.line, importStmt.file.path)
+                exception_type, exception_value, exception_traceback = sys.exc_info()
+                raise ImportError, (error.message + " at line: {0} from policy file: '{1}'".format(importStmt.line, importStmt.file.path), exception_type, exception_value), exception_traceback
 
         # put the policy attributes into the policy's global namespace
         for attributeStmt in self.attributeStmts:
@@ -988,7 +990,8 @@ class When(Node):
                     matches = localScope["matches"]
 
                 except Exception as error:
-                    raise SyntaxError("{0} in rule: '{1}', near line: {2} in policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path))
+                    exception_type, exception_value, exception_traceback = sys.exc_info()
+                    raise SyntaxError, ("{0} in rule: '{1}', near line: {2} in policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path), exception_type, exception_value), exception_traceback
 
                 self.log("The matches found in memory: {0}".format(matches))
             else:
@@ -1166,7 +1169,8 @@ class Then(Node):
                             # Execute the code
                             exec(str(code), policy.globals, localScope)
                         except Exception as error:
-                            raise SyntaxError("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path))
+                            exception_type, exception_value, exception_traceback = sys.exc_info()
+                            raise SyntaxError, ("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
 
                         policy.intellect.learn(localScope["new_fact"])
 
@@ -1186,9 +1190,8 @@ class Then(Node):
                                         self.log("value" + " = " + str(Then.rewrite(propertyAssignment.constraint, Constraint(), objectBinding)))
                                         exec("value" + " = " + str(Then.rewrite(propertyAssignment.constraint, Constraint(), objectBinding)), policy.globals, localScope)
                                     except Exception as error:
-                                        raise SyntaxError("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path))
-
-                                    #if localScope["value"]:
+                                        exception_type, exception_value, exception_traceback = sys.exc_info()
+                                        raise SyntaxError, ("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
 
                                     self.log("modifying {0} property {1} with value of {2} with assignment of {3}".format(objectBinding, propertyAssignment, localScope["value"], propertyAssignment.assignment))
 
@@ -1216,8 +1219,6 @@ class Then(Node):
                                         setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) >> localScope["value"])
                                     else:
                                         setattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name, getattr(policy.intellect.knowledge[knowledgeIndex], propertyAssignment.name) // localScope["value"])
-
-                                    # if had ended here
 
                                 break
 
@@ -1273,7 +1274,8 @@ class Then(Node):
                         # Execute the code
                         exec(str(code), policy.globals, localScope)
                     except Exception as error:
-                        raise SyntaxError("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path))
+                        exception_value, exception_traceback = sys.exc_info()
+                        raise SyntaxError, ("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
 
                     policy.intellect.learn(localScope["new_fact"])
 
@@ -1313,7 +1315,6 @@ class Then(Node):
                     self.execute(policy, ruleStmt, localScope, code)
 
 
-
     def execute(self, policy, ruleStmt, localScope, code):
         '''
         Executes the code
@@ -1325,11 +1326,9 @@ class Then(Node):
             # Execute the code, wrapped to collect stdout
             with IO.RedirectStdOut() as stdout:
                 exec(str(code), policy.globals, localScope)
-
-            print stdout.getvalue()
-
-        except Exception as error:
-            raise SyntaxError("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path))
+        except Exception, error:
+            exception_type, exception_value, exception_traceback = sys.exc_info()
+            raise RuntimeError, ("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path), exception_type, exception_value), exception_traceback
 
 
     @staticmethod
