@@ -1326,6 +1326,9 @@ class Then(Node):
             # Execute the code, wrapped to collect stdout
             with IO.RedirectStdOut() as stdout:
                 exec(str(code), policy.globals, localScope)
+
+            print stdout.getvalue()
+
         except Exception, error:
             exception_type, exception_value, exception_traceback = sys.exc_info()
             raise RuntimeError, ("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path), exception_type, exception_value), exception_traceback
