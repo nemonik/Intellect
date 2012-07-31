@@ -55,8 +55,6 @@ class Intellect(object):
     Rules engine.
     '''
 
-    filepath_regex = re.compile(r"^(.*?/|.*?\\)?([^\./|^\.\\]+)(?:\.([^\\]*)|)$")
-
     def __init__(self):
         '''
         Intellect initializer.
@@ -169,11 +167,9 @@ class Intellect(object):
                     '''
                     try:
                         # Ensure we can read the file
-                        with open(identifier) as f:
-                            data = f.read()
-
-                    except IOError as e:
-                        raise IOError, "Cannot read policy: {0}".format(identifier)
+                        with open(identifier) as f: pass
+                    except IOError:
+                        raise IOError, "Cannot read policy file from path: {0}".format(identifier)
 
                     else:
                         self.log("Learning policy from file path: {0}".format(identifier))
@@ -207,7 +203,7 @@ class Intellect(object):
                     # author
                     if stderr.getvalue().rstrip():
                         # Ideally, we should raise specific Exception types
-                        raise Exception("Cannot learn policy: " + stderr.getvalue().rstrip())
+                        raise Exception("Cannot learn policy from file: " + stderr.getvalue().rstrip())
 
                 else:
                     '''
@@ -241,7 +237,7 @@ class Intellect(object):
                             # author
                             if stderr.getvalue().rstrip():
                                 # Ideally, we should raise specific Exception types
-                                raise Exception("Cannot learn policy: " + stderr.getvalue().rstrip())
+                                raise Exception("Cannot learn policy from string: " + stderr.getvalue().rstrip())
 
                 # set path attribute
                 file_node.path = identifier if isFile else None
