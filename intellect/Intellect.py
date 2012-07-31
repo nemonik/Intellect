@@ -163,12 +163,57 @@ class Intellect(object):
         if identifier:
             if isinstance(identifier, basestring):
 
-                if not os.path.isfile(identifier):
+                if os.path.isfile(identifier):
+                    '''
+                    Try treating 'identifier' as a file path
+                    '''
+                    try:
+                        # Ensure we can read the file
+                        with open(identifier) as f:
+                            data = f.read()
+
+                    except IOError as e:
+                        raise IOError, "Cannot read policy: {0}".format(identifier)
+
+                    else:
+                        self.log("Learning policy from file path: {0}".format(identifier))
+                        stream = FileStream(identifier)
+                        isFile = True
+
+                    lexer = PolicyLexer(stream)
+                    tokens = CommonTokenStream(lexer)
+                    tokens.discardOffChannelTokens = True
+                    indentedSource = PolicyTokenSource(tokens)
+                    tokens = CommonTokenStream(indentedSource)
+                    parser = PolicyParser(tokens)
+
+                    with RedirectStdError() as stderr:
+                        try:
+                            # ANTL3 may raise an exception, and doing so the stderror
+                            # will not be printed hiding the underlying problem.  GRRR!!!!
+                            file_node = parser.file()
+
+                        except Exception as e:
+                            if stderr.getvalue().rstrip():
+                                trace = sys.exc_info()[2]
+                                raise Exception(stderr.getvalue().rstrip()), None, trace
+                            else:
+                                raise e
+
+                    # Some times the previous parser.file() will print to stderr,
+                    # but not throw an exception.  In this case, the parser may
+                    # attempt to correct and continue onward, but we should
+                    # print the msg to stderr for the benefit of the policy
+                    # author
+                    if stderr.getvalue().rstrip():
+                        # Ideally, we should raise specific Exception types
+                        raise Exception("Cannot learn policy: " + stderr.getvalue().rstrip())
+
+                else:
                     '''
                     Try treating 'identifier' as a String containing the text
                     of a policy.
                     '''
-
                     stream = ANTLRStringStream(identifier)
                     lexer = PolicyLexer(stream)
                     tokens = CommonTokenStream(lexer)
@@ -179,69 +224,24 @@ class Intellect(object):
 
                     with RedirectStdError() as stderr:
                         try:
-                            # ANTL3 may raise an exception, and doing so the stderror 
+                            # ANTL3 may raise an exception, and doing so the stderror
                             # will not be printed hiding the underlying problem.  GRRR!!!!
                             file_node = parser.file()
                         except Exception as e:
-                            if stderr.getvalue().rstrip() != "":
+                            if stderr.getvalue().rstrip():
                                 trace = sys.exc_info()[2]
                                 raise Exception(stderr.getvalue().rstrip()), None, trace
                             else:
                                 raise e
-
-                    # Some times the previous parser.file() will print to stderr,
-                    # but not throw an exception.  In this case, the parser may
-                    # attempt to correct and continue onward, but we should
-                    # print the msg to stderr for the benefit of the policy
-                    # author
-                    if stderr.getvalue().rstrip() != "":
-                        print >> sys.stderr, stderr.getvalue().rstrip()
-
-                else:
-                    '''
-                    Try treating 'identifier' as a file path
-                    '''
-                    if Intellect.filepath_regex.match(identifier):
-                        if os.path.exists(identifier):
-                            self.log("Learning policy from file path: {0}".format(identifier))
-                            stream = FileStream(identifier)
-                            isFile = True
                         else:
-                            raise IOError, "Policy not found: {0}".format(identifier)
-                    else:
-                        '''
-                        assume the intention was to pass 'identifier' as a String containing the text
-                        of a policy, and raise the exception.
-                        '''
-                        raise e
-
-                    lexer = PolicyLexer(stream)
-                    tokens = CommonTokenStream(lexer)
-                    tokens.discardOffChannelTokens = True
-                    indentedSource = PolicyTokenSource(tokens)
-                    tokens = CommonTokenStream(indentedSource)
-                    parser = PolicyParser(tokens)
-
-                    with RedirectStdError() as stderr:
-                        try:
-                            # ANTL3 may raise an exception, and doing so the stderror 
-                            # will not be printed hiding the underlying problem.  GRRR!!!!
-                            file_node = parser.file()
-
-                        except Exception as e:
-                            if stderr.getvalue().rstrip() != "":
-                                trace = sys.exc_info()[2]
-                                raise Exception(stderr.getvalue().rstrip()), None, trace
-                            else:
-                                raise e
-
-                    # Some times the previous parser.file() will print to stderr,
-                    # but not throw an exception.  In this case, the parser may
-                    # attempt to correct and continue onward, but we should
-                    # print the msg to stderr for the benefit of the policy
-                    # author
-                    if stderr.getvalue().rstrip() != "":
-                        print >> sys.stderr, stderr.getvalue().rstrip()
+                            # Some times the previous parser.file() will print to stderr,
+                            # but not throw an exception.  In this case, the parser may
+                            # attempt to correct and continue onward, but we should
+                            # print the msg to stderr for the benefit of the policy
+                            # author
+                            if stderr.getvalue().rstrip():
+                                # Ideally, we should raise specific Exception types
+                                raise Exception("Cannot learn policy: " + stderr.getvalue().rstrip())
 
                 # set path attribute
                 file_node.path = identifier if isFile else None
