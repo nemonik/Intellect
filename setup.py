@@ -45,7 +45,7 @@ def get_version(version_tuple):
     if version_tuple[2]:
         version = '%s.%s' % (version, version_tuple[2])
     if version_tuple[3]:
-        version = '%s.%s' % (version, version_tuple[3])        
+        version = '%s.%s' % (version, version_tuple[3])
     return version
 
 def fullsplit(path, result=None):
@@ -102,7 +102,7 @@ setup(name="Intellect",
       classifiers=CLASSIFIERS,
       keywords='intellect rules engine dsl policy',
       license='BSD, 4-clause license',
-      packages = packages,
-      package_data = {'': ['*.g', '*.tokens']},
+      packages=packages,
+      package_data={'': ['*.g', '*.tokens', '*.policy']},
       include_package_data=True,
       install_requires=['antlr_python_runtime>=3.1.3'])

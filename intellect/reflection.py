@@ -449,12 +449,16 @@ def is_instance(instance, klazz):
         klazz: a class object.
     '''
 
+    log("instance = {0}".format(instance))
+    log("klazz = {0}".format(klazz))
+
     value = isinstance(instance, klazz)
 
-    if (not value):
-        path = sys.modules[instance.__module__].__file__.split(".")[0]
-        pathComponents = path.split(os.sep)
+    log("value = {0}".format(value))
 
+    if (not value):
+        path = sys.modules[instance.__module__].__file__.rsplit(".", 1)[0]
+        pathComponents = path.split(os.sep)
         moduleName = pathComponents[len(pathComponents) - 1]
 
         del pathComponents[len(pathComponents) - 1:]
@@ -466,6 +470,7 @@ def is_instance(instance, klazz):
                 moduleComponent = pathComponents[len(pathComponents) - 1]
                 moduleName = moduleComponent + "." + moduleName
                 path = "".join(path.rsplit(moduleComponent, 1)).rstrip(os.sep)
+
                 del pathComponents[len(pathComponents) - 1:]
             else:
                 break

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 """
 Copyright (c) 2011, Michael Joseph Walsh.
 All rights reserved.
@@ -61,12 +63,11 @@ if __name__ == '__main__':
     consoleHandler.setFormatter(logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s%(message)s'))
     logger.addHandler(consoleHandler)
 
-
     logging.getLogger("example").debug("Creating reasoning engine.")
     myIntellect = MyIntellect()
 
     logging.getLogger("example").debug("Asking the engine to learn my policy.")
-    policy = myIntellect.learn("./rulesets/example.policy")
+    policy = myIntellect.learn(myIntellect.local_file_uri("./rulesets/example.policy"))
 
     #print myIntellect.policy.str_tree("semantic model:")
 

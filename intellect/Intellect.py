@@ -32,13 +32,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 import logging
-import os
-import re
-import traceback
 import sys
+import urllib
+import urllib2
+import os
 
-from antlr3 import FileStream, CommonTokenStream, ANTLRStringStream, \
-    RecognitionException
+from urlparse import urlparse
+
+from antlr3 import CommonTokenStream, ANTLRStringStream
 
 from intellect.grammar.PolicyParser import PolicyParser
 from intellect.PolicyLexer import PolicyLexer
@@ -55,6 +56,7 @@ class Intellect(object):
     Rules engine.
     '''
 
+
     def __init__(self):
         '''
         Intellect initializer.
@@ -70,44 +72,88 @@ class Intellect(object):
 
     @property
     def knowledge(self):
-        """
+        '''
         Returns the intellect's knowledge either a list of objects or an
             empty list.
-        """
+        '''
         return self._knowledge
 
 
     @knowledge.setter
-    def knowledge(self, oneOrMoreObjects):
-        """
+    def knowledge(self, one_or_more_objects):
+        '''
         Keeper of knowledge.
 
         Holds facts aka objects in a list.
 
         Args:
-            oneOrMoreObjects: Either a single facts or policy file or
+            one_or_more_objects: Either a single facts or policy file or
                 a list of facts and/or policy files.
-        """
+        '''
 
         try:
             self.knowledge
         except AttributeError:
             self._knowledge = []
 
-        if not isinstance(oneOrMoreObjects, list):
-            self.knowledge.append(oneOrMoreObjects)
-        elif oneOrMoreObjects != []:
-            self.knowledge.extend(oneOrMoreObjects)
+        if not isinstance(one_or_more_objects, list):
+            self.knowledge.append(one_or_more_objects)
+        elif one_or_more_objects != []:
+            self.knowledge.extend(one_or_more_objects)
 
 
     @property
     def policy(self):
+        '''
+        Getter for the intellect's Policy object.
+        '''
         return self._policy
 
 
     @policy.setter
     def policy(self, value):
+        '''
+        Setter for the intellect Policy object
+        
+        Args:
+            value: a Policy object
+        '''
         self._policy = value
+
+
+    @staticmethod
+    def local_file_uri(file_path):
+        '''
+        Helper/Utility method to take file system paths and return a file URI for use
+        with learn, and learn_policy methods
+        
+        Args:
+            file_path: The file path to the policy
+            
+        Returns:
+            an equivalent file URI
+        '''
+
+        return "file://" + urllib.pathname2url(os.path.abspath(file_path))
+
+
+    @staticmethod
+    def policy_from(urlstring):
+        '''
+        Helper/Utility method to retrieve a policy from a URL
+
+        Uses proxies from environment.
+        
+        Args:
+            urlstring: The URL to the policy file.
+        
+        Returns:
+            The text of the policy.
+        '''
+
+        response = urllib2.urlopen(urlstring)
+
+        return response.read()
 
 
     def learn(self, identifier):
@@ -156,91 +202,51 @@ class Intellect(object):
                 either a file path to a policy or the text of the policy itself.
         '''
 
-        isFile = False
+        is_file = False
 
         if identifier:
             if isinstance(identifier, basestring):
+                if urlparse(identifier).scheme:
 
-                if os.path.isfile(identifier):
-                    '''
-                    Try treating 'identifier' as a file path
-                    '''
-                    try:
-                        # Ensure we can read the file
-                        with open(identifier) as f: pass
-                    except IOError:
-                        raise IOError, "Cannot read policy file from path: {0}".format(identifier)
-
-                    else:
-                        self.log("Learning policy from file path: {0}".format(identifier))
-                        stream = FileStream(identifier)
-                        isFile = True
-
-                    lexer = PolicyLexer(stream)
-                    tokens = CommonTokenStream(lexer)
-                    tokens.discardOffChannelTokens = True
-                    indentedSource = PolicyTokenSource(tokens)
-                    tokens = CommonTokenStream(indentedSource)
-                    parser = PolicyParser(tokens)
-
-                    with RedirectStdError() as stderr:
-                        try:
-                            # ANTL3 may raise an exception, and doing so the stderror
-                            # will not be printed hiding the underlying problem.  GRRR!!!!
-                            file_node = parser.file()
-
-                        except Exception as e:
-                            if stderr.getvalue().rstrip():
-                                trace = sys.exc_info()[2]
-                                raise Exception(stderr.getvalue().rstrip()), None, trace
-                            else:
-                                raise e
-
-                    # Some times the previous parser.file() will print to stderr,
-                    # but not throw an exception.  In this case, the parser may
-                    # attempt to correct and continue onward, but we should
-                    # print the msg to stderr for the benefit of the policy
-                    # author
-                    if stderr.getvalue().rstrip():
-                        # Ideally, we should raise specific Exception types
-                        raise Exception("Cannot learn policy from file: " + stderr.getvalue().rstrip())
-
+                    # Treat 'identifier' as an URL
+                    self.log("Learning policy from URL: {0}".format(identifier))
+                    stream = ANTLRStringStream(Intellect.policy_from(identifier))
+                    is_file = True
                 else:
-                    '''
-                    Try treating 'identifier' as a String containing the text
-                    of a policy.
-                    '''
-                    stream = ANTLRStringStream(identifier)
-                    lexer = PolicyLexer(stream)
-                    tokens = CommonTokenStream(lexer)
-                    tokens.discardOffChannelTokens = True
-                    indentedSource = PolicyTokenSource(tokens)
-                    tokens = CommonTokenStream(indentedSource)
-                    parser = PolicyParser(tokens)
 
-                    with RedirectStdError() as stderr:
-                        try:
-                            # ANTL3 may raise an exception, and doing so the stderror
-                            # will not be printed hiding the underlying problem.  GRRR!!!!
-                            file_node = parser.file()
-                        except Exception as e:
-                            if stderr.getvalue().rstrip():
-                                trace = sys.exc_info()[2]
-                                raise Exception(stderr.getvalue().rstrip()), None, trace
-                            else:
-                                raise e
+                    #Treat 'identifier' as policy  string
+                    self.log("Learning policy from string")
+                    stream = ANTLRStringStream(identifier)
+
+                lexer = PolicyLexer(stream)
+                tokens = CommonTokenStream(lexer)
+                tokens.discardOffChannelTokens = True
+                indented_source = PolicyTokenSource(tokens)
+                tokens = CommonTokenStream(indented_source)
+                parser = PolicyParser(tokens)
+
+                with RedirectStdError() as stderr:
+                    try:
+                        # ANTL3 may raise an exception, and doing so the stderror 
+                        # will not be printed hiding the underlying problem.  GRRR!!!!
+                        file_node = parser.file()
+                    except Exception as e:
+                        if stderr.getvalue().rstrip() != "":
+                            trace = sys.exc_info()[2]
+                            raise Exception(stderr.getvalue().rstrip()), None, trace
                         else:
-                            # Some times the previous parser.file() will print to stderr,
-                            # but not throw an exception.  In this case, the parser may
-                            # attempt to correct and continue onward, but we should
-                            # print the msg to stderr for the benefit of the policy
-                            # author
-                            if stderr.getvalue().rstrip():
-                                # Ideally, we should raise specific Exception types
-                                raise Exception("Cannot learn policy from string: " + stderr.getvalue().rstrip())
+                            raise e
+
+                # Some times the previous parser.file() will print to stderr,
+                # but not throw an exception.  In this case, the parser may
+                # attempt to correct and continue onward, but we should
+                # print the msg to stderr for the benefit of the policy
+                # author
+                if stderr.getvalue().rstrip() != "":
+                    print >> sys.stderr, stderr.getvalue().rstrip()
 
                 # set path attribute
-                file_node.path = identifier if isFile else None
+                file_node.path = identifier if is_file else None
 
                 # associate the path to all descendants
                 file_node.set_file_on_descendants(file_node, file_node)
@@ -261,6 +267,7 @@ class Intellect(object):
 
             else:
                 raise TypeError, "parameter 'identifier' must be a string, either a file path to a policy or the text of the policy itself"
+
         else:
             raise TypeError, "parameter 'identifier' cannot be a NoneType."
 
@@ -294,30 +301,30 @@ class Intellect(object):
                         self.log("Forgetting fact with id: {0} of type: {1} from knowledge. fact.__dict__: {2}".format(identifier, type(fact), fact.__dict__))
                         self.knowledge.remove(fact)
                         return
-                # fact doesn't exist in memory, attempt to remove a policy file/String
+                # fact doesn't exist in memory, attempt to remove a policy policy_file/String
                 # from knowledge with this identifier
-                for index, file in self.policy.files:
-                    if identifier == id(file):
+                for index, policy_file in self.policy.files:
+                    if identifier == id(policy_file):
                         self.log("Forgetting policy loaded from file path : {0}".format(identifier.path))
-                        self.policy.files.remove(file)
+                        self.policy.files.remove(policy_file)
                         return
                 # neither fact nor policy so raise an exception
                 raise ValueError, "fact with id: {0} is not in knowledge".format(identifier)
             elif isinstance(identifier, basestring):
-                # remove the policy file from knowledge
+                # remove the policy policy_file from knowledge
                 try:
-                    for fileIndex, file in enumerate(self.policy.files):
-                        if file.path == identifier:
+                    for fileIndex, policy_file in enumerate(self.policy.files):
+                        if policy_file.path == identifier:
                             self.policy.files.pop(fileIndex)
 
-                    self.log("Forgetting policy loaded from file path : {0}".format(identifier))
+                    self.log("Forgetting policy loaded from policy_file path : {0}".format(identifier))
                 except KeyError:
-                    raise ValueError, "policy for file path: {0} is not in knowledge".format(identifier)
+                    raise ValueError, "policy for policy_file path: {0} is not in knowledge".format(identifier)
             elif isinstance(identifier, File):
                 try:
                     index = self.policy.files.index(identifier)
                     self.policy.files.pop(index)
-                    self.log("Forgetting policy loaded from file path : {0}".format(identifier.path))
+                    self.log("Forgetting policy loaded from policy_file path : {0}".format(identifier.path))
                 except:
                     raise ValueError, "policy: {0} not in knowledge".format(identifier.path)
             else:
@@ -440,3 +447,5 @@ class Intellect(object):
             raise ValueError, "A value of '{0}' for 'level' is invalid, must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL".format(level)
 
         logging.getLogger(name).log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
+
+
