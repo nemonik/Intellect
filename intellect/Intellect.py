@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -159,8 +156,8 @@ class Intellect(object):
     def learn(self, identifier):
         '''
         Learns an object fact, or learns a policy by messaging learn_policy
-        method with the 'identifier' as a policy path, if the identifier is
-        a string.
+        method with the 'identifier' as a policy URL or the text of the policy,
+        if the identifier is a string.
 
         Args:
             fact: an object or policy file/string to learn.  Typically objects have
@@ -187,7 +184,7 @@ class Intellect(object):
         Learn a policy file.
 
         Args:
-            identifier: a string, either a path to a policy file or the text of the policy itself.
+            identifier: a string, either a URL to a policy file or the text of the policy itself.
             Keep in mind a policy can be comprised of more than one policy file (a file containing
             valid policy DSL) or string containing policy DSL.  This way you break your rule set,
             imports, and policy attributes across any number of files.  See reason-method for more.
@@ -286,7 +283,7 @@ class Intellect(object):
 
         Args:
             identifier: is an id() of a fact or policy, or a string
-                representing the path of a policy, or a fact.
+                representing the URL of a policy, or a fact.
 
         Raises:
             ValueError:  Raised when parameter 'identifier' has the right
@@ -301,7 +298,7 @@ class Intellect(object):
                         self.log("Forgetting fact with id: {0} of type: {1} from knowledge. fact.__dict__: {2}".format(identifier, type(fact), fact.__dict__))
                         self.knowledge.remove(fact)
                         return
-                # fact doesn't exist in memory, attempt to remove a policy policy_file/String
+                # fact doesn't exist in memory, attempt to remove a policy file/String
                 # from knowledge with this identifier
                 for index, policy_file in self.policy.files:
                     if identifier == id(policy_file):
@@ -311,20 +308,20 @@ class Intellect(object):
                 # neither fact nor policy so raise an exception
                 raise ValueError, "fact with id: {0} is not in knowledge".format(identifier)
             elif isinstance(identifier, basestring):
-                # remove the policy policy_file from knowledge
+                # remove the policy policy file from knowledge
                 try:
                     for fileIndex, policy_file in enumerate(self.policy.files):
                         if policy_file.path == identifier:
                             self.policy.files.pop(fileIndex)
 
-                    self.log("Forgetting policy loaded from policy_file path : {0}".format(identifier))
+                    self.log("Forgetting policy loaded from file path : {0}".format(identifier))
                 except KeyError:
-                    raise ValueError, "policy for policy_file path: {0} is not in knowledge".format(identifier)
+                    raise ValueError, "policy for file path: {0} is not in knowledge".format(identifier)
             elif isinstance(identifier, File):
                 try:
                     index = self.policy.files.index(identifier)
                     self.policy.files.pop(index)
-                    self.log("Forgetting policy loaded from policy_file path : {0}".format(identifier.path))
+                    self.log("Forgetting policy loaded from file path : {0}".format(identifier.path))
                 except:
                     raise ValueError, "policy: {0} not in knowledge".format(identifier.path)
             else:
