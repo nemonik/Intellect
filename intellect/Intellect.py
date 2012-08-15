@@ -33,9 +33,11 @@ import sys
 import urllib
 import urllib2
 import os
+import errno
 
 from urlparse import urlparse
 
+from antlr3.exceptions import NoViableAltException
 from antlr3 import CommonTokenStream, ANTLRStringStream
 
 from intellect.grammar.PolicyParser import PolicyParser
@@ -123,15 +125,32 @@ class Intellect(object):
         '''
         Helper/Utility method to take file system paths and return a file URI for use
         with learn, and learn_policy methods
-        
+
         Args:
             file_path: The file path to the policy
-            
+
         Returns:
             an equivalent file URI
         '''
+        if os.path.isfile(file_path):
+            try:
+                with open(file_path):
+                    pass
 
-        return "file://" + urllib.pathname2url(os.path.abspath(file_path))
+            except IOError:
+                # Permission denied, cannot read file.
+                raise IOError(errno.EACCES, "Permission denied to policy locate at: {0}".format(file_path))
+
+        else:
+            # Cannot find file.
+            raise IOError(errno.ENOENT, "Cannot find policy located at:  {0}".format(file_path))
+
+        full_path = urllib.pathname2url(os.path.abspath(file_path))
+        if file_path.startswith("file://"):
+            return full_path
+
+        else:
+            return "file://" + full_path
 
 
     @staticmethod
@@ -234,13 +253,22 @@ class Intellect(object):
                         else:
                             raise e
 
-                # Some times the previous parser.file() will print to stderr,
-                # but not throw an exception.  In this case, the parser may
-                # attempt to correct and continue onward, but we should
-                # print the msg to stderr for the benefit of the policy
-                # author
+                # ANTL3's Recognizer is written to print a number of
+                # Antlr3 Exceptions to stderr vice throwing an exception, because
+                # it will try to recover and continue parsing. 
+                # 
+                # In the case of NoViableAltException, I've chosen to raise an
+                # exception.
+                #
+                # Otherwise, all the other error message the Recognizer has written to 
+                # stderr will be returned for the benefit of the policy author.
                 if stderr.getvalue().rstrip() != "":
-                    print >> sys.stderr, stderr.getvalue().rstrip()
+                    # check for stderror msg indicating an NoViableAltException occured.
+                    # if did raise an exception with the stderror message.
+                    if "no viable alternative at input" in stderr.getvalue().rstrip():
+                        raise Exception("Error parsing policy:  ".format(stderr.getvalue().rstrip()))
+                    else:
+                        print >> sys.stderr, stderr.getvalue().rstrip()
 
                 # set path attribute
                 file_node.path = identifier if is_file else None
@@ -444,5 +472,3 @@ class Intellect(object):
             raise ValueError, "A value of '{0}' for 'level' is invalid, must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL".format(level)
 
         logging.getLogger(name).log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
-
-
