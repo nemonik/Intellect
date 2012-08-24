@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -126,7 +123,7 @@ class Node(object):
         Sets the children list for this node.
         '''
         if not isinstance(value, (list, types.NoneType)):
-            raise TypeError, "Parameter 'value' must be a List or NoneType."
+            raise TypeError("Parameter 'value' must be a List or NoneType.")
 
         if value is None:
             value = []
@@ -152,11 +149,11 @@ class Node(object):
 
         # cannot add None
         if not child:
-            raise TypeError, "Parameter 'child' cannot be None."
+            raise TypeError("Parameter 'child' cannot be None.")
 
         # must be either a basestring or Node object
         if not isinstance(child, (basestring, Node)):
-            raise TypeError, "Parameter 'child' must be a basetring or Node."
+            raise TypeError("Parameter 'child' must be a basetring or Node.")
 
         # if children is not yet a list, make it a list object
         if not self.children:
@@ -173,18 +170,18 @@ class Node(object):
 
         # can't add None
         if not children:
-            raise TypeError, "Parameter 'children' cannot be an empty list."
+            raise TypeError("Parameter 'children' cannot be an empty list.")
 
         # must be a list
         if not isinstance(children, list):
-            raise TypeError, "Parameter 'children' must be a list."
+            raise TypeError("Parameter 'children' must be a list.")
 
         # iterate through the children to be added and
         # verify they are of the correct type, if not
         # raise a TypeError
         for child in children:
             if not isinstance(child, (basestring, Node)):
-                raise TypeError, str(child) + " must be a basetring or Node."
+                raise TypeError(str(child) + " must be a basetring or Node.")
 
         # if children is not yet a list, make it a list object
         if not self.children:
@@ -206,18 +203,18 @@ class Node(object):
 
         # cann't add None
         if not child:
-            raise TypeError, "Parameter 'child' cannot be None."
+            raise TypeError("Parameter 'child' cannot be None.")
 
         # must be either a basestring or Node object
         if not isinstance(child, (basestring, Node)):
-            raise TypeError, "Parameter 'child' must be a basetring or Node."
+            raise TypeError("Parameter 'child' must be a basetring or Node.")
 
         # if children is not yet a list, make it a list object
         if not self.children:
             self.children = []
 
         if index > len(self.children) or index < 0:
-            raise ValueError, "Parameter 'index' cannot be a value less than 0 or greater than {0}. A value of {1} was passed.".format(len(self.children), index)
+            raise ValueError("Parameter 'index' cannot be a value less than 0 or greater than {0}. A value of {1} was passed.".format(len(self.children), index))
 
         self.children.insert(index, child)
 
@@ -233,18 +230,18 @@ class Node(object):
 
         # can't add None
         if not children:
-            raise TypeError, "Parameter 'children' cannot be an empty list."
+            raise TypeError("Parameter 'children' cannot be an empty list.")
 
         # must be a list
         if not isinstance(children, list):
-            raise TypeError, "Parameter 'children' must be a list."
+            raise TypeError("Parameter 'children' must be a list.")
 
         # iterate through the children to be added and
         # verify they are of the correct type, if not
         # raise a TypeError
         for child in children:
             if not isinstance(child, (basestring, Node)):
-                raise TypeError, str(child) + " must be a basetring or Node."
+                raise TypeError(str(child) + " must be a basetring or Node.")
 
         # if children is not yet a list, make it a list object
         if not self.children:
@@ -281,7 +278,7 @@ class Node(object):
         if isinstance(value, (int, types.NoneType)):
             self._line = value
         else:
-            raise TypeError, "Must be an int or NoneType."
+            raise TypeError("Must be an int or NoneType.")
 
 
     @property
@@ -314,7 +311,7 @@ class Node(object):
         if isinstance(value, (int, types.NoneType)):
             self._column = value
         else:
-            raise TypeError, "Must be an int."
+            raise TypeError("Must be an int.")
 
 
     @property
@@ -333,7 +330,7 @@ class Node(object):
         if isinstance(value, File):
             self._file = value
         else:
-            raise TypeError, "'file' must be of type File."
+            raise TypeError("'file' must be of type File.")
 
 
     def append_global(self, object_reference, value):
@@ -354,7 +351,7 @@ class Node(object):
 
         if level not in [logging.DEBUG, logging.INFO, logging.WARNING,
                 logging.ERROR, logging.CRITICAL]:
-            raise ValueError, "'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL"
+            raise ValueError("'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL")
 
         logging.getLogger(name).log(level, "{0}.{1} :: {2}".format(self.__class__.__module__, self.__class__.__name__, msg))
 
@@ -479,7 +476,7 @@ class Policy(Node):
         if isinstance(value, reflection.class_from_str("intellect.Intellect.Intellect")):
             self._intellect = value
         else:
-            raise TypeError, "'intellect' must be of type Intellect."
+            raise TypeError("'intellect' must be of type Intellect.")
 
 
     @property
@@ -500,7 +497,7 @@ class Policy(Node):
         if isinstance(value, dict):
             self._globals = value
         else:
-            raise TypeError, "'globals' must be of type dictionary."
+            raise TypeError("'globals' must be of type dictionary.")
 
 
     @property
@@ -519,13 +516,13 @@ class Policy(Node):
         if isinstance(value, bool):
             self._halt = value
         else:
-            raise TypeError, "'halt' must be of type bool."
+            raise TypeError("'halt' must be of type bool.")
 
 
     @property
     def files(self):
         '''
-        Convienance method to return all the policy files
+        A convenience method to return all the policy files
         comprising the policy.  Otherwise, once could simply
         call the children properties method on this instance.
         Calling this just makes the code more readable.
@@ -536,7 +533,7 @@ class Policy(Node):
     @files.setter
     def files(self, value):
         '''
-        Convienance method to set the policy files
+        A convenience method to set the policy files
         comprising the policy.  Otherwise, once could simply
         call the children setter method on this instance.
         Calling this just makes the code more readable.
@@ -547,7 +544,7 @@ class Policy(Node):
     @property
     def file_paths(self):
         '''
-        Convienance method to return the policy file paths
+        A convenience method to return the policy file paths
         as a list.
 
         None is returned for file nodes learned from strings.
@@ -607,7 +604,7 @@ class Policy(Node):
         self.halt = False
 
         if not isinstance(agenda, (list, types.NoneType)):
-            raise TypeError, "Parameter 'agenda' must be a List or NoneType."
+            raise TypeError("Parameter 'agenda' must be a List or NoneType.")
 
         if not agenda:
             agenda = ["MAIN"]
@@ -621,14 +618,14 @@ class Policy(Node):
                 exec(str(importStmt), self.globals)
             except ImportError as error:
                 exception_type, exception_value, exception_traceback = sys.exc_info()
-                raise ImportError, (error.message + " at line: {0} from policy file: '{1}'".format(importStmt.line, importStmt.file.path), exception_type, exception_value), exception_traceback
+                raise ImportError(error.message + " at line: {0} from policy file: '{1}'".format(importStmt.line, importStmt.file.path), exception_type, exception_value), None, exception_traceback
 
         # put the policy attributes into the policy's global namespace
         for attributeStmt in self.attributeStmts:
             # check for issues
             for atom in [atom for atom in Node.filter_to_list(Atom, attributeStmt.expressionStmt.children[0]) if len(atom.children) is 1]:
                 if atom.first_child() in keyword.kwlist:
-                    raise SyntaxError, "invalid syntax:  global '{0}' is a reserved keyword: {1} from policy file: '{2}'.".format(atom.first_child(), attributeStmt.line, atom.file.path)
+                    raise SyntaxError("invalid syntax:  global '{0}' is a reserved keyword: {1} from policy file: '{2}'.".format(atom.first_child(), attributeStmt.line, atom.file.path))
 
             # add globals to the namespace
             self.log("Evaluating: {0}".format(attributeStmt))
@@ -688,7 +685,7 @@ class File(Node):
         if isinstance(value, (basestring, types.NoneType)):
             self._path = value
         else:
-            raise TypeError, "'path' must be of type string or None."
+            raise TypeError("'path' must be of type string or None.")
 
 
     @property
@@ -727,7 +724,7 @@ class File(Node):
         '''
 
         if not isinstance(node, (Node, types.NoneType)):
-            raise TypeError, "'node' must be of type Node."
+            raise TypeError("'node' must be of type Node.")
 
         node.file = file_node
 
@@ -1132,7 +1129,7 @@ class Then(Node):
         # Insert into localScope all of Intellect's methods decorated as callable
         for method_name in [method_name for method_name in dir(policy.intellect) if isinstance(getattr(policy.intellect, method_name), Callable)]:
             if method_name in localScope:
-                raise RuntimeWarning, "'Intellect method {0}' is already in local scope of the Then portion of rule: '{1}', define near line: {2} in policy file: '{3}'.  Consider renaming method.".format(method_name, ruleStmt.id, ruleStmt.line, self.file.path)
+                raise RuntimeWarning("'Intellect method {0}' is already in local scope of the Then portion of rule: '{1}', define near line: {2} in policy file: '{3}'.  Consider renaming method.".format(method_name, ruleStmt.id, ruleStmt.line, self.file.path))
             else:
                 localScope[method_name] = getattr(policy.intellect, method_name)
 
@@ -1170,7 +1167,7 @@ class Then(Node):
                             exec(str(code), policy.globals, localScope)
                         except Exception as error:
                             exception_type, exception_value, exception_traceback = sys.exc_info()
-                            raise SyntaxError, ("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
+                            raise SyntaxError ("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), None, exception_traceback
 
                         policy.intellect.learn(localScope["new_fact"])
 
@@ -1191,7 +1188,7 @@ class Then(Node):
                                         exec("value" + " = " + str(Then.rewrite(propertyAssignment.constraint, Constraint(), objectBinding)), policy.globals, localScope)
                                     except Exception as error:
                                         exception_type, exception_value, exception_traceback = sys.exc_info()
-                                        raise SyntaxError, ("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
+                                        raise SyntaxError("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), None, exception_traceback
 
                                     self.log("modifying {0} property {1} with value of {2} with assignment of {3}".format(objectBinding, propertyAssignment, localScope["value"], propertyAssignment.assignment))
 
@@ -1260,7 +1257,7 @@ class Then(Node):
                     # As the ForgetAction acts on a specific match, one cannot
                     # have ForgetAction statements in then-portion of a rule
                     # who's when-portion evaluated on "exists".
-                    raise SyntaxError, "forgetAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path)
+                    raise SyntaxError("forgetAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path))
 
                 elif isinstance(actualAction, LearnAction):
 
@@ -1275,7 +1272,7 @@ class Then(Node):
                         exec(str(code), policy.globals, localScope)
                     except Exception as error:
                         exception_value, exception_traceback = sys.exc_info()
-                        raise SyntaxError, ("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), exception_traceback
+                        raise SyntaxError("{0} in rule: '{1}' at line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, actualAction.line, self.file.path), exception_type, exception_value), None, exception_traceback
 
                     policy.intellect.learn(localScope["new_fact"])
 
@@ -1285,7 +1282,7 @@ class Then(Node):
                     # have ModifyeAction statements in then-portion of a rule
                     # who's when-portion evaluated on "exists".
 
-                    raise SyntaxError, "modifyAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path())
+                    raise SyntaxError("modifyAction cannot exist in then portion as when portion is written for '{0}' at line: {1} in Policy: {2}".format(ruleStmt.id, actualAction.line, self.file.path()))
                 elif isinstance(actualAction, HaltAction):
 
                     policy.halt = True
@@ -1331,7 +1328,7 @@ class Then(Node):
 
         except Exception, error:
             exception_type, exception_value, exception_traceback = sys.exc_info()
-            raise RuntimeError, ("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path), exception_type, exception_value), exception_traceback
+            raise RuntimeError("{0} in rule: '{1}' near line: {2} in the policy file: '{3}'".format(error, ruleStmt.id, self.line, self.file.path), exception_type, exception_value), None, exception_traceback
 
 
     @staticmethod
@@ -1491,12 +1488,12 @@ class ClassConstraint(Node):
         '''
         Returns a Constraint object, if one exists otherwise None
         '''
-        filter = [child for child in self.children if isinstance(child, Constraint)]
+        filtered = [child for child in self.children if isinstance(child, Constraint)]
 
-        if not filter:  # True, if filter is []
+        if not filtered:  # True, if filtered is []
             return None
         else:
-            return filter[0]
+            return filtered[0]
 
 
 
@@ -1594,12 +1591,12 @@ class LearnAction(Node):
         '''
         Returns an ArgList object, if one exists otherwise None
         '''
-        filter = [child for child in self.children if isinstance(child, ArgumentList)]
+        filtered = [child for child in self.children if isinstance(child, ArgumentList)]
 
-        if not filter:  # True, if filter is []
+        if not filtered:  # True, if filtered is []
             return None
         else:
-            return filter[0]
+            return filtered[0]
 
 
 
@@ -1964,12 +1961,12 @@ class Power(Node):
         '''
         Returns a Factor object, if one exists otherwise None
         '''
-        filter = [child for child in self.children if isinstance(child, Factor)]
+        filtered = [child for child in self.children if isinstance(child, Factor)]
 
-        if not filter:  # True, if filter is []
+        if not filtered:  # True, if filtered is []
             return None
         else:
-            return filter[0]
+            return filtered[0]
 
 
 

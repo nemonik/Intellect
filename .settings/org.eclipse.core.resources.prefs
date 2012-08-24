@@ -5,4 +5,6 @@ encoding//intellect/Intellect.py=utf-8
 encoding//intellect/Node.py=utf-8
 encoding//intellect/PolicyLexer.py=utf-8
 encoding//intellect/PolicyTokenSource.py=utf-8
-encoding//intellect/examples/rulesfest/Example.py=utf-8
+encoding//intellect/examples/bahBahBlackSheep/Example.py=utf-8
+encoding//intellect/examples/testing/ExerciseGrammar.py=utf-8
+encoding//intellect/examples/testing/ExerciseIntellect.py=utf-8

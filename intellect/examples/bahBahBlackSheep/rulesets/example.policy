@@ -1,5 +1,5 @@
-from intellect.examples.rulesfest.BlackSheep import BlackSheep
-from intellect.examples.rulesfest.BuyOrder import BuyOrder
+from intellect.examples.bahBahBlackSheep.BlackSheep import BlackSheep
+from intellect.examples.bahBahBlackSheep.BuyOrder import BuyOrder
 import logging
 import random
 

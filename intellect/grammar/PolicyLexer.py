@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2012-08-15 17:42:08
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2012-08-24 17:12:15
 
 import sys
 from antlr3 import *
@@ -4754,7 +4754,7 @@ class PolicyLexer(Lexer):
                 if ((self.startPosition > 0 )):
                     s = 157
 
-                elif (((self.startPosition == 0 ) or (((self.startPosition == 0 )) and ((self.implicitLineJoiningLevel > 0))))):
+                elif (((((self.startPosition == 0 )) and ((self.implicitLineJoiningLevel > 0))) or (self.startPosition == 0 ))):
                     s = 116
 
                  
@@ -4771,7 +4771,7 @@ class PolicyLexer(Lexer):
                 if ((self.startPosition > 0 )):
                     s = 157
 
-                elif (((self.startPosition == 0 ) or (((self.startPosition == 0 )) and ((self.implicitLineJoiningLevel > 0))))):
+                elif (((((self.startPosition == 0 )) and ((self.implicitLineJoiningLevel > 0))) or (self.startPosition == 0 ))):
                     s = 116
 
                  

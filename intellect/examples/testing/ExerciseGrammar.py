@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -66,12 +68,12 @@ if __name__ == "__main__":
     try:
         myIntellect = Intellect()
 
-        policy_a = myIntellect.learn("./rulesets/test_f.policy")
+        policy_a = myIntellect.learn(Intellect.local_file_uri("./rulesets/test_f.policy"))
 
-        myIntellect.learn(ClassA( property1="apple"))
+        myIntellect.learn(ClassA(property1="apple"))
         #myIntellect.learn(ClassA( property1="pear"))
         #myIntellect.learn(ClassA( property1="grape"))
-        
+
         #logger.debug("reasoning over policy w/ objects in memory")
 
         myIntellect.reason()

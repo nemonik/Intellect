@@ -61,101 +61,104 @@ def log(msg, name="intellect", level=logging.DEBUG):
 
     if level not in [logging.DEBUG, logging.INFO, logging.WARNING,
             logging.ERROR, logging.CRITICAL]:
-        raise ValueError, "'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL"
+        raise ValueError("'level' must be either logging.DEBUG, logging.INFO, logging.WARNING, logging.ERROR, logging.CRITICAL")
 
     logging.getLogger(name).log(level, "{0} :: {1}".format(__name__, msg))
 
 
-def is_method(object, name):
+def is_method(klazz, name):
     '''
     does this class have this method?
     '''
-    return (inspect_class_for_attribute(object, name)[0] in [INSTANCE_METHOD, CLASS_METHOD, STATIC_METHOD])
+    return (inspect_class_for_attribute(klazz, name)[0] in [INSTANCE_METHOD, CLASS_METHOD, STATIC_METHOD])
 
 
-def has_attribute(object, name):
+def has_attribute(klazz, name):
     '''
-    does this object have this attribute in other words does it have this
+    does this class have this attribute in other words does it have this
     (instance/class/static) method, property, or global?
     '''
-    return (inspect_class_for_attribute(object, name)) != (None, None, None)
+    return (inspect_class_for_attribute(klazz, name)) != (None, None, None)
 
 
-def is_instance_method(object, name):
+def is_instance_method(klazz, name):
     '''
     does this class have this method?
     '''
-    return (inspect(object, name)[0] is INSTANCE_METHOD)
+    return (inspect(klazz, name)[0] is INSTANCE_METHOD)
 
 
-def is_class_method(object, name):
+def is_class_method(klazz, name):
     '''
     does this class have this class method?
     '''
-    return (inspect_class_for_attribute(object, name)[0] is CLASS_METHOD)
+    return (inspect_class_for_attribute(klazz, name)[0] is CLASS_METHOD)
 
 
-def is_static_method(object, name):
+def is_static_method(klazz, name):
     '''
     does this class have this static method?
     '''
-    return (inspect_class_for_attribute(object, name)[0] is STATIC_METHOD)
+    return (inspect_class_for_attribute(klazz, name)[0] is STATIC_METHOD)
 
 
-def is_property(object, name):
+def is_property(klazz, name):
     '''
     does this class have this property?
     '''
-    return (inspect_class_for_attribute(object, name)[0] is PROPERTY)
+    return (inspect_class_for_attribute(klazz, name)[0] is PROPERTY)
 
 
-def is_data(object, name):
+def is_data(klazz, name):
     '''
     does this class have this global or attribute?
     '''
     return (inspect_class_for_attribute(object, name)[0] is DATA)
 
 
-def inspect_class_for_attribute(object, name):
+def inspect_class_for_attribute(klazz, name):
     '''
-    For a given object inspects it for the existence of named instance/class/static method,
+    For a given class inspects it for the existence of named instance/class/static method,
     property, and data element (global or attribute) attribute; and returns in tuple form
     (kind, obj, homeClass)
     '''
 
-    if name in dir(object):
-        if name in object.__dict__:
-            obj = object.__dict__[name]
+    if inspect.isclass(klazz):
+        if name in dir(klazz):
+            if name in klazz.__dict__:
+                obj = klazz.__dict__[name]
+            else:
+                obj = getattr(klazz, name)
+
+            homeClass = getattr(obj, "__objclass__", None)
+
+            if homeClass is None:
+                for base in inspect.getmro(klazz):
+                    if name in base.__dict__:
+                        homeClass = base
+                        break
+
+            if ((homeClass is not None) and (name in homeClass.__dict__)):
+                obj = homeClass.__dict__[name]
+                obj_via_getattr = getattr(klazz, name)
+
+            if isinstance(obj, staticmethod):
+                kind = staticmethod
+            elif isinstance(obj, classmethod):
+                kind = CLASS_METHOD
+            elif isinstance(obj, property):
+                kind = PROPERTY
+            elif (inspect.ismethod(obj_via_getattr) or
+                  inspect.ismethoddescriptor(obj_via_getattr)):
+                kind = INSTANCE_METHOD
+            else:
+                kind = DATA
+
+            return (kind, obj, homeClass)
         else:
-            obj = getattr(object, name)
-
-        homeClass = getattr(obj, "__objclass__", None)
-
-        if homeClass is None:
-            for base in inspect.getmro(object):
-                if name in base.__dict__:
-                    homeClass = base
-                    break
-
-        if ((homeClass is not None) and (name in homeClass.__dict__)):
-            obj = homeClass.__dict__[name]
-            obj_via_getattr = getattr(object, name)
-
-        if isinstance(obj, staticmethod):
-            kind = staticmethod
-        elif isinstance(obj, classmethod):
-            kind = CLASS_METHOD
-        elif isinstance(obj, property):
-            kind = PROPERTY
-        elif (inspect.ismethod(obj_via_getattr) or
-              inspect.ismethoddescriptor(obj_via_getattr)):
-            kind = INSTANCE_METHOD
-        else:
-            kind = DATA
-
-        return (kind, obj, homeClass)
+            return (None, None, None)
     else:
-        return (None, None, None)
+        raise TypeError("parameter 'klazz' must a class object, not an instance of a class.")
 
 
 def inspect_module_for_attribute(module, name):
@@ -292,7 +295,7 @@ def class_from_string(className, policy):
         policy: Policy providing ImportFrom objects to inspect.
 
     Raises:
-        PolicyException, if the class wasn't declared in a fromImport statement in the policy file
+        SyntaxError, if the class wasn't declared in a fromImport statement in the policy file
     """
 
     identifier = ""
@@ -310,14 +313,14 @@ def class_from_string(className, policy):
                 if importAsName.localName is not None and importAsName.localName == className:
                     # finding a match matching the localname for the className,
                     # hold the class's dottedName and identifier for later use
-                    matchedImportFrom = importFrom # used for raising PolicyException
+                    matchedImportFrom = importFrom # used for raising SyntaxError
                     dottedName = importFrom.dottedName
                     identifier = importAsName.identifier
                     break
                 elif importAsName.localName is None and importAsName.identifier == className:
                     # finding a match matching the localname for the className,
                     # hold the class's dottedName and identifier for later use
-                    matchedImportFrom = importFrom # used for raising PolicyException
+                    matchedImportFrom = importFrom # used for raising SyntaxError
                     dottedName = importFrom.dottedName
                     identifier = importAsName.identifier
                     break
@@ -326,7 +329,7 @@ def class_from_string(className, policy):
                 break
 
         if not identifier:
-            # the className was not imported, raise a PolicyException
+            # the className was not imported, raise a SyntaxError
             # TODO: include the line to assist the policy author
             raise SyntaxError("{0} was not declared in a fromImport statement in the policy file: '{1}'".format(className, policy.path))
         else:
@@ -357,7 +360,7 @@ def module_from_string(moduleName, policy):
         policy: Policy providing ImportFrom objects to inspect.
 
     Raises:
-        PolicyException, if the module wasn't declared in a importName statement in the policy file
+        SyntaxError, if the module wasn't declared in a importName statement in the policy file
     """
 
     dottedName = ""
@@ -376,7 +379,7 @@ def module_from_string(moduleName, policy):
                 if dottedAsName.localName is not None and dottedAsName.localName == moduleName:
                     # finding a match matching the localname for the moduleName,
                     # hold the module's dottedName for later use
-                    matchedImportName = importName # used for raising PolicyException
+                    matchedImportName = importName # used for raising SyntaxError
                     dottedName = dottedAsName.dottedName
                     break
                 elif dottedAsName.dottedName == moduleName:
@@ -390,7 +393,7 @@ def module_from_string(moduleName, policy):
                 break
 
         if not dottedName:
-            # the className was not imported, raise a PolicyException
+            # the className was not imported, raise a SyntaxError
             # TODO: include the line to assist the policy author
             raise SyntaxError("{0} was not declared in a importName statement in the policy file: '{1}'".format(moduleName, policy.path))
         else:
@@ -411,6 +414,7 @@ def module_from_string(moduleName, policy):
 
             return module
 
+
 def module_from_str(name):
     '''
     Returns a Module object from dottedName.identifier str such as
@@ -420,6 +424,7 @@ def module_from_str(name):
 
     log("returning {0} for {1}".format(module, name))
     return module
+
 
 def class_from_str(name):
     '''
@@ -433,6 +438,7 @@ def class_from_str(name):
 
     log("returning {0} for {1}".format(klazz, name))
     return klazz
+
 
 def is_instance(instance, klazz):
     '''
@@ -478,3 +484,4 @@ def is_instance(instance, klazz):
         value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__))
 
     return value
+

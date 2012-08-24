@@ -38,11 +38,11 @@ import logging, time
 import thread, random
 from threading import Lock
 
-from intellect.examples.rulesfest.BagOfWool import BagOfWool
+from intellect.examples.bahBahBlackSheep.BagOfWool import BagOfWool
 
 def grow_wool(sheep):
     while True:
-        
+
         time.sleep(random.randint(2, 5))
 
         logging.getLogger("example").debug("{0}: Grew a bag of wool.".format(sheep.name))
@@ -76,7 +76,7 @@ class BlackSheep():
     @property
     def name(self):
         return self._name
-    
+
     @name.setter
     def name(self, value):
         self._name = value

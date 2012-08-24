@@ -37,7 +37,6 @@ import errno
 
 from urlparse import urlparse
 
-from antlr3.exceptions import NoViableAltException
 from antlr3 import CommonTokenStream, ANTLRStringStream
 
 from intellect.grammar.PolicyParser import PolicyParser
@@ -266,7 +265,7 @@ class Intellect(object):
                     # check for stderror msg indicating an NoViableAltException occured.
                     # if did raise an exception with the stderror message.
                     if "no viable alternative at input" in stderr.getvalue().rstrip():
-                        raise Exception("Error parsing policy:  ".format(stderr.getvalue().rstrip()))
+                        raise Exception("Error parsing policy:  {0}\n{1}".format(identifier, stderr.getvalue().rstrip()))
                     else:
                         print >> sys.stderr, stderr.getvalue().rstrip()
 

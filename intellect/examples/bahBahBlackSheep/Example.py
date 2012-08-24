@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Copyright (c) 2011, Michael Joseph Walsh.
@@ -40,7 +40,7 @@ import sys, logging, time, random
 
 from intellect.Intellect import Intellect
 
-from intellect.examples.rulesfest.BuyOrder import BuyOrder
+from intellect.examples.bahBahBlackSheep.BuyOrder import BuyOrder
 
 class MyIntellect(Intellect):
     pass
