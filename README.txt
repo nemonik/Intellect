@@ -243,7 +243,7 @@ Code to exercise this policy would look like so::
 	
 		myIntellect = MyIntellect()
 	
-		policy_d = myIntellect.learn("./rulesets/test_d.policy")
+		policy_d = myIntellect.learn(Intellect.local_file_uri("./rulesets/test_d.policy"))
 	
 		myIntellect.reason(["test_d"])
 
@@ -550,7 +550,7 @@ rules on agenda in the order describe by the Python list
 	
 		myIntellect = MyIntellect()
 	
-		policy_c = myIntellect.learn("./rulesets/test_c.policy")
+		policy_c = myIntellect.learn(Intellect.local_file_uri("./rulesets/test_c.policy"))
 	
 		myIntellect.reason(["1", "2", "3", "4", "5", "6"])
 
@@ -692,7 +692,7 @@ At its simplest a rules engine can be created and used like so::
 	
 	intellect = Intellect()
 	
-	policy_a = intellect.learn("../rulesets/test_a.policy")
+	policy_a = intellect.learn(Intellect.local_file_uri("../rulesets/test_a.policy"))
 	
 	intellect.reason()
 	
@@ -730,7 +730,7 @@ For example, ``MyIntellect`` is created to sub-class ``Intellect``::
 	
 		myIntellect = MyIntellect()
 	
-		policy_a = myIntellect.learn("../rulesets/test_a.policy")
+		policy_a = myIntellect.learn(Intellect.local_file_uri("../rulesets/test_a.policy"))
 	
 		myIntellect.reason()
 	
