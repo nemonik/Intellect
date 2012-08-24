@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 '''
 Copyright (c) 2011, Michael Joseph Walsh
 All rights reserved.
