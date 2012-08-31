@@ -473,15 +473,19 @@ def is_instance(instance, klazz):
 
         while True:
             if os.path.exists(path + os.sep + "__init__.py"):
+                log("{0} has a __init__.py file".format(path))
                 moduleComponent = pathComponents[len(pathComponents) - 1]
                 moduleName = moduleComponent + "." + moduleName
                 path = "".join(path.rsplit(moduleComponent, 1)).rstrip(os.sep)
 
                 del pathComponents[len(pathComponents) - 1:]
             else:
+                log("{0} doesn't have a __init__.py file".format(path))
                 break
 
         value = ((moduleName + '.' + instance.__class__.__name__) == (klazz.__module__ + '.' + klazz.__name__))
+
+        log("value = {0}".format(value))
 
     return value
 
