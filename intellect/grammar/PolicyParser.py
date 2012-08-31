@@ -1,4 +1,4 @@
-# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2012-08-24 17:12:14
+# $ANTLR 3.1.3 Mar 17, 2009 19:23:44 /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g 2012-08-31 12:59:17
 
 import sys
 from antlr3 import *
@@ -158,26 +158,26 @@ class PolicyParser(Parser):
             transition = self.DFA54_transition
             )
 
-        self.dfa58 = self.DFA58(
-            self, 58,
-            eot = self.DFA58_eot,
-            eof = self.DFA58_eof,
-            min = self.DFA58_min,
-            max = self.DFA58_max,
-            accept = self.DFA58_accept,
-            special = self.DFA58_special,
-            transition = self.DFA58_transition
+        self.dfa59 = self.DFA59(
+            self, 59,
+            eot = self.DFA59_eot,
+            eof = self.DFA59_eof,
+            min = self.DFA59_min,
+            max = self.DFA59_max,
+            accept = self.DFA59_accept,
+            special = self.DFA59_special,
+            transition = self.DFA59_transition
             )
 
-        self.dfa60 = self.DFA60(
-            self, 60,
-            eot = self.DFA60_eot,
-            eof = self.DFA60_eof,
-            min = self.DFA60_min,
-            max = self.DFA60_max,
-            accept = self.DFA60_accept,
-            special = self.DFA60_special,
-            transition = self.DFA60_transition
+        self.dfa61 = self.DFA61(
+            self, 61,
+            eot = self.DFA61_eot,
+            eof = self.DFA61_eof,
+            min = self.DFA61_min,
+            max = self.DFA61_max,
+            accept = self.DFA61_accept,
+            special = self.DFA61_special,
+            transition = self.DFA61_transition
             )
 
 
@@ -3421,7 +3421,7 @@ class PolicyParser(Parser):
                     alt45 = 2
                     LA45_0 = self.input.LA(1)
 
-                    if (LA45_0 == LPAREN or LA45_0 == DOT) :
+                    if (LA45_0 == LPAREN or LA45_0 == DOT or LA45_0 == LBRACK) :
                         alt45 = 1
 
 
@@ -3884,34 +3884,39 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "trailer"
-    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:358:1: trailer returns [object] : ( LPAREN ( argumentList )? RPAREN | DOT NAME );
+    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:358:1: trailer returns [object] : ( LPAREN ( argumentList )? RPAREN | LBRACK ( constraint )? RBRACK | DOT NAME );
     def trailer(self, ):
 
         object = None
 
         LPAREN140 = None
         RPAREN142 = None
-        DOT143 = None
-        NAME144 = None
+        LBRACK143 = None
+        RBRACK145 = None
+        DOT146 = None
+        NAME147 = None
         argumentList141 = None
+
+        constraint144 = None
 
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:359:3: ( LPAREN ( argumentList )? RPAREN | DOT NAME )
-                alt57 = 2
-                LA57_0 = self.input.LA(1)
-
-                if (LA57_0 == LPAREN) :
-                    alt57 = 1
-                elif (LA57_0 == DOT) :
-                    alt57 = 2
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:359:3: ( LPAREN ( argumentList )? RPAREN | LBRACK ( constraint )? RBRACK | DOT NAME )
+                alt58 = 3
+                LA58 = self.input.LA(1)
+                if LA58 == LPAREN:
+                    alt58 = 1
+                elif LA58 == LBRACK:
+                    alt58 = 2
+                elif LA58 == DOT:
+                    alt58 = 3
                 else:
-                    nvae = NoViableAltException("", 57, 0, self.input)
+                    nvae = NoViableAltException("", 58, 0, self.input)
 
                     raise nvae
 
-                if alt57 == 1:
+                if alt58 == 1:
                     # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:359:5: LPAREN ( argumentList )? RPAREN
                     pass 
                     LPAREN140=self.match(self.input, LPAREN, self.FOLLOW_LPAREN_in_trailer2860)
@@ -3943,13 +3948,45 @@ class PolicyParser(Parser):
                     #action end
 
 
-                elif alt57 == 2:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:360:5: DOT NAME
+                elif alt58 == 2:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:360:5: LBRACK ( constraint )? RBRACK
                     pass 
-                    DOT143=self.match(self.input, DOT, self.FOLLOW_DOT_in_trailer2880)
-                    NAME144=self.match(self.input, NAME, self.FOLLOW_NAME_in_trailer2882)
+                    LBRACK143=self.match(self.input, LBRACK, self.FOLLOW_LBRACK_in_trailer2880)
                     #action start
-                    object = Trailer( [DOT143.text, NAME144.text] ) 
+                    object = Trailer( LBRACK143.text ) 
+                    #action end
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:360:49: ( constraint )?
+                    alt57 = 2
+                    LA57_0 = self.input.LA(1)
+
+                    if (LA57_0 == LPAREN or LA57_0 == NAME or LA57_0 == STRING or LA57_0 == NOT or LA57_0 == OBJECTBINDING or (PLUS <= LA57_0 <= MINUS) or LA57_0 == TILDE or LA57_0 == LBRACK or LA57_0 == LCURLY or (INT <= LA57_0 <= COMPLEX)) :
+                        alt57 = 1
+                    if alt57 == 1:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:360:50: constraint
+                        pass 
+                        self._state.following.append(self.FOLLOW_constraint_in_trailer2885)
+                        constraint144 = self.constraint()
+
+                        self._state.following.pop()
+                        #action start
+                        object.append_child( constraint144 ) 
+                        #action end
+
+
+
+                    RBRACK145=self.match(self.input, RBRACK, self.FOLLOW_RBRACK_in_trailer2892)
+                    #action start
+                    object.append_child( RBRACK145.text ) 
+                    #action end
+
+
+                elif alt58 == 3:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:361:5: DOT NAME
+                    pass 
+                    DOT146=self.match(self.input, DOT, self.FOLLOW_DOT_in_trailer2900)
+                    NAME147=self.match(self.input, NAME, self.FOLLOW_NAME_in_trailer2902)
+                    #action start
+                    object = Trailer( [DOT146.text, NAME147.text] ) 
                     #action end
 
 
@@ -3966,7 +4003,7 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "expressionList"
-    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:363:1: expressionList returns [object] : expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )? ;
+    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:364:1: expressionList returns [object] : expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )? ;
     def expressionList(self, ):
 
         object = None
@@ -3978,25 +4015,25 @@ class PolicyParser(Parser):
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:364:3: (expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )? )
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:364:5: expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:365:3: (expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )? )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:365:5: expression1= expression ( options {k=2; } : COMMA expression2= expression )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_expression_in_expressionList2905)
+                self._state.following.append(self.FOLLOW_expression_in_expressionList2925)
                 expression1 = self.expression()
 
                 self._state.following.pop()
                 #action start
                 object = ExpressionList( expression1 ) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:365:7: ( options {k=2; } : COMMA expression2= expression )*
-                while True: #loop58
-                    alt58 = 2
-                    alt58 = self.dfa58.predict(self.input)
-                    if alt58 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:365:25: COMMA expression2= expression
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:366:7: ( options {k=2; } : COMMA expression2= expression )*
+                while True: #loop59
+                    alt59 = 2
+                    alt59 = self.dfa59.predict(self.input)
+                    if alt59 == 1:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:366:25: COMMA expression2= expression
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2925)
-                        self._state.following.append(self.FOLLOW_expression_in_expressionList2929)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2945)
+                        self._state.following.append(self.FOLLOW_expression_in_expressionList2949)
                         expression2 = self.expression()
 
                         self._state.following.pop()
@@ -4006,17 +4043,17 @@ class PolicyParser(Parser):
 
 
                     else:
-                        break #loop58
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:366:7: ( COMMA )?
-                alt59 = 2
-                LA59_0 = self.input.LA(1)
+                        break #loop59
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:367:7: ( COMMA )?
+                alt60 = 2
+                LA60_0 = self.input.LA(1)
 
-                if (LA59_0 == COMMA) :
-                    alt59 = 1
-                if alt59 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:366:9: COMMA
+                if (LA60_0 == COMMA) :
+                    alt60 = 1
+                if alt60 == 1:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:367:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2944)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_expressionList2964)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4039,7 +4076,7 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "dictmaker"
-    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:369:1: dictmaker returns [object] : constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )? ;
+    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:370:1: dictmaker returns [object] : constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )? ;
     def dictmaker(self, ):
 
         object = None
@@ -4055,38 +4092,38 @@ class PolicyParser(Parser):
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:370:3: (constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )? )
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:370:5: constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:371:3: (constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )? )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:371:5: constraint1= constraint COLON constraint2= constraint ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2969)
+                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2989)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
                 #action start
                 object = DictMaker( constraint1 ) 
                 #action end
-                self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker2979)
-                self._state.following.append(self.FOLLOW_constraint_in_dictmaker2983)
+                self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker2999)
+                self._state.following.append(self.FOLLOW_constraint_in_dictmaker3003)
                 constraint2 = self.constraint()
 
                 self._state.following.pop()
                 #action start
                 object.append_children( [":", constraint2] ) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:372:9: ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )*
-                while True: #loop60
-                    alt60 = 2
-                    alt60 = self.dfa60.predict(self.input)
-                    if alt60 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:372:26: COMMA constraint3= constraint COLON constraint4= constraint
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:373:9: ( options {k=2; } : COMMA constraint3= constraint COLON constraint4= constraint )*
+                while True: #loop61
+                    alt61 = 2
+                    alt61 = self.dfa61.predict(self.input)
+                    if alt61 == 1:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:373:26: COMMA constraint3= constraint COLON constraint4= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3004)
-                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3008)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3024)
+                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3028)
                         constraint3 = self.constraint()
 
                         self._state.following.pop()
-                        self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker3010)
-                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3014)
+                        self.match(self.input, COLON, self.FOLLOW_COLON_in_dictmaker3030)
+                        self._state.following.append(self.FOLLOW_constraint_in_dictmaker3034)
                         constraint4 = self.constraint()
 
                         self._state.following.pop()
@@ -4096,17 +4133,17 @@ class PolicyParser(Parser):
 
 
                     else:
-                        break #loop60
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:373:9: ( COMMA )?
-                alt61 = 2
-                LA61_0 = self.input.LA(1)
+                        break #loop61
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:374:9: ( COMMA )?
+                alt62 = 2
+                LA62_0 = self.input.LA(1)
 
-                if (LA61_0 == COMMA) :
-                    alt61 = 1
-                if alt61 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:373:11: COMMA
+                if (LA62_0 == COMMA) :
+                    alt62 = 1
+                if alt62 == 1:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:374:11: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3031)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_dictmaker3051)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4129,7 +4166,7 @@ class PolicyParser(Parser):
 
 
     # $ANTLR start "argumentList"
-    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:376:1: argumentList returns [object] : constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )? ;
+    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:377:1: argumentList returns [object] : constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )? ;
     def argumentList(self, ):
 
         object = None
@@ -4141,35 +4178,35 @@ class PolicyParser(Parser):
 
         try:
             try:
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:377:3: (constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )? )
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:377:5: constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )?
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:378:3: (constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )? )
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:378:5: constraint1= constraint ( COMMA constraint2= constraint )* ( COMMA )?
                 pass 
-                self._state.following.append(self.FOLLOW_constraint_in_argumentList3056)
+                self._state.following.append(self.FOLLOW_constraint_in_argumentList3076)
                 constraint1 = self.constraint()
 
                 self._state.following.pop()
                 #action start
                 object = ArgumentList( constraint1 ) 
                 #action end
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:378:7: ( COMMA constraint2= constraint )*
-                while True: #loop62
-                    alt62 = 2
-                    LA62_0 = self.input.LA(1)
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:379:7: ( COMMA constraint2= constraint )*
+                while True: #loop63
+                    alt63 = 2
+                    LA63_0 = self.input.LA(1)
 
-                    if (LA62_0 == COMMA) :
-                        LA62_1 = self.input.LA(2)
+                    if (LA63_0 == COMMA) :
+                        LA63_1 = self.input.LA(2)
 
-                        if (LA62_1 == LPAREN or LA62_1 == NAME or LA62_1 == STRING or LA62_1 == NOT or LA62_1 == OBJECTBINDING or (PLUS <= LA62_1 <= MINUS) or LA62_1 == TILDE or LA62_1 == LBRACK or LA62_1 == LCURLY or (INT <= LA62_1 <= COMPLEX)) :
-                            alt62 = 1
-
-
+                        if (LA63_1 == LPAREN or LA63_1 == NAME or LA63_1 == STRING or LA63_1 == NOT or LA63_1 == OBJECTBINDING or (PLUS <= LA63_1 <= MINUS) or LA63_1 == TILDE or LA63_1 == LBRACK or LA63_1 == LCURLY or (INT <= LA63_1 <= COMPLEX)) :
+                            alt63 = 1
 
 
-                    if alt62 == 1:
-                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:378:9: COMMA constraint2= constraint
+
+
+                    if alt63 == 1:
+                        # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:379:9: COMMA constraint2= constraint
                         pass 
-                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3068)
-                        self._state.following.append(self.FOLLOW_constraint_in_argumentList3072)
+                        self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3088)
+                        self._state.following.append(self.FOLLOW_constraint_in_argumentList3092)
                         constraint2 = self.constraint()
 
                         self._state.following.pop()
@@ -4179,17 +4216,17 @@ class PolicyParser(Parser):
 
 
                     else:
-                        break #loop62
-                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:379:7: ( COMMA )?
-                alt63 = 2
-                LA63_0 = self.input.LA(1)
+                        break #loop63
+                # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:380:7: ( COMMA )?
+                alt64 = 2
+                LA64_0 = self.input.LA(1)
 
-                if (LA63_0 == COMMA) :
-                    alt63 = 1
-                if alt63 == 1:
-                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:379:9: COMMA
+                if (LA64_0 == COMMA) :
+                    alt64 = 1
+                if alt64 == 1:
+                    # /Users/walsh/Development/workspace/Intellect/intellect/grammar/Policy.g:380:9: COMMA
                     pass 
-                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3087)
+                    self.match(self.input, COMMA, self.FOLLOW_COMMA_in_argumentList3107)
                     #action start
                     object.append_child( "," ) 
                     #action end
@@ -4349,34 +4386,34 @@ class PolicyParser(Parser):
         pass
 
 
-    # lookup tables for DFA #58
+    # lookup tables for DFA #59
 
-    DFA58_eot = DFA.unpack(
+    DFA59_eot = DFA.unpack(
         u"\21\uffff"
         )
 
-    DFA58_eof = DFA.unpack(
+    DFA59_eof = DFA.unpack(
         u"\2\2\17\uffff"
         )
 
-    DFA58_min = DFA.unpack(
+    DFA59_min = DFA.unpack(
         u"\1\13\1\11\17\uffff"
         )
 
-    DFA58_max = DFA.unpack(
+    DFA59_max = DFA.unpack(
         u"\1\13\1\115\17\uffff"
         )
 
-    DFA58_accept = DFA.unpack(
+    DFA59_accept = DFA.unpack(
         u"\2\uffff\1\2\1\uffff\1\1\14\uffff"
         )
 
-    DFA58_special = DFA.unpack(
+    DFA59_special = DFA.unpack(
         u"\21\uffff"
         )
 
             
-    DFA58_transition = [
+    DFA59_transition = [
         DFA.unpack(u"\1\1"),
         DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\4\5\uffff\1\4\46\uffff\2"
         u"\4\4\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\uffff\4\4"),
@@ -4397,43 +4434,43 @@ class PolicyParser(Parser):
         DFA.unpack(u"")
     ]
 
-    # class definition for DFA #58
+    # class definition for DFA #59
 
-    class DFA58(DFA):
+    class DFA59(DFA):
         pass
 
 
-    # lookup tables for DFA #60
+    # lookup tables for DFA #61
 
-    DFA60_eot = DFA.unpack(
+    DFA61_eot = DFA.unpack(
         u"\22\uffff"
         )
 
-    DFA60_eof = DFA.unpack(
+    DFA61_eof = DFA.unpack(
         u"\22\uffff"
         )
 
-    DFA60_min = DFA.unpack(
+    DFA61_min = DFA.unpack(
         u"\1\13\1\11\20\uffff"
         )
 
-    DFA60_max = DFA.unpack(
+    DFA61_max = DFA.unpack(
         u"\1\111\1\115\20\uffff"
         )
 
-    DFA60_accept = DFA.unpack(
-        u"\2\uffff\1\2\1\uffff\1\1\15\uffff"
+    DFA61_accept = DFA.unpack(
+        u"\2\uffff\1\2\1\1\16\uffff"
         )
 
-    DFA60_special = DFA.unpack(
+    DFA61_special = DFA.unpack(
         u"\22\uffff"
         )
 
             
-    DFA60_transition = [
+    DFA61_transition = [
         DFA.unpack(u"\1\1\75\uffff\1\2"),
-        DFA.unpack(u"\1\4\2\uffff\1\4\4\uffff\1\4\3\uffff\1\4\1\uffff\1"
-        u"\4\46\uffff\2\4\4\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\2\4\4"),
+        DFA.unpack(u"\1\3\2\uffff\1\3\4\uffff\1\3\3\uffff\1\3\1\uffff\1"
+        u"\3\46\uffff\2\3\4\uffff\1\3\1\uffff\1\3\1\uffff\1\3\1\2\4\3"),
         DFA.unpack(u""),
         DFA.unpack(u""),
         DFA.unpack(u""),
@@ -4452,9 +4489,9 @@ class PolicyParser(Parser):
         DFA.unpack(u"")
     ]
 
-    # class definition for DFA #60
+    # class definition for DFA #61
 
-    class DFA60(DFA):
+    class DFA61(DFA):
         pass
 
 
@@ -4647,8 +4684,8 @@ class PolicyParser(Parser):
     FOLLOW_TILDE_in_factor2295 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_factor_in_factor2299 = frozenset([1])
     FOLLOW_power_in_factor2307 = frozenset([1])
-    FOLLOW_atom_in_power2327 = frozenset([1, 9, 14, 69])
-    FOLLOW_trailer_in_power2339 = frozenset([1, 9, 14, 69])
+    FOLLOW_atom_in_power2327 = frozenset([1, 9, 14, 69, 70])
+    FOLLOW_trailer_in_power2339 = frozenset([1, 9, 14, 69, 70])
     FOLLOW_DOUBLESTAR_in_power2360 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_factor_in_power2362 = frozenset([1])
     FOLLOW_LPAREN_in_atom2385 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
@@ -4678,24 +4715,27 @@ class PolicyParser(Parser):
     FOLLOW_LPAREN_in_trailer2860 = frozenset([9, 10, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
     FOLLOW_argumentList_in_trailer2865 = frozenset([10])
     FOLLOW_RPAREN_in_trailer2872 = frozenset([1])
-    FOLLOW_DOT_in_trailer2880 = frozenset([12])
-    FOLLOW_NAME_in_trailer2882 = frozenset([1])
-    FOLLOW_expression_in_expressionList2905 = frozenset([1, 11])
-    FOLLOW_COMMA_in_expressionList2925 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
-    FOLLOW_expression_in_expressionList2929 = frozenset([1, 11])
-    FOLLOW_COMMA_in_expressionList2944 = frozenset([1])
-    FOLLOW_constraint_in_dictmaker2969 = frozenset([16])
-    FOLLOW_COLON_in_dictmaker2979 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
-    FOLLOW_constraint_in_dictmaker2983 = frozenset([1, 11])
-    FOLLOW_COMMA_in_dictmaker3004 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
-    FOLLOW_constraint_in_dictmaker3008 = frozenset([16])
-    FOLLOW_COLON_in_dictmaker3010 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
-    FOLLOW_constraint_in_dictmaker3014 = frozenset([1, 11])
-    FOLLOW_COMMA_in_dictmaker3031 = frozenset([1])
-    FOLLOW_constraint_in_argumentList3056 = frozenset([1, 11])
-    FOLLOW_COMMA_in_argumentList3068 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
-    FOLLOW_constraint_in_argumentList3072 = frozenset([1, 11])
-    FOLLOW_COMMA_in_argumentList3087 = frozenset([1])
+    FOLLOW_LBRACK_in_trailer2880 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 71, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_trailer2885 = frozenset([71])
+    FOLLOW_RBRACK_in_trailer2892 = frozenset([1])
+    FOLLOW_DOT_in_trailer2900 = frozenset([12])
+    FOLLOW_NAME_in_trailer2902 = frozenset([1])
+    FOLLOW_expression_in_expressionList2925 = frozenset([1, 11])
+    FOLLOW_COMMA_in_expressionList2945 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_expression_in_expressionList2949 = frozenset([1, 11])
+    FOLLOW_COMMA_in_expressionList2964 = frozenset([1])
+    FOLLOW_constraint_in_dictmaker2989 = frozenset([16])
+    FOLLOW_COLON_in_dictmaker2999 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker3003 = frozenset([1, 11])
+    FOLLOW_COMMA_in_dictmaker3024 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker3028 = frozenset([16])
+    FOLLOW_COLON_in_dictmaker3030 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_dictmaker3034 = frozenset([1, 11])
+    FOLLOW_COMMA_in_dictmaker3051 = frozenset([1])
+    FOLLOW_constraint_in_argumentList3076 = frozenset([1, 11])
+    FOLLOW_COMMA_in_argumentList3088 = frozenset([9, 12, 17, 21, 23, 62, 63, 68, 70, 72, 74, 75, 76, 77])
+    FOLLOW_constraint_in_argumentList3092 = frozenset([1, 11])
+    FOLLOW_COMMA_in_argumentList3107 = frozenset([1])
 
 
 

@@ -357,6 +357,7 @@ comparisonList returns [object] // returns a ComparisonList object
 
 trailer returns [object] // returns a Trailer object
   : LPAREN {$object = Trailer( $LPAREN.text ) } (argumentList { $object.append_child( $argumentList.object ) } )? RPAREN { $object.append_child( $RPAREN.text ) }
+  | LBRACK {$object = Trailer( $LBRACK.text ) } (constraint { $object.append_child( $constraint.object ) } )? RBRACK { $object.append_child( $RBRACK.text ) }
   | DOT NAME { $object = Trailer( [$DOT.text, $NAME.text] ) }
   ;
 
