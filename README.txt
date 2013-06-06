@@ -147,8 +147,8 @@ reason over::
 7. The Policy DSL
 -----------------
 
-Example with policy files can be found at the path `Intellect/src/intellect/examples <https://github.com/nemonik/Intellect/tree/master/src/intellect/examples>`_. 
-Policy files must follow the Policy grammar as define in `Intellect/src/intellect/grammar/Policy.g <https://raw.github.com/nemonik/Intellect/master/src/intellect/grammar/Policy.g>`_. 
+Example with policy files can be found at the path `intellect/examples <https://github.com/nemonik/Intellect/tree/master/intellect/examples>`_. 
+Policy files must follow the Policy grammar as define in `intellect/grammar/Policy.g <https://raw.github.com/nemonik/Intellect/master/intellect/grammar/Policy.g>`_. 
 The rest of this section documents the grammar of policy domain-specific language.
 
 7.1 Import Statements (``ImportStmts``)
