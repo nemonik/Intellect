@@ -48,7 +48,7 @@ other domains.
 ---------------
 
 * ANTLR3 Python Runtime 3.1.3
-* Python itself, if you don't already have it.  I tested the code on Python 2.7.1 and 2.7.2. 
+* Python itself, if you don't already have it.  I've tested the code on Python 2.7.1 and 2.7.2. 
 
 4. Contribution
 ---------------
