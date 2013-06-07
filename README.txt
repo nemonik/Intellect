@@ -1,5 +1,7 @@
 *My apologies, a better readme will follow.*
 
+The September 2013 issue, Volume 37 of Elsevier's "Computers and Security" contains a journal article entitled "`Active cyber defense with denial and deception: A cyber-wargame experiment <http://dx.doi.org/10.1016/j.cose.2013.03.015>`_" describing a computer network security use case for Intellect.
+
 Intellect
 =========
 
