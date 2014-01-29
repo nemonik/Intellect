@@ -47,7 +47,7 @@ other domains.
 3. Dependencies
 ---------------
 
-* `ANTLR3 Python Runtime 3.1.3 <http://www.antlr.org/wiki/display/ANTLR3/Python+runtime>`_
+* `ANTLR3 Python Runtime 3.1.3 <https://github.com/antlr/antlr3/tree/master/runtime/Python>`_
 * Python itself, if you don't already have it.  I've tested the code on Python 2.7.1, 2.7.2, 2.7.3. 
 
 4. Contribution
