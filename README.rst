@@ -39,7 +39,7 @@ There are number improvements I would like to work on for future releases:
 
 Please help support these efforts.
 
-.. |gittip| image:: https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png
+.. |gittip| figure:: https://github.com/nemonik/Intellect/raw/master/images/gittip.png
 .. _gittip: https://www.gittip.com/nemonik/
 
 2. Intellect In The News
