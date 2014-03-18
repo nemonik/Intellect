@@ -39,8 +39,8 @@ There are number improvements I would like to work on for future releases:
 
 Please help support these efforts.
 
-.. |ImageLink| image:: https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png
-.. _ImageLink: https://www.gittip.com/nemonik/
+.. |gittip| image:: https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png
+.. _gittip: https://www.gittip.com/nemonik/
 
 2. Intellect In The News
 ---------------------
