@@ -1,7 +1,3 @@
-*My apologies, a better readme will follow.*
-
-The September 2013 issue, Volume 37 of Elsevier's "Computers and Security" contains a journal article entitled "`Active cyber defense with denial and deception: A cyber-wargame experiment <http://dx.doi.org/10.1016/j.cose.2013.03.015>`_" describing a computer network security use case for Intellect.
-
 Intellect
 =========
 
@@ -35,30 +31,44 @@ ties written into the language nor the rule engine to cyber security
 and thus the system in its entirety can be more  broadly used in
 other domains.
 
-2. Installation
+There are number improvements I would like to work on for future releases:
+
+* Add Support for Multiple Rule Conditions.
+* The ANTLR Runtime for Python dependency was left behind with the the release of ANTL4, I would like to port the present Runtime for Java to Python and use.
+* Support Python 3.
+
+Please help support these efforts.
+
+[![Support via Gittip](https://rawgithub.com/twolfson/gittip-badge/0.2.0/dist/gittip.png)](https://www.gittip.com/nemonik/)
+
+2. Intellect In The News
+---------------------
+
+The September 2013 issue, Volume 37 of Elsevier's "Computers and Security" contains a journal article entitled "`Active cyber defense with denial and deception: A cyber-wargame experiment <http://dx.doi.org/10.1016/j.cose.2013.03.015>`_" describing a computer network security use case for Intellect.
+
+3. Installation
 ---------------
 
 * To install via `setuptools <http://peak.telecommunity.com/DevCenter/setuptools>`_ use ``easy_install -U Intellect``
 * To install via `pip <http://www.pip-installer.org/en/latest/installing.html>`_ use ``pip install Intellect``
 * To install via `pypm <http://code.activestate.com/pypm/>`_ use ``pypm install intellect``
 * Or download the latest source from `Master <http://github.com/nemonik/Intellect/archives/master>`_ or the most recent tagged release `Tagged Releases <https://github.com/nemonik/Intellect/tags>`_, unpack, and run ``python setup.py install`` 
-
-
-3. Dependencies
+ 
+4. Dependencies
 ---------------
 
-* `ANTLR3 Python Runtime 3.1.3 <https://github.com/antlr/antlr3/tree/master/runtime/Python>`_
-* Python itself, if you don't already have it.  I've tested the code on Python 2.7.1, 2.7.2, 2.7.3. 
+* ANTLR3 Python Runtime 3.1.3 (Will contrain you to Python 2.x.)
+* Python itself, if you don't already have it.  I've tested the code on Python 2.7.1 and 2.7.2., but will likely work on any and all Python 2.x versions.
 
-4. Contribution
----------------
+5. Source Code Contributions
+----------------------------
 
 The source code is available under the BSD 4-clause license. If you have ideas, 
 code, bug reports, or fixes you would like to contribute please do so.
 
 Bugs and feature requests can be filed at `Github <http://github.com/nemonik/Intellect>`_.
 
-5. Background
+6. Background
 -------------
 
 Many production rule system implementations have been open-sourced, such as
@@ -105,7 +115,7 @@ language syntax.  The policy DSL is parsed and lexed with the help of the
 ANTLR3 Parse Generator and  Runtime for Python. 
 
 
-6. Facts (Data being reasoned over)
+7. Facts (Data being reasoned over)
 -----------------------------------
 
 The interpreter, the rules engine, and the remainder of the code such as 
@@ -146,14 +156,14 @@ reason over::
 		def property0(self, value):
 			self._property0 = value
 
-7. The Policy DSL
+8. The Policy DSL
 -----------------
 
 Example with policy files can be found at the path `intellect/examples <https://github.com/nemonik/Intellect/tree/master/intellect/examples>`_. 
 Policy files must follow the Policy grammar as define in `intellect/grammar/Policy.g <https://raw.github.com/nemonik/Intellect/master/intellect/grammar/Policy.g>`_. 
 The rest of this section documents the grammar of policy domain-specific language.
 
-7.1 Import Statements (``ImportStmts``)
+8.1 Import Statements (``ImportStmts``)
 ---------------------------------------
 
 Import statements basically follow Python's with a few limitations.  For
@@ -166,7 +176,7 @@ files the last imported as class or module wins as the one being named.
 
 .. _7.2:
 
-7.2 Attribute Statements (``attribute``)
+8.2 Attribute Statements (``attribute``)
 ----------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/attributeStmt.jpg
@@ -262,7 +272,7 @@ and the logging output from the execution of the above would be::
 
 See section 7.3.3.1.2_ ``attributeAction`` for another example.
 
-7.3 Rule Statements (``ruleStmt``)
+8.3 Rule Statements (``ruleStmt``)
 ----------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/ruleStmt.jpg
@@ -303,7 +313,7 @@ will be deleted in action of the rule.
 		then:
 			delete $bar
 
-7.3.1 ``agenda-group`` rule property
+8.3.1 ``agenda-group`` rule property
 ------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/agendaGroup.jpg
@@ -316,7 +326,7 @@ grouped in to agenda groups, and fired on an agenda.
 See sections 7.2_ ``attribute`` and 7.3.3.1.2_ ``attributeAction`` for examples 
 of the use of this property.
 
-7.3.2 When
+8.3.2 When
 ----------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/when.jpg
@@ -325,7 +335,7 @@ of the use of this property.
 
 If present in rule, it defines the condition on which the rule will be activated.
 
-7.3.2.1 Rule Condition (``condition``)
+8.3.2.1 Rule Condition (``condition``)
 --------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/condition.jpg
@@ -356,7 +366,7 @@ the action if ``exists`` prepends the ``classContraint``.
 Currently, the DSL only supports a single ``classConstraint``, but work is ongoing
 to support more than one.
 
-7.3.2.1.1 A Class Constraint (``classConstraint``)
+8.3.2.1.1 A Class Constraint (``classConstraint``)
 --------------------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/classConstraint.jpg
@@ -381,7 +391,7 @@ As in the case of the Rule Condition example::
 An ``OBJECTBINDING`` can be further used in the action of the rule, but not in the 
 case where the ``condition`` is prepended with ``exists`` as in the example.
 
-7.3.2.1.2 A Constraint
+8.3.2.1.2 A Constraint
 ----------------------
 
 A ``constraint`` follows the same basic ``and``, ``or``, and ``not`` grammar that Python
@@ -396,7 +406,7 @@ that ``startwith`` ``apple``, and ``property2`` attributes greater than ``5`` be
 evaluated in hand with ``exist`` statement.  More on the rest of the constraint follows
 in the sections below.
 
-7.3.2.1.2.1 Using Regular Expressions
+8.3.2.1.2.1 Using Regular Expressions
 -------------------------------------
 
 You can also use regular expressions in constraint by simply importing the
@@ -408,7 +418,7 @@ in the case of the Rule Condition example::
 The regular expression ``r"\bapple\b"`` search is performed on ``property1`` of
 objects of type ``ClassB`` in knowledge.
 
-7.3.2.1.2.2 Using Methods
+8.3.2.1.2.2 Using Methods
 -------------------------
 
 To rewrite a complicated ``constraint``:
@@ -435,7 +445,7 @@ can be messaged the instance's ``property2`` attribute and the function's return
 evaluated, and a call to the instance's ``aMethod`` method can be evaluated for 
 a return of ``"a"``.
 
-7.3.3 Then
+8.3.3 Then
 ----------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/then.jpg
@@ -445,7 +455,7 @@ a return of ``"a"``.
 Is used to define the suite of one-or-more ``action`` statements to be called
 firing the rule, when the rule is said to be activated.
 
-7.3.3.1 Rule Action (Suite of Actions)
+8.3.3.1 Rule Action (Suite of Actions)
 --------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/action.jpg
@@ -455,7 +465,7 @@ firing the rule, when the rule is said to be activated.
 Rules may have a suite of one or more actions used in process of doing something, 
 typically  to achieve an aim.
 
-7.3.3.1.1 Simple Statements (``simpleStmt``)
+8.3.3.1.1 Simple Statements (``simpleStmt``)
 --------------------------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/simpleStmt.jpg
@@ -488,7 +498,7 @@ are not supported, only Python's ``expressionStmt`` statements are supported.
 
 .. _7.3.3.1.2:
 
-7.3.3.1.2 ``attributeAction``
+8.3.3.1.2 ``attributeAction``
 -----------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/attributeStmt.jpg
@@ -552,7 +562,7 @@ rules on agenda in the order describe by the Python list
 	
 		myIntellect = MyIntellect()
 	
-		policy_c = myIntellect.learn(Intellect.local_file_uri"./rulesets/test_c.policy"))
+		policy_c = myIntellect.learn(Intellect.local_file_uri("./rulesets/test_c.policy"))
 	
 		myIntellect.reason(["1", "2", "3", "4", "5", "6"])
 
@@ -574,7 +584,7 @@ is further incremented by ``1`` and is printed, and then a variable ``i`` scoped
 the policy attribute ``i`` for when ``rule_j`` action is executed firing the rule
 the value of ``6`` is printed.
 
-7.3.3.1.3 ``learn`` action
+8.3.3.1.3 ``learn`` action
 --------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/learnAction.jpg
@@ -606,7 +616,7 @@ using ``insert``::
 				count = $buyOrder.count - 1
 			insert BlackSheep()
 
-7.3.3.1.4 ``forget`` action
+8.3.3.1.4 ``forget`` action
 ---------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/forgetAction.jpg
@@ -635,7 +645,7 @@ as the following using ``delete``::
 
 Note: cannot be used in conjunction with ``exists``.
 
-7.3.3.1.5 ``modify`` action
+8.3.3.1.5 ``modify`` action
 ---------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/modifyAction.jpg
@@ -661,7 +671,7 @@ you do is modify the fact (toggle a boolean property, set a property's value,
 etc)  and then use this property to evaluate in the proceeding rule.
 
 
-7.3.3.1.6 ``halt`` action
+8.3.3.1.6 ``halt`` action
 -------------------------
 
 .. figure:: https://github.com/nemonik/Intellect/raw/master/images/haltAction.jpg
@@ -678,7 +688,7 @@ The following rule::
 illustrates the use of a ``halt`` action to tell the rules engine to halt 
 reasoning over the policy.
 
-8. Creating and using a Rules Engine with a single policy
+9. Creating and using a Rules Engine with a single policy
 ---------------------------------------------------------
 
 At its simplest a rules engine can be created and used like so::
