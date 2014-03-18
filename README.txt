@@ -31,7 +31,7 @@ ties written into the language nor the rule engine to cyber security
 and thus the system in its entirety can be more  broadly used in
 other domains.
 
-There are number improvements I would like to work on for future releases:
+There are number of improvements I would like to work for future releases:
 
 * Add Support for Multiple Rule Conditions.
 * The ANTLR Runtime for Python dependency was left behind with the the release of ANTL4, I would like to port the present Runtime for Java to Python and use.
