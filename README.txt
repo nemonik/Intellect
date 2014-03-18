@@ -40,7 +40,7 @@ There are number improvements I would like to work on for future releases:
 Please help support these efforts.
 
 .. image:: https://github.com/nemonik/Intellect/raw/master/images/gittip.png
-.. :target: https://www.gittip.com/nemonik/
+   :target: https://www.gittip.com/nemonik/
 
 2. Intellect In The News
 ---------------------
