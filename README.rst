@@ -37,7 +37,7 @@ other domains.
 There are number of improvements I would like to work for future releases:
 
 * Add Support for Multiple Rule Conditions.
-* The ANTLR Runtime for Python dependency was left behind with the the release of ANTL4, I would like to port the present Runtime for Java to Python and use.
+* Move to an ANTLR4 based parser. The ANTLR Runtime for Python dependency was left behind with the the release of ANTL4. Luckily, n ANTLR 4 runtime for both Python 2 and 3 target is being tackled by Eric Vergnaud and is taking `shape <https://github.com/ericvergnaud/antlr4>`_. The last I looked all execParser and execLexer tests passed. Woot!
 * Support Python 3.
 
 Please help support these efforts.
@@ -61,8 +61,8 @@ The September 2013 issue, Volume 37 of Elsevier's "Computers and Security" conta
 5. Dependencies
 ---------------
 
-* `ANTLR3 Python Runtime <https://github.com/antlr/antlr3/tree/master/runtime/Python>`_ that will contrain you to Python 2.x.
-* Python itself, if you don't already have it.  I've tested the code on Python 2.7.1 and 2.7.2., but will likely work on any and all Python 2.x versions. In the past I've noted here that ""Python 3 at present is not supported, because ANTLR3 appears not to support Python 3." Well, that's not exactly true, there is a Python3 runtime, I just wasn't aware of it nor have I worked with it. It can be found here  `ANTLR3 Python3 Runtime <https://github.com/antlr/antlr3/tree/master/runtime/Python3>`_
+* `ANTLR3 Python Runtime <https://github.com/antlr/antlr3/tree/master/runtime/Python>`_ that will contrain you to Python 2.x. In the past I've noted here that "Python 3 at present is not supported, because ANTLR3 appears not to support Python 3." Well, that's not exactly true, there is a Python3 runtime, I just wasn't aware of it nor have I worked with it. It can be found here  `ANTLR3 Python3 Runtime <https://github.com/antlr/antlr3/tree/master/runtime/Python3>`_
+* Python itself, if you don't already have it.  I've tested the code on Python 2.7.1 and 2.7.2., but will likely work on any and all Python 2.x versions. 
 
 6. Source Code Contributions
 ----------------------------
