@@ -1,3 +1,5 @@
+#! /usr/bin/python
+# coding=utf-8
 '''
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
