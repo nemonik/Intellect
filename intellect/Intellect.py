@@ -1,3 +1,5 @@
+#! /usr/bin/python
+# coding=utf-8
 """
 Copyright (c) 2011, The MITRE Corporation.
 All rights reserved.
@@ -167,8 +169,9 @@ class Intellect(object):
         '''
 
         response = urllib2.urlopen(urlstring)
-
-        return response.read()
+        response.headers['content-type'] = 'text/plain; charset=utf8'
+        content = response.read()
+        return content
 
 
     def learn(self, identifier):

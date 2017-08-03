@@ -1,3 +1,5 @@
+#! /usr/bin/python
+# coding=utf-8
 """
 Copyright (c) 2004 Terence Parr and Loring Craymer
 All rights reserved.
